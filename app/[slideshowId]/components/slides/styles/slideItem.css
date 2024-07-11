@@ -1,8 +1,4 @@
 .slide_item {
-  --width: 0px;
-
-  width: var(--width);
-
   padding: 0.8rem;
   border-radius: var(--border-radius);
 

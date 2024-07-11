@@ -1,5 +1,4 @@
 import { Slide } from '@prisma/client';
-import { CSSProperties } from 'react';
 
 import './styles/slideItem.css';
 
@@ -8,14 +7,10 @@ type Props = {
 };
 
 export default function SlideItem({ slide }: Props) {
-  const width = `${slide.duration * 50}px`;
+  const width = slide.duration * 50;
 
   return (
-    <li
-      id={slide.id}
-      className="slide_item"
-      style={{ '--width': width } as CSSProperties}
-    >
+    <li id={slide.id} className="slide_item" style={{ width }}>
       <span>{slide.duration}</span>
     </li>
   );
