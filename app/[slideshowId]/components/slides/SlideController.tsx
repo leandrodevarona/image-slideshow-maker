@@ -1,6 +1,6 @@
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
-import MakeSortable from '@ism/app/components/common/sortable/MakeSortable';
+import MakeSlidesSortable from './MakeSlidesSortable';
 
 import './styles/slideController.css';
 
@@ -18,7 +18,7 @@ export default function SlideController({ slides }: Props) {
       {slides.map((slide) => (
         <SlideItem key={slide.id} slide={slide} />
       ))}
-      <MakeSortable elemId={id} />
+      <MakeSlidesSortable slideListId={id} />
     </ul>
   );
 }

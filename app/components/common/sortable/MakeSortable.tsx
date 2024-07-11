@@ -5,9 +5,10 @@ import Sortable from 'sortablejs';
 
 type Props = {
   elemId: string;
+  onChange?: (evt: Sortable.SortableEvent) => void;
 };
 
-export default function MakeSortable({ elemId }: Props) {
+export default function MakeSortable({ elemId, onChange }: Props) {
   useEffect(() => {
     const elem = document.getElementById(elemId);
 
@@ -15,8 +16,9 @@ export default function MakeSortable({ elemId }: Props) {
       new Sortable(elem, {
         animation: 150,
         ghostClass: 'blue-background-class',
+        onChange,
       });
-  }, [elemId]);
+  }, [elemId, onChange]);
 
   return null;
 }
