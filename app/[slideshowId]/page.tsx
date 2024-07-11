@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { getSlideshowById } from './lib/data/data';
 
 import styles from './page.module.css';
+import { notFound, redirect } from 'next/navigation';
 
 type Props = {
   params: {
@@ -13,6 +14,8 @@ export default async function SlideshowPage({
   params: { slideshowId },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
+
+  if (!slideshow) notFound();
 
   return (
     <main className={styles.main}>

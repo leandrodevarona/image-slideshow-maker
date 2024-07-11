@@ -1,0 +1,43 @@
+.notification {
+  --success: #22bb33;
+  --error: #ff3333;
+
+  display: none;
+}
+
+.notification.visible {
+  position: fixed;
+  left: 3rem;
+  bottom: 5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 10px;
+
+  box-shadow: 0px 0px 10px rgb(208, 207, 207), 0px 4px 10px rgb(202, 201, 201);
+
+  font-size: medium;
+  font-weight: 500;
+}
+
+.notification_success {
+  background-color: var(--success);
+}
+
+.notification_error {
+  background-color: var(--error);
+}
+
+.notification button {
+  display: flex;
+  align-items: center;
+
+  border: none;
+  background-color: transparent;
+
+  cursor: pointer;
+}
