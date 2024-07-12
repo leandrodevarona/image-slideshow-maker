@@ -8,11 +8,14 @@ type Props = {
   slides: Slide[];
 };
 
+function NoSlides() {
+  return <div className="slide_controller">No slides</div>;
+}
+
 export default function SlideController({ slides }: Props) {
   const id = 'slide-controller';
 
-  if (!slides || slides.length <= 0)
-    return <div className="slide_controller">No slides</div>;
+  if (!slides || slides.length <= 0) return <NoSlides />;
 
   return (
     <ul id={id} className="slide_controller">

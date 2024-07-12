@@ -24,7 +24,6 @@
   max-width: 130px;
 
   padding: 0.5rem;
-  opacity: 0.8;
 
   display: flex;
   align-items: center;
@@ -34,18 +33,4 @@
 
   user-select: none;
   cursor: pointer;
-}
-
-.photo_picker__form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.photo_picker__form button {
-  margin: 0 auto;
-
-  padding: 0.5rem;
-
-  font-size: large;
 }

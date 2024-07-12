@@ -16,11 +16,10 @@ export default function PhotoItem({ photoId, photoSmallUrl }: Props) {
           name="photo"
           defaultValue={photoId}
           defaultChecked={false}
-          role="textbox"
           hidden
           required
         />
-        <Image src={photoSmallUrl} alt="Cover image" width={60} height={60} />
+        <Image src={photoSmallUrl} alt="Slide photo" width={60} height={60} />
       </label>
     </li>
   );

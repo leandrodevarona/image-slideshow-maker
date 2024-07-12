@@ -5,4 +5,8 @@
   border-radius: var(--border-radius);
 
   background-color: rgb(var(--card-rgb));
+
+  text-align: center;
+
+  cursor: pointer;
 }

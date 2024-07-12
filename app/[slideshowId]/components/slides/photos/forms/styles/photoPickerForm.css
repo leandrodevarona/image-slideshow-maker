@@ -1,0 +1,13 @@
+.photo_picker__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.photo_picker__form button {
+  margin: 0 auto;
+
+  padding: 0.5rem;
+
+  font-size: large;
+}

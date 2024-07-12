@@ -1,9 +1,9 @@
+import { Suspense } from 'react';
 import DropdownMenu from '@ism/app/components/common/menus/DropdownMenu';
 import { ImageIcon } from '@radix-ui/react-icons';
 import SearchPhotos from './inputs/SearchPhotos';
-import PhotoList from './PhotoList';
-import Submit from '@ism/app/components/common/buttons/Submit';
 import { createAction } from '@ism/app/[slideshowId]/lib/actions/slide';
+import PhotoPickerForm from './forms/PhotoPickerForm';
 
 import './styles/photoPicker.css';
 
@@ -18,7 +18,7 @@ export default function PhotoPicker({ slideshowId, query }: Props) {
   return (
     <DropdownMenu
       id="photo_picker"
-      buttonClassName="photo_picker__button"
+      buttonClassName="photo_picker__button primary_button"
       buttonContent={
         <>
           <ImageIcon />
@@ -36,10 +36,9 @@ export default function PhotoPicker({ slideshowId, query }: Props) {
           <SearchPhotos />
         </section>
         <section>
-          <form className="photo_picker__form" action={createSlide}>
-            <PhotoList query={query} />
-            <Submit className="primary_button">Create slide</Submit>
-          </form>
+          <Suspense fallback={'Loading photos...'}>
+            <PhotoPickerForm query={query} createSlide={createSlide} />
+          </Suspense>
         </section>
       </div>
     </DropdownMenu>

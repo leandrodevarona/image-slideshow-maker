@@ -9,8 +9,8 @@
 }
 
 .slide_editor__controller {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
   align-items: center;
   gap: 1rem;
 }

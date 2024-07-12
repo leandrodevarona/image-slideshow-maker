@@ -5,10 +5,9 @@ import './styles/photoList.css';
 
 type Props = {
   query?: string;
-  imgId?: string;
 };
 
-export default async function PhotoList({ query, imgId }: Props) {
+export default async function PhotoList({ query }: Props) {
   const photos = await getPhotos(query);
 
   if (!photos) return null;
