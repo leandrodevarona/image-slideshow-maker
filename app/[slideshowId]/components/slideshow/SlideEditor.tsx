@@ -14,7 +14,7 @@ export default function SlideEditor({ slideshow, photosQuery }: Props) {
     <div className="slide_editor">
       <section></section>
       <section className="slide_editor__controller">
-        <SlideController slides={slideshow.slides} />
+        <SlideController slideshowId={slideshow.id} slides={slideshow.slides} />
         <PhotoPicker slideshowId={slideshow.id} query={photosQuery} />
       </section>
     </div>

@@ -42,3 +42,24 @@ export async function createAction(slideshowId: string, formData: FormData) {
 
     revalidatePath(`/${slideshowId}`)
 }
+
+export async function updateAction(slideshowId: string, slideId: string, newIndex: number) {
+    let pendingAction = null;
+
+    try {
+        await db.slide.update({
+            where: {
+                id: slideId,
+            },
+            data: {
+                index: newIndex
+            }
+        })
+    } catch (error) {
+        pendingAction = () => redirect(`/${slideshowId}?error=Something went wrong`);
+    }
+
+    if (pendingAction) return pendingAction();
+
+    revalidatePath(`/${slideshowId}`)
+}
