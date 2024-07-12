@@ -103,7 +103,7 @@ a {
 .primary_button {
   border: none;
   border-radius: 5px;
-  background-color: rgb(var(--callout-rgb));
+  background-color: rgba(var(--card-rgb), 0.3);
 
   user-select: none;
   cursor: pointer;

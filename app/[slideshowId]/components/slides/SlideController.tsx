@@ -1,6 +1,7 @@
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
 import MakeSlidesSortable from './MakeSlidesSortable';
+import { sortSlides } from '../../lib/utils/slides';
 
 import './styles/slideController.css';
 
@@ -17,9 +18,11 @@ export default function SlideController({ slides }: Props) {
 
   if (!slides || slides.length <= 0) return <NoSlides />;
 
+  const sortedSlides = sortSlides(slides);
+
   return (
     <ul id={id} className="slide_controller">
-      {slides.map((slide) => (
+      {sortedSlides.map((slide) => (
         <SlideItem key={slide.id} slide={slide} />
       ))}
       <MakeSlidesSortable slideListId={id} />

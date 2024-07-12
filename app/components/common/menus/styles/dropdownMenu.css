@@ -15,9 +15,9 @@
   padding: 0.8rem;
 
   border-radius: var(--border-radius);
-  border: 2px solid gray;
+  border: 2px solid rgba(var(--callout-border-rgb), 0.5);
 
-  background-color: rgb(var(--card-rgb));
+  background-color: rgb(var(--callout-rgb));
 }
 
 .dropdown_menu__content {

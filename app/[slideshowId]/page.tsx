@@ -1,18 +1,22 @@
 import Image from 'next/image';
 import { getSlideshowById } from './lib/data/data';
+import { notFound } from 'next/navigation';
+import SlideEditor from './components/slideshow/SlideEditor';
 
 import styles from './page.module.css';
-import { notFound, redirect } from 'next/navigation';
-import SlideEditor from './components/slideshow/SlideEditor';
 
 type Props = {
   params: {
     slideshowId: string;
   };
+  searchParams: {
+    photos?: string;
+  };
 };
 
 export default async function SlideshowPage({
   params: { slideshowId },
+  searchParams: { photos },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
 
@@ -44,7 +48,7 @@ export default async function SlideshowPage({
         </div>
       </header>
       <div className={styles.center}>
-        <SlideEditor slideshow={slideshow} />
+        <SlideEditor slideshow={slideshow} photosQuery={photos} />
       </div>
       <footer></footer>
     </main>

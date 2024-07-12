@@ -5,7 +5,7 @@ export default function SearchPhotos() {
   return (
     <SearchInput
       name="photos"
-      icon={<MagnifyingGlassIcon />}
+      icon={<MagnifyingGlassIcon width={20} height={20}/>}
       placeholder="Keywords..."
     />
   );
