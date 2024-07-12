@@ -1,0 +1,16 @@
+.slide_editor {
+  width: 100%;
+  max-width: 900px;
+
+  min-height: 400px;
+
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+}
+
+.slide_editor__controller {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}

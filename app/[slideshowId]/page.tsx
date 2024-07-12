@@ -3,6 +3,7 @@ import { getSlideshowById } from './lib/data/data';
 
 import styles from './page.module.css';
 import { notFound, redirect } from 'next/navigation';
+import SlideEditor from './components/slideshow/SlideEditor';
 
 type Props = {
   params: {
@@ -42,7 +43,9 @@ export default async function SlideshowPage({
           </a>
         </div>
       </header>
-      <div className={styles.center}></div>
+      <div className={styles.center}>
+        <SlideEditor slideshow={slideshow} />
+      </div>
       <footer></footer>
     </main>
   );

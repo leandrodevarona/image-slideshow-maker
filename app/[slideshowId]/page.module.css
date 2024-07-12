@@ -3,8 +3,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 4rem;
-  padding-top: 2rem;
+  gap: 2rem;
+
+  padding-inline: 6rem;
+  padding-block: 2rem;
   min-height: 100vh;
 }
 
@@ -41,11 +43,11 @@
 }
 
 .center {
+  width: 100%;
+  min-height: 65vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
-  padding: 4rem 0;
 }
 
 .center::before {

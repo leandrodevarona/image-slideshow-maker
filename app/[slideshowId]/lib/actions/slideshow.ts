@@ -13,7 +13,6 @@ export async function createAction(name?: string) {
 
         return slideshow;
     } catch (error) {
-        console.log(error)
-        redirect('/?error=SomethingWentWrong')
+        redirect('/?error=Something went wrong')
     }
 }

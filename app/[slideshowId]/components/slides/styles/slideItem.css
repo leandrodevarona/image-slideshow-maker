@@ -1,6 +1,8 @@
 .slide_item {
+  list-style: none;
+
   padding: 0.8rem;
   border-radius: var(--border-radius);
 
-  background-color: var(--primary-glow);
+  background-color: rgb(var(--card-rgb));
 }

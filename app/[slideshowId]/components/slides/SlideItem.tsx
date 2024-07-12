@@ -10,7 +10,7 @@ export default function SlideItem({ slide }: Props) {
   const width = slide.duration * 50;
 
   return (
-    <li id={slide.id} className="slide_item" style={{ width }}>
+    <li id={slide.id} className="slide_item" style={{ minWidth: width }}>
       <span>{slide.duration}</span>
     </li>
   );

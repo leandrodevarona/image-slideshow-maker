@@ -12,4 +12,11 @@
   border-radius: var(--border-radius);
 
   overflow-x: auto;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.slide_controller::-webkit-scrollbar {
+  display: none;
 }

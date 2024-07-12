@@ -1,0 +1,51 @@
+.photo_picker__content {
+  bottom: calc(100% + 1rem);
+}
+
+.photo_picker__container {
+  min-width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.photo_picker__header h4 {
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.photo_picker__header p {
+  font-size: large;
+  font-weight: 500;
+}
+
+.photo_picker__button {
+  max-width: 130px;
+
+  padding: 0.5rem;
+  opacity: 0.8;
+
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  border-radius: 10px;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.photo_picker__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.photo_picker__form button {
+  margin: 0 auto;
+
+  padding: 0.5rem;
+
+  font-size: large;
+}

@@ -1,0 +1,11 @@
+.photo_item {
+  list-style: none;
+}
+
+.photo_item img {
+  border-radius: 6px;
+
+  object-fit: cover;
+
+  cursor: pointer;
+}

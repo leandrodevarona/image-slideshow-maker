@@ -1,0 +1,24 @@
+.dropdown_menu {
+  --dropdown-id: '';
+
+  position: relative;
+}
+
+/* Selector único basado en la variable */
+[id^='dropdown-']:checked ~ .dropdown_menu__content {
+  display: block;
+
+  max-width: 400px;
+
+  position: absolute;
+
+  padding: 0.8rem;
+
+  border-radius: var(--border-radius);
+  border: 2px solid gray;
+  background-color: white;
+}
+
+.dropdown_menu__content {
+  display: none;
+}
