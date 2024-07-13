@@ -1,5 +1,6 @@
 .photo_picker__content {
   bottom: calc(100% + 1rem);
+  right: calc(100% - 130px);
 }
 
 .photo_picker__container {

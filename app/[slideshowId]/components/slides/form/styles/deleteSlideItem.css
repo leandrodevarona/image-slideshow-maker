@@ -1,0 +1,8 @@
+.delete_slide__item button {
+  border: none;
+  background-color: transparent;
+
+  margin: 0 auto;
+
+  cursor: pointer;
+}

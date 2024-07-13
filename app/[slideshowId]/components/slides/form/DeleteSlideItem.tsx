@@ -13,9 +13,9 @@ export default function DeleteSlideItem({ slideshowId, slideId }: Props) {
   const deleteSlide = deleteAction.bind(null, slideshowId, slideId);
 
   return (
-    <form action={deleteSlide}>
-      <Submit>
-        <CrossCircledIcon />
+    <form className="delete_slide__item" action={deleteSlide}>
+      <Submit ariaLabel="Delete slide">
+        <CrossCircledIcon color="red" />
       </Submit>
     </form>
   );

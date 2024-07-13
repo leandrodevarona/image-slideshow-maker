@@ -6,10 +6,11 @@ import './styles/submit.css';
 
 type Props = {
   className?: string;
+  ariaLabel?: string;
   children: React.ReactNode;
 };
 
-export default function Submit({ className, children }: Props) {
+export default function Submit({ className, ariaLabel, children }: Props) {
   const { pending } = useFormStatus();
 
   return (
@@ -17,6 +18,7 @@ export default function Submit({ className, children }: Props) {
       className={`submit ${className || ''}`}
       type="submit"
       disabled={pending}
+      aria-label={ariaLabel}
     >
       {children}
     </button>
