@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { TrashIcon } from '@radix-ui/react-icons';
+import { Cross2Icon, TrashIcon } from '@radix-ui/react-icons';
 import { MouseEvent } from 'react';
 
 import './styles/deleteSlideItems.css';
@@ -12,6 +12,8 @@ export default function DeleteSlideItems() {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
+
+  const isDeleting = Boolean(searchParams.get(queryName)) === true;
 
   const handleOnClick = (evt: MouseEvent) => {
     evt.preventDefault();
@@ -29,8 +31,13 @@ export default function DeleteSlideItems() {
 
   return (
     <div className="delete_slide__items">
-      <button className="primary_button" onClick={handleOnClick}>
-        <TrashIcon />
+      <button
+        className="primary_button"
+        aria-label="Delete slides button"
+        title={isDeleting ? 'Cancel delete slides' : 'Delete slides'}
+        onClick={handleOnClick}
+      >
+        {isDeleting ? <Cross2Icon /> : <TrashIcon />}
       </button>
     </div>
   );

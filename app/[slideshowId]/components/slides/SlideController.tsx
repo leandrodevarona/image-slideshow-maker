@@ -2,7 +2,6 @@ import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
 import SlideItemToDelete from './SlideItemToDelete';
 import MakeSlidesSortable from './MakeSlidesSortable';
-import { updateAction } from '../../lib/actions/slide';
 
 import './styles/slideController.css';
 
@@ -38,10 +37,7 @@ export default function SlideController({
               <span>{slide.duration}</span>
             </SlideItem>
           ))}
-      <MakeSlidesSortable
-        slideshowId={slideshowId}
-        changeIndexAction={updateAction}
-      />
+      <MakeSlidesSortable slideshowId={slideshowId} />
     </ul>
   );
 }

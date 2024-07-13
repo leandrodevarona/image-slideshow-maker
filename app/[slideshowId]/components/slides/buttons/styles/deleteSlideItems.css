@@ -1,13 +1,18 @@
 .delete_slide__items {
-  opacity: 0.5;
-
-  padding: 0.5rem;
+  opacity: 0.3;
 
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 1rem;
 }
 
 .delete_slide__items:hover {
   opacity: 1;
+}
+
+.delete_slide__items button {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
 }

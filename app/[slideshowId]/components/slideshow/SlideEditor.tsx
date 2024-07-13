@@ -2,6 +2,7 @@ import { SlideshowWithSlides } from '../../lib/types/slideshow';
 import DeleteSlideItems from '../slides/buttons/DeleteSlideItems';
 import PhotoPicker from '../slides/photos/PhotoPicker';
 import SlideController from '../slides/SlideController';
+import SlideEditorActions from './SlideEditorActions';
 
 import './styles/slideEditor.css';
 
@@ -20,9 +21,7 @@ export default function SlideEditor({
     <div className="slide_editor">
       <section></section>
       <section className="slide_editor__controller">
-        <div className="slide_editor__actions">
-          <DeleteSlideItems />
-        </div>
+        <SlideEditorActions />
         <SlideController
           slideshowId={slideshow.id}
           slides={slideshow.slides}
