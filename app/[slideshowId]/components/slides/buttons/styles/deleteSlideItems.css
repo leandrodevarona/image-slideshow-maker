@@ -1,0 +1,13 @@
+.delete_slide__items {
+  opacity: 0.5;
+
+  padding: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.delete_slide__items:hover {
+  opacity: 1;
+}

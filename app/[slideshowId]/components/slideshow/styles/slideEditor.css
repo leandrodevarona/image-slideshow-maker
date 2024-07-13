@@ -1,6 +1,6 @@
 .slide_editor {
   width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
 
   min-height: 400px;
 
@@ -10,7 +10,7 @@
 
 .slide_editor__controller {
   display: grid;
-  grid-template-columns: 1fr 0.2fr;
+  grid-template-columns: 0.2fr 1fr 0.2fr;
   align-items: center;
   gap: 1rem;
 }
