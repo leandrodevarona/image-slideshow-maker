@@ -23,6 +23,7 @@ export default function EditSlideItem({
         defaultValue={slideDuration}
         min={5}
         max={20}
+        required
       />
       <Submit
         className="primary_button"
