@@ -30,15 +30,13 @@ export default function DeleteSlideItems() {
   };
 
   return (
-    <div className="delete_slide__items">
-      <button
-        className="primary_button"
-        aria-label="Delete slides button"
-        title={isDeleting ? 'Cancel delete slides' : 'Delete slides'}
-        onClick={handleOnClick}
-      >
-        {isDeleting ? <Cross2Icon /> : <TrashIcon />}
-      </button>
-    </div>
+    <button
+      className="delete_slide__items primary_button"
+      aria-label="Delete slides button"
+      title={isDeleting ? 'Cancel delete slides' : 'Delete slides'}
+      onClick={handleOnClick}
+    >
+      {isDeleting ? <Cross2Icon /> : <TrashIcon />}
+    </button>
   );
 }

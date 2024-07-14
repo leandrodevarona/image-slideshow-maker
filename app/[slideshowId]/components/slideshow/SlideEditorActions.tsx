@@ -1,9 +1,17 @@
-import DeleteSlideItems from '../slides/buttons/DeleteSlideItems';
+import DeleteSlideItems from './buttons/DeleteSlideItems';
+import SaveChanges from './buttons/SaveChanges';
 
-export default function SlideEditorActions() {
+import './styles/slideEditorActions.css';
+
+type Props = {
+  slideshowId: string;
+};
+
+export default function SlideEditorActions({ slideshowId }: Props) {
   return (
     <div className="slide_editor__actions">
       <DeleteSlideItems />
+      <SaveChanges slideshowId={slideshowId} />
     </div>
   );
 }

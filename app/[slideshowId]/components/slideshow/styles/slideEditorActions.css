@@ -1,0 +1,6 @@
+.slide_editor__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}

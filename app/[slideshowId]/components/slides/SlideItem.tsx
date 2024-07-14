@@ -4,14 +4,20 @@ import './styles/slideItem.css';
 
 type Props = {
   slide: Slide;
+  onClick?: () => void;
   children: React.ReactNode;
 };
 
-export default function SlideItem({ slide, children }: Props) {
+export default function SlideItem({ slide, onClick, children }: Props) {
   const width = slide.duration * 20;
 
   return (
-    <li id={slide.id} className="slide_item" style={{ minWidth: width }}>
+    <li
+      id={slide.id}
+      className="slide_item"
+      style={{ minWidth: width }}
+      onClick={onClick}
+    >
       {children}
     </li>
   );

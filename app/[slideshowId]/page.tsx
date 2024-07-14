@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getSlideshowById } from './lib/data/data';
+import { getSlideshowById } from './lib/data/slideshow';
 import { notFound } from 'next/navigation';
 import SlideEditor from './components/slideshow/SlideEditor';
 

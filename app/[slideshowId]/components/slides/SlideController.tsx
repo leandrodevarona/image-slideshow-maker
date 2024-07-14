@@ -1,9 +1,10 @@
 import { Slide } from '@prisma/client';
-import SlideItem from './SlideItem';
 import SlideItemToDelete from './SlideItemToDelete';
 import MakeSlidesSortable from './MakeSlidesSortable';
+import { sortSlides } from '../../lib/utils/slides';
 
 import './styles/slideController.css';
+import SlideItemSelectable from './SlideItemSelectable';
 
 type Props = {
   slideshowId: string;
@@ -22,20 +23,20 @@ export default function SlideController({
 }: Props) {
   if (!slides || slides.length <= 0) return <NoSlides />;
 
+  const sortedSlides = sortSlides(slides);
+
   return (
     <ul id={slideshowId} className="slide_controller">
       {deleting
-        ? slides.map((slide) => (
+        ? sortedSlides.map((slide) => (
             <SlideItemToDelete
               key={'to-delete' + slide.id}
               slideshowId={slideshowId}
               slide={slide}
             />
           ))
-        : slides.map((slide) => (
-            <SlideItem key={slide.id} slide={slide}>
-              <span>{slide.duration}</span>
-            </SlideItem>
+        : sortedSlides.map((slide) => (
+            <SlideItemSelectable key={slide.id} slide={slide} />
           ))}
       <MakeSlidesSortable slideshowId={slideshowId} />
     </ul>

@@ -15,6 +15,7 @@ datasource db {
 
 model Slide {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  index    Int
   duration Int     @default(5)
   src      String
   alt      String?

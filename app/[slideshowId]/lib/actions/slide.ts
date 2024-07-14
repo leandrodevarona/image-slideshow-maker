@@ -4,8 +4,10 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { db } from "../db";
 import Unsplash from "../utils/unsplash";
+import { getSlideshowById } from "../data/slideshow";
 
 export async function createAction(slideshowId: string, formData: FormData) {
+    console.log(slideshowId)
     let pendingAction = null;
     try {
         const photoId = formData.get('photo')?.toString();
@@ -22,14 +24,24 @@ export async function createAction(slideshowId: string, formData: FormData) {
             throw new Error('Photo could not be found')
         }
 
+        const slideshow = await getSlideshowById(slideshowId);
+        const slides = slideshow?.slides;
+
+        if (!slides || slides.length < 0) {
+            pendingAction = () => redirect(`/${slideshowId}?error=Slideshow don't work`)
+            throw new Error("Slideshow don't work")
+        }
+
         await db.slide.create({
             data: {
                 slideshowId,
                 src: photo?.urls.regular,
+                index: slides.length
             }
         })
 
     } catch (error) {
+        console.log(error)
         pendingAction = () => redirect(`/${slideshowId}?error=Something went wrong`);
     }
 

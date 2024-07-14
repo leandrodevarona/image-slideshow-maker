@@ -15,7 +15,7 @@ export default function DeleteSlideItem({ slideshowId, slideId }: Props) {
   return (
     <form className="delete_slide__item" action={deleteSlide}>
       <Submit ariaLabel="Delete slide">
-        <CrossCircledIcon color="red" />
+        <CrossCircledIcon color="red" width={20} height={20} />
       </Submit>
     </form>
   );
