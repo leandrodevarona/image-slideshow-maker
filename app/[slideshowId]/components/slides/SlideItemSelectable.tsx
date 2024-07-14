@@ -23,8 +23,12 @@ export default function SlideItemSelectable({ slide }: Props) {
   const handleOnClick = () => {
     startTransition(() => {
       const params = new URLSearchParams(searchParams);
-      params.set(QUERY_NAME, String(slide.index));
-      replace(`${pathname}?${params.toString()}`);
+      const currentIndex = Number(params.get(QUERY_NAME));
+
+      if (currentIndex !== slide.index) {
+        params.set(QUERY_NAME, String(slide.index));
+        replace(`${pathname}?${params.toString()}`);
+      }
     });
   };
 

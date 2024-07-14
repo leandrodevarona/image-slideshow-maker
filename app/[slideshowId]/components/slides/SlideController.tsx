@@ -1,10 +1,11 @@
+import { Suspense } from 'react';
 import { Slide } from '@prisma/client';
 import SlideItemToDelete from './SlideItemToDelete';
 import MakeSlidesSortable from './MakeSlidesSortable';
 import { sortSlides } from '../../lib/utils/slides';
+import SlideItemSelectable from './SlideItemSelectable';
 
 import './styles/slideController.css';
-import SlideItemSelectable from './SlideItemSelectable';
 
 type Props = {
   slideshowId: string;
@@ -36,7 +37,9 @@ export default function SlideController({
             />
           ))
         : sortedSlides.map((slide) => (
-            <SlideItemSelectable key={slide.id} slide={slide} />
+            <Suspense key={slide.id}>
+              <SlideItemSelectable slide={slide} />
+            </Suspense>
           ))}
       <MakeSlidesSortable slideshowId={slideshowId} />
     </ul>

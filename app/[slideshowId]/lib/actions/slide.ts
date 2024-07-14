@@ -7,7 +7,6 @@ import Unsplash from "../utils/unsplash";
 import { getSlideshowById } from "../data/slideshow";
 
 export async function createAction(slideshowId: string, formData: FormData) {
-    console.log(slideshowId)
     let pendingAction = null;
     try {
         const photoId = formData.get('photo')?.toString();
@@ -32,11 +31,16 @@ export async function createAction(slideshowId: string, formData: FormData) {
             throw new Error("Slideshow don't work")
         }
 
+        const maxIndex = slides.reduce((max, slide) => Math.max(max, slide.index), -1);
+        const newIndex = maxIndex + 1;
+
         await db.slide.create({
             data: {
                 slideshowId,
                 src: photo?.urls.regular,
-                index: slides.length
+                width: photo.width,
+                height: photo.height,
+                index: newIndex
             }
         })
 

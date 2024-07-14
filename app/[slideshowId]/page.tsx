@@ -10,6 +10,7 @@ type Props = {
     slideshowId: string;
   };
   searchParams: {
+    slideIndex?: string;
     photos?: string;
     deleteItems?: string;
   };
@@ -17,7 +18,7 @@ type Props = {
 
 export default async function SlideshowPage({
   params: { slideshowId },
-  searchParams: { photos, deleteItems },
+  searchParams: { slideIndex, photos, deleteItems },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
 
@@ -51,6 +52,7 @@ export default async function SlideshowPage({
       <div className={styles.center}>
         <SlideEditor
           slideshow={slideshow}
+          slideIndex={Number(slideIndex)}
           photosQuery={photos}
           deleteItem={Boolean(deleteItems)}
         />

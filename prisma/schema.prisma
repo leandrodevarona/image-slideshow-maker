@@ -19,6 +19,8 @@ model Slide {
   duration Int     @default(5)
   src      String
   alt      String?
+  width    Int
+  height   Int
 
   slideshow   Slideshow @relation(fields: [slideshowId], references: [id])
   slideshowId String    @db.ObjectId

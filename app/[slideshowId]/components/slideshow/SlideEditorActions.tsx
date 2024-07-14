@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import DeleteSlideItems from './buttons/DeleteSlideItems';
 import SaveChanges from './buttons/SaveChanges';
 
@@ -10,7 +11,9 @@ type Props = {
 export default function SlideEditorActions({ slideshowId }: Props) {
   return (
     <div className="slide_editor__actions">
-      <DeleteSlideItems />
+      <Suspense>
+        <DeleteSlideItems />
+      </Suspense>
       <SaveChanges slideshowId={slideshowId} />
     </div>
   );

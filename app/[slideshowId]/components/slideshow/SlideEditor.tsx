@@ -1,25 +1,33 @@
 import { SlideshowWithSlides } from '../../lib/types/slideshow';
-import DeleteSlideItems from './buttons/DeleteSlideItems';
 import PhotoPicker from '../slides/photos/PhotoPicker';
 import SlideController from '../slides/SlideController';
 import SlideEditorActions from './SlideEditorActions';
+import SlideViewer from './SlideViewer';
 
 import './styles/slideEditor.css';
 
 type Props = {
   slideshow: SlideshowWithSlides;
+  slideIndex?: number;
   photosQuery?: string;
   deleteItem?: boolean;
 };
 
 export default function SlideEditor({
   slideshow,
+  slideIndex = 0,
   photosQuery,
   deleteItem = false,
 }: Props) {
+  const currentSlide = slideshow.slides.find(
+    (slide) => slide.index === slideIndex
+  );
+
   return (
     <div className="slide_editor">
-      <section></section>
+      <section>
+        <SlideViewer slide={currentSlide} />
+      </section>
       <section className="slide_editor__controller">
         <SlideEditorActions slideshowId={slideshow.id} />
         <SlideController
