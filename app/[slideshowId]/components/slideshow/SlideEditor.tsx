@@ -10,6 +10,7 @@ type Props = {
   slideshow: SlideshowWithSlides;
   slideIndex?: number;
   photosQuery?: string;
+  editItems?: boolean;
   deleteItem?: boolean;
 };
 
@@ -17,6 +18,7 @@ export default function SlideEditor({
   slideshow,
   slideIndex = 0,
   photosQuery,
+  editItems = false,
   deleteItem = false,
 }: Props) {
   const currentSlide = slideshow.slides.find(
@@ -33,6 +35,7 @@ export default function SlideEditor({
         <SlideController
           slideshowId={slideshow.id}
           slides={slideshow.slides}
+          editing={editItems}
           deleting={deleteItem}
         />
         <PhotoPicker slideshowId={slideshow.id} query={photosQuery} />

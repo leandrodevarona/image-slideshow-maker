@@ -54,10 +54,17 @@ export async function createAction(slideshowId: string, formData: FormData) {
     revalidatePath(`/${slideshowId}`)
 }
 
-export async function updateAction(slideshowId: string, slideId: string, duration: number) {
+export async function updateAction(slideshowId: string, slideId: string, formData: FormData) {
     let pendingAction = null;
 
     try {
+        const duration = Number(formData.get('duration')?.toString()) || undefined;
+
+        if (duration && (duration < 3 || duration > 20)) {
+            pendingAction = () => redirect(`/${slideshowId}?error=Duration value is invalid`)
+            throw new Error('Duration value is invalid')
+        }
+
         await db.slide.update({
             where: {
                 id: slideId,

@@ -6,10 +6,12 @@ import { sortSlides } from '../../lib/utils/slides';
 import SlideItemSelectable from './SlideItemSelectable';
 
 import './styles/slideController.css';
+import SlideItemToEdit from './SlideItemToEdit';
 
 type Props = {
   slideshowId: string;
   slides: Slide[];
+  editing?: boolean;
   deleting?: boolean;
 };
 
@@ -20,6 +22,7 @@ function NoSlides() {
 export default function SlideController({
   slideshowId,
   slides,
+  editing = false,
   deleting = false,
 }: Props) {
   if (!slides || slides.length <= 0) return <NoSlides />;
@@ -32,6 +35,14 @@ export default function SlideController({
         ? sortedSlides.map((slide) => (
             <SlideItemToDelete
               key={'to-delete' + slide.id}
+              slideshowId={slideshowId}
+              slide={slide}
+            />
+          ))
+        : editing
+        ? sortedSlides.map((slide) => (
+            <SlideItemToEdit
+              key={'to-edit' + slide.id}
               slideshowId={slideshowId}
               slide={slide}
             />

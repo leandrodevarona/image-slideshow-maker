@@ -8,7 +8,7 @@ type Props = {
 };
 
 function NoSlides() {
-  return <div>Slide not found</div>;
+  return <div className="slide_viewer">Slide not found</div>;
 }
 
 export default function SlideViewer({ slide }: Props) {
