@@ -60,7 +60,7 @@ export async function updateAction(slideshowId: string, slideId: string, formDat
     try {
         const duration = Number(formData.get('duration')?.toString()) || undefined;
 
-        if (duration && (duration < 3 || duration > 20)) {
+        if (duration && (duration < 5 || duration > 20)) {
             pendingAction = () => redirect(`/${slideshowId}?error=Duration value is invalid`)
             throw new Error('Duration value is invalid')
         }

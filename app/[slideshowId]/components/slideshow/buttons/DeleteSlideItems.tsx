@@ -7,13 +7,14 @@ import { MouseEvent } from 'react';
 import './styles/deleteSlideItems.css';
 
 export default function DeleteSlideItems() {
-  const queryName = 'deleteItems';
+  const deleteQueryName = 'deleteItems';
+  const editQueryName = 'editItems';
 
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
 
-  const isDeleting = Boolean(searchParams.get(queryName)) === true;
+  const isDeleting = Boolean(searchParams.get(deleteQueryName)) === true;
 
   const handleOnClick = (evt: MouseEvent) => {
     evt.preventDefault();
@@ -21,12 +22,16 @@ export default function DeleteSlideItems() {
 
     const params = new URLSearchParams(searchParams);
 
-    const isDeleting = Boolean(params.get(queryName)) === true;
+    const isDeleting = Boolean(params.get(deleteQueryName)) === true;
 
-    if (isDeleting) params.delete(queryName);
-    else params.set(queryName, 'true');
+    const isEditing = Boolean(params.get(editQueryName)) === true;
 
-    replace(`${pathname}?${params.toString()}`);
+    if (!isEditing) {
+      if (isDeleting) params.delete(deleteQueryName);
+      else params.set(deleteQueryName, 'true');
+
+      replace(`${pathname}?${params.toString()}`);
+    }
   };
 
   return (

@@ -7,13 +7,14 @@ import { Cross1Icon, Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
 import './styles/editSlideItems.css';
 
 export default function EditSlideItems() {
-  const queryName = 'editItems';
+  const editQueryName = 'editItems';
+  const deleteQueryName = 'deleteItems';
 
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
 
-  const isEditing = Boolean(searchParams.get(queryName)) === true;
+  const isEditing = Boolean(searchParams.get(editQueryName)) === true;
 
   const handleOnClick = (evt: MouseEvent) => {
     evt.preventDefault();
@@ -21,12 +22,16 @@ export default function EditSlideItems() {
 
     const params = new URLSearchParams(searchParams);
 
-    const isEditing = Boolean(params.get(queryName)) === true;
+    const isEditing = Boolean(params.get(editQueryName)) === true;
 
-    if (isEditing) params.delete(queryName);
-    else params.set(queryName, 'true');
+    const isDeleting = Boolean(params.get(deleteQueryName)) === true;
 
-    replace(`${pathname}?${params.toString()}`);
+    if (!isDeleting) {
+      if (isEditing) params.delete(editQueryName);
+      else params.set(editQueryName, 'true');
+
+      replace(`${pathname}?${params.toString()}`);
+    }
   };
 
   return (

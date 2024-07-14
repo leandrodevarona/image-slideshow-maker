@@ -1,8 +1,6 @@
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
-import { updateAction } from '../../lib/actions/slide';
-import Submit from '@ism/app/components/common/buttons/Submit';
-import { CheckIcon } from '@radix-ui/react-icons';
+import EditSlideItem from './form/EditSlideItem';
 
 import './styles/slideItemToEdit.css';
 
@@ -12,22 +10,13 @@ type Props = {
 };
 
 export default function SlideItemToEdit({ slideshowId, slide }: Props) {
-  const updateSlide = updateAction.bind(null, slideshowId, slide.id);
-
   return (
     <SlideItem slide={slide}>
-      <form className="slide_item__to-edit" action={updateSlide}>
-        <input
-          type="number"
-          name="duration"
-          defaultValue={slide.duration}
-          min={3}
-          max={20}
-        />
-        <Submit className="primary_button">
-          <CheckIcon />
-        </Submit>
-      </form>
+      <EditSlideItem
+        slideshowId={slideshowId}
+        slideId={slide.id}
+        slideDuration={slide.duration}
+      />
     </SlideItem>
   );
 }
