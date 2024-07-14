@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition } from 'react';
+import { useCallback, useEffect, useTransition } from 'react';
 import SaveIcon from './assets/SaveIcon';
 import { saveChangesAction } from '@ism/app/[slideshowId]/lib/actions/slideshow';
 
@@ -13,7 +13,7 @@ type Props = {
 export default function SaveChanges({ slideshowId }: Props) {
   const [isPending, startTransition] = useTransition();
 
-  const handleOnClick = () => {
+  const handleOnClick = useCallback(() => {
     startTransition(() => {
       const slideList = document.getElementById(slideshowId);
 
@@ -25,7 +25,12 @@ export default function SaveChanges({ slideshowId }: Props) {
         saveChangesAction(slideshowId, slideIds);
       }
     });
-  };
+  }, [slideshowId]);
+
+  useEffect(() => {
+    const intervalId = setInterval(handleOnClick, 300000); // 300000 ms = 5 minutos
+    return () => clearInterval(intervalId); // Limpiar el intervalo al desmontar el componente
+  }, [handleOnClick]);
 
   return (
     <button
