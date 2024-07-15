@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react';
+import clsx from 'clsx';
 
 import './styles/dropdownMenu.css';
 
@@ -27,7 +28,7 @@ export default function DropdownMenu({
 }: Props) {
   return (
     <div
-      className={`dropdown_menu ${className || ''}`}
+      className={clsx('dropdown_menu', className)}
       style={{ '--dropdown-id': `"${id}"` } as CSSProperties}
     >
       <input
@@ -45,7 +46,7 @@ export default function DropdownMenu({
         {buttonContent}
       </label>
       <menu
-        className={`dropdown_menu__content ${contentClassName || ''}`}
+        className={clsx('dropdown_menu__content', contentClassName)}
         style={contentStyle}
       >
         {children}

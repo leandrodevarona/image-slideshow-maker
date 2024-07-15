@@ -1,6 +1,6 @@
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
-import EditSlideItem from './form/EditSlideItem';
+import EditSlideItem from './forms/EditSlideItem';
 
 import './styles/slideItemToEdit.css';
 

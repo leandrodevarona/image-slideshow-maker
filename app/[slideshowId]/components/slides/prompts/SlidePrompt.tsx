@@ -1,8 +1,8 @@
 import { Slide } from '@prisma/client';
 import SlidePromptWidthSetter from './SlidePromptWidthSetter';
+import SlidePromptTextarea from './SlidePromptTextarea';
 
 import './styles/slidePrompt.css';
-import SlidePromptTextarea from './SlidePromptTextarea';
 
 type Props = {
   slide: Slide;

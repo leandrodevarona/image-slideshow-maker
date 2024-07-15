@@ -1,6 +1,6 @@
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
-import DeleteSlideItem from './form/DeleteSlideItem';
+import DeleteSlideItem from './forms/DeleteSlideItem';
 
 type Props = {
   slideshowId: string;
