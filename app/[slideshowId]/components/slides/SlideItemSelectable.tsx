@@ -23,7 +23,7 @@ export default function SlideItemSelectable({ slide }: Props) {
   const handleOnClick = () => {
     startTransition(() => {
       const params = new URLSearchParams(searchParams);
-      const currentIndex = Number(params.get(QUERY_NAME));
+      const currentIndex = parseInt(params.get(QUERY_NAME) || '');
 
       if (currentIndex !== slide.index) {
         params.set(QUERY_NAME, String(slide.index));
