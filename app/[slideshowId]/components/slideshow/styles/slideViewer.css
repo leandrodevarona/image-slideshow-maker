@@ -23,4 +23,8 @@
   height: 100%;
 
   object-fit: contain;
+
+  background-color: black;
+
+  border-radius: var(--border-radius);
 }
