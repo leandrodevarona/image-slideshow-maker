@@ -27,7 +27,7 @@ export default function CreateSlidePrompt({
         ariaLabel="Generate slide prompt with ai"
         title="Generate slide prompt with ai"
       >
-        ai
+        Prompt AI
       </Submit>
     </form>
   );

@@ -1,7 +1,4 @@
 .create_slide__prompt button {
-  width: 25px;
-  height: 25px;
-
   padding: 0.3rem;
 
   background-color: rgb(var(--card-rgb));
@@ -9,4 +6,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  pointer-events: all;
 }

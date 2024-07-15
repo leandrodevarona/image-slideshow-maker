@@ -2,7 +2,7 @@ import { SlideshowWithSlides } from '../../lib/types/slideshow';
 import PhotoPicker from '../slides/photos/PhotoPicker';
 import SlideController from '../slides/SlideController';
 import SlideEditorActions from './SlideEditorActions';
-import SlideViewer from './SlideViewer';
+import SlideViewer from './slideviewer/SlideViewer';
 
 import './styles/slideEditor.css';
 

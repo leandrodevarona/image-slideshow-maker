@@ -4,9 +4,9 @@ import SlideItemToDelete from './SlideItemToDelete';
 import MakeSlidesSortable from './MakeSlidesSortable';
 import { sortSlides } from '../../lib/utils/slides';
 import SlideItemSelectable from './SlideItemSelectable';
+import SlideItemToEdit from './SlideItemToEdit';
 
 import './styles/slideController.css';
-import SlideItemToEdit from './SlideItemToEdit';
 
 type Props = {
   slideshowId: string;

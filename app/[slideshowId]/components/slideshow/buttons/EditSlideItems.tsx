@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { MouseEvent } from 'react';
-import { Cross1Icon, Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
+import { Cross1Icon, Pencil1Icon } from '@radix-ui/react-icons';
 
 import './styles/editSlideItems.css';
 

@@ -8,5 +8,12 @@ type Props = {
 };
 
 export default function SlidePromptTextarea({ id, defaultValue }: Props) {
-  return <TextareaAutosize id={id} name="alt" defaultValue={defaultValue} />;
+  return (
+    <TextareaAutosize
+      id={id}
+      name="alt"
+      placeholder="To save press Enter"
+      defaultValue={defaultValue}
+    />
+  );
 }

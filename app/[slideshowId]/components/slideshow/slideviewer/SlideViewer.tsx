@@ -1,6 +1,7 @@
 import { Slide } from '@prisma/client';
 import Image from 'next/image';
-import SlidePrompt from '../slides/prompts/SlidePrompt';
+import SlidePrompt from '../../slides/prompts/SlidePrompt';
+import SlideViewerControls from './controls/SlideViewerControls';
 
 import './styles/slideViewer.css';
 
@@ -27,7 +28,8 @@ export default function SlideViewer({ slideshowId, slide }: Props) {
         width={slide.width}
         height={slide.height}
       />
-      <SlidePrompt slideshowId={slideshowId} slide={slide} imgElemId={imgId} />
+      <SlidePrompt slide={slide} imgElemId={imgId} />
+      <SlideViewerControls slideshowId={slideshowId} slideId={slide.id} />
     </div>
   );
 }

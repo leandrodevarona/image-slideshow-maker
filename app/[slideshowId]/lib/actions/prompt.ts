@@ -36,7 +36,9 @@ export async function createAction(slideshowId: string, slideId: string) {
         });
 
         if (!result.text) {
-            pendingAction = () => redirect(`/${slideshowId}?error=Cannot use AI at this time. ${result.responseMessages}`)
+            pendingAction = () => redirect(
+                `/${slideshowId}?slideIndex=${slide.index}&error=Cannot use AI at this time. ${result.responseMessages}`
+            )
         }
 
         const resultText = result.text || undefined;
