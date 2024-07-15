@@ -15,6 +15,7 @@
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "react-textarea-autosize": "^8.5.3",
     "sortablejs": "^1.15.2",
     "unsplash-js": "^7.0.19",
     "use-debounce": "^10.0.1"

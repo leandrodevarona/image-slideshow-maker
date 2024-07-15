@@ -2,6 +2,7 @@ import { Slide } from '@prisma/client';
 import SlidePromptWidthSetter from './SlidePromptWidthSetter';
 
 import './styles/slidePrompt.css';
+import SlidePromptTextarea from './SlidePromptTextarea';
 
 type Props = {
   slide: Slide;
@@ -13,11 +14,7 @@ export default function SlidePrompt({ slide, imgElemId }: Props) {
 
   return (
     <div className="slide_prompt">
-      <textarea
-        id={textareaId}
-        name="description"
-        defaultValue={slide.alt || ''}
-      />
+      <SlidePromptTextarea id={textareaId} defaultValue={slide.alt || ''} />
       <SlidePromptWidthSetter
         imgElemId={imgElemId}
         textareaElemId={textareaId}

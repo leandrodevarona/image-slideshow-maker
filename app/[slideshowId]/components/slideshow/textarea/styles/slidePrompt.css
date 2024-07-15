@@ -17,4 +17,6 @@
   font-family: Arial;
   font-size: medium;
   text-align: center;
+
+  overflow: hidden;
 }
