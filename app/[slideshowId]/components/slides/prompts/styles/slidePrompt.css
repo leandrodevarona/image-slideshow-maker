@@ -17,6 +17,13 @@
   font-family: Arial;
   font-size: medium;
   text-align: center;
+  color: white;
 
   overflow: hidden;
+}
+
+.slide_prompt__aicreator {
+  position: absolute;
+  top: -28px;
+  right: 0;
 }

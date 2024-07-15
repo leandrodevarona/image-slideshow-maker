@@ -5,6 +5,7 @@ import SlidePrompt from '../slides/prompts/SlidePrompt';
 import './styles/slideViewer.css';
 
 type Props = {
+  slideshowId: string;
   slide?: Slide;
 };
 
@@ -12,7 +13,7 @@ function NoSlides() {
   return <div className="slide_viewer">Slide not found</div>;
 }
 
-export default function SlideViewer({ slide }: Props) {
+export default function SlideViewer({ slideshowId, slide }: Props) {
   if (!slide) return <NoSlides />;
 
   const imgId = 'slide_viewer__img' + slide.id;
@@ -26,7 +27,7 @@ export default function SlideViewer({ slide }: Props) {
         width={slide.width}
         height={slide.height}
       />
-      <SlidePrompt slide={slide} imgElemId={imgId} />
+      <SlidePrompt slideshowId={slideshowId} slide={slide} imgElemId={imgId} />
     </div>
   );
 }

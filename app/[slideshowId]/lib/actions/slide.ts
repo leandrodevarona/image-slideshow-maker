@@ -45,7 +45,6 @@ export async function createAction(slideshowId: string, formData: FormData) {
         })
 
     } catch (error) {
-        console.log(error)
         pendingAction = () => redirect(`/${slideshowId}?error=Something went wrong`);
     }
 

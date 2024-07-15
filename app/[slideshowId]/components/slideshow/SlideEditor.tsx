@@ -28,7 +28,7 @@ export default function SlideEditor({
   return (
     <div className="slide_editor">
       <section>
-        <SlideViewer slide={currentSlide} />
+        <SlideViewer slideshowId={slideshow.id} slide={currentSlide} />
       </section>
       <section className="slide_editor__controller">
         <SlideEditorActions slideshowId={slideshow.id} />

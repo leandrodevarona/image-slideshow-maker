@@ -1,6 +1,6 @@
 'use client';
 
-import ReactTextareaAutosize from 'react-textarea-autosize';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 
 type Props = {
   id: string;
@@ -8,12 +8,5 @@ type Props = {
 };
 
 export default function SlidePromptTextarea({ id, defaultValue }: Props) {
-  return (
-    <ReactTextareaAutosize
-      id={id}
-      name="alt"
-      defaultValue={defaultValue}
-      maxRows={4}
-    />
-  );
+  return <TextareaAutosize id={id} name="alt" defaultValue={defaultValue} />;
 }
