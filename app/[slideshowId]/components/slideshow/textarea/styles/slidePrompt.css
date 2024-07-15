@@ -1,0 +1,11 @@
+.slide_prompt {
+  position: absolute;
+  bottom: 3rem;
+}
+
+.slide_prompt textarea {
+  background-color: transparent;
+  border: none;
+
+  resize: none;
+}

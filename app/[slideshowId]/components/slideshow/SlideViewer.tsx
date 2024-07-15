@@ -2,6 +2,7 @@ import { Slide } from '@prisma/client';
 import Image from 'next/image';
 
 import './styles/slideViewer.css';
+import SlidePrompt from './textarea/SlidePrompt';
 
 type Props = {
   slide?: Slide;
@@ -22,6 +23,7 @@ export default function SlideViewer({ slide }: Props) {
         width={slide.width}
         height={slide.height}
       />
+      <SlidePrompt slide={slide} />
     </div>
   );
 }
