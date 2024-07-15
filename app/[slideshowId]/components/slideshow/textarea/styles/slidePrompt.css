@@ -8,4 +8,13 @@
   border: none;
 
   resize: none;
+
+  padding: 0.5rem;
+
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+
+  font-family: Arial;
+  font-size: medium;
+  text-align: center;
 }

@@ -15,15 +15,18 @@ function NoSlides() {
 export default function SlideViewer({ slide }: Props) {
   if (!slide) return <NoSlides />;
 
+  const imgId = 'slide_viewer__img' + slide.id;
+
   return (
     <div className="slide_viewer">
       <Image
+        id={imgId}
         src={slide.src}
         alt={slide.alt || 'Slide photo'}
         width={slide.width}
         height={slide.height}
       />
-      <SlidePrompt slide={slide} />
+      <SlidePrompt slide={slide} imgElemId={imgId} />
     </div>
   );
 }
