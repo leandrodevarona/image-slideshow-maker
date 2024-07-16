@@ -28,7 +28,7 @@ export default function SlideViewer({ slideshowId, slide }: Props) {
         width={slide.width}
         height={slide.height}
       />
-      <SlidePrompt slide={slide} imgElemId={imgId} />
+      <SlidePrompt slideshowId={slideshowId} slide={slide} imgElemId={imgId} />
       <SlideViewerControls slideshowId={slideshowId} slideId={slide.id} />
     </div>
   );

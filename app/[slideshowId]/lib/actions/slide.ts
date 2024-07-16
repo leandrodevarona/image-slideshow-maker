@@ -58,10 +58,16 @@ export async function updateAction(slideshowId: string, slideId: string, formDat
 
     try {
         const duration = Number(formData.get('duration')?.toString()) || undefined;
+        const alt = formData.get('alt')?.toString() || undefined;
 
         if (duration && (duration < 5 || duration > 20)) {
             pendingAction = () => redirect(`/${slideshowId}?error=Duration value is invalid`)
             throw new Error('Duration value is invalid')
+        }
+
+        if (alt && alt.length <= 0) {
+            pendingAction = () => redirect(`/${slideshowId}?error=Alt value is invalid`)
+            throw new Error('Alt value is invalid')
         }
 
         await db.slide.update({
@@ -69,7 +75,8 @@ export async function updateAction(slideshowId: string, slideId: string, formDat
                 id: slideId,
             },
             data: {
-                duration
+                duration,
+                alt
             }
         })
     } catch (error) {

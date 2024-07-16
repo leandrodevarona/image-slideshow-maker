@@ -5,6 +5,7 @@ import SaveIcon from './assets/SaveIcon';
 import { saveChangesAction } from '@ism/app/[slideshowId]/lib/actions/slideshow';
 
 import './styles/saveChanges.css';
+import useSlideOrder from '@ism/app/[slideshowId]/lib/hooks/useSlideOrder';
 
 type Props = {
   slideshowId: string;
@@ -13,19 +14,17 @@ type Props = {
 export default function SaveChanges({ slideshowId }: Props) {
   const [isPending, startTransition] = useTransition();
 
+  const { getSlideOrder } = useSlideOrder(slideshowId);
+
   const handleOnClick = useCallback(() => {
     startTransition(() => {
-      const slideList = document.getElementById(slideshowId);
+      const slideOrderIds = getSlideOrder();
 
-      if (slideList) {
-        const slides = slideList.getElementsByTagName('li');
-
-        const slideIds = Array.from(slides).map((li) => li.id);
-
-        saveChangesAction(slideshowId, slideIds);
+      if (slideOrderIds) {
+        saveChangesAction(slideshowId, slideOrderIds);
       }
     });
-  }, [slideshowId]);
+  }, [slideshowId, getSlideOrder]);
 
   useEffect(() => {
     const intervalId = setInterval(handleOnClick, 300000); // 300000 ms = 5 minutos
