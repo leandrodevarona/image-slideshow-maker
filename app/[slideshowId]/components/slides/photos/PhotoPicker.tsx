@@ -19,7 +19,7 @@ export default function PhotoPicker({ slideshowId, query }: Props) {
       buttonContent={
         <>
           <ImageIcon />
-          <span>Add Slider</span>
+          <span>Add Slide</span>
         </>
       }
       contentClassName="photo_picker__content"
