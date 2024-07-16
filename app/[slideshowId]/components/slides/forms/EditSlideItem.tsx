@@ -1,4 +1,4 @@
-import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slide';
+import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slides';
 import Submit from '@ism/app/components/common/buttons/Submit';
 import { CheckIcon } from '@radix-ui/react-icons';
 

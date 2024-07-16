@@ -1,6 +1,6 @@
 import Submit from '@ism/app/components/common/buttons/Submit';
 import PhotoList from '../PhotoList';
-import { createAction } from '@ism/app/[slideshowId]/lib/actions/slide';
+import { createAction } from '@ism/app/[slideshowId]/lib/actions/slides';
 
 import './styles/photoPickerForm.css';
 

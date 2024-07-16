@@ -1,7 +1,7 @@
 import { Slide } from '@prisma/client';
 import SlidePromptWidthSetter from './SlidePromptWidthSetter';
 import SlidePromptTextarea from './SlidePromptTextarea';
-import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slide';
+import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slides';
 
 import './styles/slidePrompt.css';
 

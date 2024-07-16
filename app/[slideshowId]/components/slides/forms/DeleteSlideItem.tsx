@@ -1,6 +1,6 @@
 import Submit from '@ism/app/components/common/buttons/Submit';
 import { CrossCircledIcon } from '@radix-ui/react-icons';
-import { deleteAction } from '@ism/app/[slideshowId]/lib/actions/slide';
+import { deleteAction } from '@ism/app/[slideshowId]/lib/actions/slides';
 
 import './styles/deleteSlideItem.css';
 

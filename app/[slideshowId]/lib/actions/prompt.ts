@@ -2,7 +2,7 @@
 
 import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
-import { getSlideById } from "../data/slide";
+import { getSlideById } from "../data/slides";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { db } from "../db";
