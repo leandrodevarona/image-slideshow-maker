@@ -2,7 +2,7 @@ import { SlideshowWithSlides } from '../../lib/types/slideshow';
 import PhotoPicker from '../slides/photos/PhotoPicker';
 import SlideController from '../slides/SlideController';
 import SlideEditorActions from './SlideEditorActions';
-import SlideViewer from './SlideViewer';
+import SlideViewer from './slideviewer/SlideViewer';
 
 import './styles/slideEditor.css';
 
@@ -28,7 +28,7 @@ export default function SlideEditor({
   return (
     <div className="slide_editor">
       <section>
-        <SlideViewer slide={currentSlide} />
+        <SlideViewer slideshowId={slideshow.id} slide={currentSlide} />
       </section>
       <section className="slide_editor__controller">
         <SlideEditorActions slideshowId={slideshow.id} />

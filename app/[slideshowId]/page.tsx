@@ -53,7 +53,7 @@ export default async function SlideshowPage({
       <div className={styles.center}>
         <SlideEditor
           slideshow={slideshow}
-          slideIndex={Number(slideIndex)}
+          slideIndex={Number(slideIndex) || 0}
           photosQuery={photos}
           editItems={Boolean(editItems)}
           deleteItem={Boolean(deleteItems)}

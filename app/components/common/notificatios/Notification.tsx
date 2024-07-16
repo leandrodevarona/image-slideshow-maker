@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { MouseEvent, useEffect, useState, useTransition } from 'react';
+import clsx from 'clsx';
 
 import './styles/notification.css';
 
@@ -54,13 +55,15 @@ export default function Notification() {
 
   return (
     <article
-      className={`notification notification_${type} ${
-        isVisible ? 'visible' : ''
-      }`}
+      className={clsx(
+        'notification',
+        `notification_${type}`,
+        isVisible && 'visible'
+      )}
     >
       <p>{text}</p>
       <button onClick={handleOnClose} disabled={isPending}>
-        <Cross2Icon width={20} height={20}/>
+        <Cross2Icon width={20} height={20} />
       </button>
     </article>
   );

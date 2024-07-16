@@ -1,6 +1,7 @@
 'use client';
 
 import { useFormStatus } from 'react-dom';
+import clsx from 'clsx';
 
 import './styles/submit.css';
 
@@ -21,7 +22,7 @@ export default function Submit({
 
   return (
     <button
-      className={`submit ${className || ''}`}
+      className={clsx('submit', className)}
       type="submit"
       disabled={pending}
       aria-label={ariaLabel}

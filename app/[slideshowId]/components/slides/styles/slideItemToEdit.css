@@ -8,4 +8,7 @@
 
 .slide_item__to-edit input {
   max-width: 62px;
+
+  border: none;
+  border-radius: 2px;
 }
