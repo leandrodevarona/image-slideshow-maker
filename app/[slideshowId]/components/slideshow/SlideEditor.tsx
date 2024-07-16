@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import { SlideshowWithSlides } from '../../lib/types/slideshow';
 import PhotoPicker from '../slides/photos/PhotoPicker';
 import SlideController from '../slides/SlideController';
+import SlidePlayer from './player/SlidePlayer';
 import SlideEditorActions from './SlideEditorActions';
 import SlideViewer from './slideviewer/SlideViewer';
 
@@ -40,6 +42,16 @@ export default function SlideEditor({
         />
         <PhotoPicker slideshowId={slideshow.id} query={photosQuery} />
       </section>
+      {currentSlide && (
+        <Suspense>
+          <SlidePlayer
+            key={'slide-player-' + currentSlide.id}
+            slideId={currentSlide.id}
+            slideDuration={currentSlide?.duration}
+            slidesLength={slideshow.slides.length}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }
