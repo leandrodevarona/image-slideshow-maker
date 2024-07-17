@@ -1,7 +1,8 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useState, useTransition } from 'react';
+import useElapsedTime from '@ism/app/[slideshowId]/lib/hooks/useElapsedTime';
+import useSlidePlayer from '@ism/app/[slideshowId]/lib/hooks/useSlidePlayer';
+import { useCallback, useEffect } from 'react';
 
 type Props = {
   slideId: string;
@@ -19,15 +20,9 @@ export default function SlidePlayer({
   const slideColor = '#b4b9bc';
   const rangeColor = '#ff0000';
 
-  const QUERY_NAME = 'slideIndex';
+  const { elapsedTime } = useElapsedTime();
 
-  const [, startTransition] = useTransition();
-
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
-
-  const [, setElapsedTime] = useState(0);
+  const { next: nextSlide, pause: pauseSlide } = useSlidePlayer(slidesLength);
 
   const fillSlide = useCallback(
     (slide: HTMLLIElement, value: number) => {
@@ -54,44 +49,27 @@ export default function SlidePlayer({
     }
   };
 
-  const nextSlide = useCallback(() => {
-    const params = new URLSearchParams(searchParams);
-    const currentIndex = parseInt(params.get(QUERY_NAME) || '');
-
-    const newIndex = currentIndex + 1;
-
-    if (newIndex < slidesLength) {
-      params.set(QUERY_NAME, String(newIndex));
-      replace(`${pathname}?${params.toString()}`);
+  useEffect(() => {
+    const slide = document.getElementById(slideId) as HTMLLIElement;
+    if (elapsedTime <= slideDuration) {
+      if (slide) fillSlide(slide, elapsedTime);
+    } else {
+      emptySlide(slide);
+      nextSlide();
     }
-  }, [searchParams, slidesLength, pathname, replace]);
+
+    return () => emptySlide(slide);
+  }, [elapsedTime, slideDuration, slideId, fillSlide, nextSlide]);
 
   useEffect(() => {
-    if (pause) return;
-
-    const slide = document.getElementById(slideId) as HTMLLIElement;
-
-    const interval = setInterval(() => {
-      startTransition(() => {
-        setElapsedTime((prev) => {
-          if (prev < slideDuration) {
-            if (slide) fillSlide(slide, prev + 1);
-            return prev + 1;
-          } else {
-            clearInterval(interval);
-            emptySlide(slide);
-            nextSlide();
-            return prev;
-          }
-        });
-      });
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-      emptySlide(slide);
-    };
-  }, [pause, slideDuration, slideId, fillSlide, nextSlide]);
+    if (pause === true) {
+      const slide = document.getElementById(slideId) as HTMLLIElement;
+      pauseSlide();
+      if (slide) {
+        emptySlide(slide);
+      }
+    }
+  }, [pause, slideId, pauseSlide]);
 
   return null;
 }

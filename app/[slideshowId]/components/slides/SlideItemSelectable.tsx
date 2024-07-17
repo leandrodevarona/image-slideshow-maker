@@ -2,7 +2,7 @@
 
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
-import useSlidePass from '../../lib/hooks/useSlidePass';
+import useSeeSlide from '../../lib/hooks/useSeeSlide';
 
 import './styles/slideItemSelectable.css';
 
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function SlideItemSelectable({ slide }: Props) {
-  const { isPending, seeSlide } = useSlidePass();
+  const { isPending, seeSlide } = useSeeSlide();
 
   const handleOnClick = () => {
     seeSlide(slide.index);
