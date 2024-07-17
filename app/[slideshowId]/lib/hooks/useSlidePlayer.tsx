@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import useSeeSlide from './useSeeSlide';
 import { useTransition } from 'react';
 
-export default function useSlidePlayer(slidesLength: number) {
+export default function useSlidePlayer(slidesLength: number = 0) {
   const PLAY_PAUSE_QUERY = 'pause';
 
   const [isPending, startTransition] = useTransition();
@@ -15,21 +15,17 @@ export default function useSlidePlayer(slidesLength: number) {
 
   const { currentIndex, seeSlide } = useSeeSlide();
 
-  const play = () => {
+  const playPause = () => {
     startTransition(() => {
       const params = new URLSearchParams(searchParams);
 
-      params.set(PLAY_PAUSE_QUERY, 'true');
+      const isPause = params.get(PLAY_PAUSE_QUERY) === 'true';
 
-      replace(`${pathname}?${params.toString()}`);
-    });
-  };
-
-  const pause = () => {
-    startTransition(() => {
-      const params = new URLSearchParams(searchParams);
-
-      params.delete(PLAY_PAUSE_QUERY);
+      if (isPause) {
+        params.delete(PLAY_PAUSE_QUERY);
+      } else {
+        params.set(PLAY_PAUSE_QUERY, 'true');
+      }
 
       replace(`${pathname}?${params.toString()}`);
     });
@@ -41,5 +37,5 @@ export default function useSlidePlayer(slidesLength: number) {
     if (newIndex < slidesLength) seeSlide(newIndex);
   };
 
-  return { isPending, currentIndex, play, pause, next };
+  return { isPending, currentIndex, playPause, next };
 }

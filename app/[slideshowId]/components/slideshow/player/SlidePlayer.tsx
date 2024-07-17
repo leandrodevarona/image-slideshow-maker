@@ -20,9 +20,10 @@ export default function SlidePlayer({
   const slideColor = '#b4b9bc';
   const rangeColor = '#ff0000';
 
-  const { elapsedTime } = useElapsedTime();
+  const { elapsedTime, clearTimer } = useElapsedTime();
 
-  const { next: nextSlide, pause: pauseSlide } = useSlidePlayer(slidesLength);
+  const { next: nextSlide, playPause: pauseSlide } =
+    useSlidePlayer(slidesLength);
 
   const fillSlide = useCallback(
     (slide: HTMLLIElement, value: number) => {
@@ -64,12 +65,12 @@ export default function SlidePlayer({
   useEffect(() => {
     if (pause === true) {
       const slide = document.getElementById(slideId) as HTMLLIElement;
-      pauseSlide();
+      clearTimer();
       if (slide) {
         emptySlide(slide);
       }
     }
-  }, [pause, slideId, pauseSlide]);
+  }, [pause, slideId, clearTimer]);
 
   return null;
 }
