@@ -10,7 +10,7 @@
 
 .slide_editor__viewer {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .slide_editor__controller {

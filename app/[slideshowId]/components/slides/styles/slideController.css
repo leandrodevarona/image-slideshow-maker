@@ -1,7 +1,7 @@
 .slide_controller {
   max-width: 900px;
 
-  padding: 1%;
+  padding: 1rem;
 
   display: flex;
   align-items: center;
