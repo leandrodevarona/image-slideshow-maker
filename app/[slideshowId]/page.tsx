@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import SlideEditor from './components/slideshow/SlideEditor';
 
 import styles from './page.module.css';
+import EditSlideshow from './components/slideshow/forms/EditSlideshow';
 
 type Props = {
   params: {
@@ -29,10 +30,13 @@ export default async function SlideshowPage({
   return (
     <main className={styles.main}>
       <header className={styles.description}>
-        <p>
+        <div className={styles.description_form}>
           Start by editing the{' '}
-          <code className={styles.code}>{slideshow?.name}</code>
-        </p>
+          <EditSlideshow
+            slideshowId={slideshow.id}
+            slideshowName={slideshow.name}
+          />
+        </div>
         <div>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"

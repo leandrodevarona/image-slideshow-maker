@@ -1,4 +1,4 @@
-.slide_item__to-edit {
+.edit_slide__item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,7 +6,7 @@
   margin: 0 auto;
 }
 
-.slide_item__to-edit input {
+.edit_slide__item input {
   max-width: 62px;
   height: 20px;
 

@@ -2,8 +2,6 @@ import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
 import EditSlideItem from './forms/EditSlideItem';
 
-import './styles/slideItemToEdit.css';
-
 type Props = {
   slideshowId: string;
   slide: Slide;

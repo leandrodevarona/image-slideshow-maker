@@ -2,6 +2,8 @@ import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slides';
 import Submit from '@ism/app/components/common/buttons/Submit';
 import { CheckIcon } from '@radix-ui/react-icons';
 
+import './styles/editSlideItem.css';
+
 type Props = {
   slideshowId: string;
   slideId: string;
@@ -16,7 +18,7 @@ export default function EditSlideItem({
   const updateSlide = updateAction.bind(null, slideshowId, slideId);
 
   return (
-    <form className="slide_item__to-edit" action={updateSlide}>
+    <form className="edit_slide__item" action={updateSlide}>
       <input
         type="number"
         name="duration"

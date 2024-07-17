@@ -1,0 +1,19 @@
+.edit_slideshow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+}
+
+.edit_slideshow input {
+  max-width: fit-content;
+
+  border: none;
+  border-radius: 2px;
+
+  background-color: transparent;
+
+  font-weight: 700;
+  font-family: var(--font-mono);
+}

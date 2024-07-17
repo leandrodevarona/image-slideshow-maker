@@ -19,6 +19,31 @@ export async function createAction(name?: string) {
     }
 }
 
+export async function updateAction(slideshowId: string, formData: FormData) {
+    let pendingAction = null;
+
+    try {
+        const name = formData.get('name')?.toString() || undefined;
+
+        if (!name) return null;
+
+        await db.slideshow.update({
+            where: {
+                id: slideshowId
+            },
+            data: {
+                name
+            }
+        })
+    } catch (error) {
+        pendingAction = () => redirect(`/${slideshowId}?error=Something went wrong`);
+    }
+
+    if (pendingAction) return pendingAction();
+
+    revalidatePath(`/${slideshowId}`)
+}
+
 export async function saveChangesAction(slideshowId: string, slideIds: string[]) {
     let pendingAction = null;
 

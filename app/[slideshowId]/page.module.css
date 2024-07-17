@@ -28,18 +28,18 @@
   gap: 0.5rem;
 }
 
-.description p {
+.description .description_form {
   position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
   margin: 0;
   padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
-}
-
-.code {
-  font-weight: 700;
-  font-family: var(--font-mono);
 }
 
 .center {
@@ -68,7 +68,7 @@
     padding: 1rem;
   }
 
-  .description p,
+  .description .description_form,
   .description div {
     display: flex;
     justify-content: center;
@@ -76,7 +76,7 @@
     width: 100%;
   }
 
-  .description p {
+  .description .description_form {
     align-items: center;
     inset: 0 0 auto;
     padding: 2rem 1rem 1.4rem;
