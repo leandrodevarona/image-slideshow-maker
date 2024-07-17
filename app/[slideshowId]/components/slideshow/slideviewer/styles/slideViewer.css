@@ -1,6 +1,4 @@
 .slide_viewer {
-  max-width: 800px;
-
   aspect-ratio: 16 / 9;
 
   display: flex;

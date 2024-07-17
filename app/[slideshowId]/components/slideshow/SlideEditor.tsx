@@ -5,6 +5,8 @@ import SlideController from '../slides/SlideController';
 import SlidePlayer from './player/SlidePlayer';
 import SlideEditorControls from './SlideEditorControls';
 import SlideViewer from './slideviewer/SlideViewer';
+import SlideViewerControls from './slideviewer/controls/SlideViewerControls';
+import SlidePrompt from '../slides/prompts/SlidePrompt';
 
 import './styles/slideEditor.css';
 
@@ -31,10 +33,30 @@ export default function SlideEditor({
 
   const slidePlayerKey = 'slide-player-' + currentSlide?.id + String(pause);
 
+  const imgId = 'slide_viewer__img' + currentSlide?.id;
+
   return (
     <div className="slide_editor">
-      <section className="slide_editor__viewer">
-        <SlideViewer slideshowId={slideshow.id} slide={currentSlide} />
+      <section className="slide_editor__viewer-container">
+        <SlideViewer
+          className="slide_editor__viewer"
+          imgElemId={imgId}
+          slide={currentSlide}
+        >
+          {currentSlide && (
+            <>
+              <SlidePrompt
+                slideshowId={slideshow.id}
+                slide={currentSlide}
+                imgElemId={imgId}
+              />
+              <SlideViewerControls
+                slideshowId={slideshow.id}
+                slideId={currentSlide.id}
+              />
+            </>
+          )}
+        </SlideViewer>
       </section>
       <section className="slide_editor__controller">
         <SlideEditorControls slideshowId={slideshow.id} />

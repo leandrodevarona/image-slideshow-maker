@@ -2,34 +2,39 @@ import { Slide } from '@prisma/client';
 import Image from 'next/image';
 import SlidePrompt from '../../slides/prompts/SlidePrompt';
 import SlideViewerControls from './controls/SlideViewerControls';
+import clsx from 'clsx';
 
 import './styles/slideViewer.css';
 
 type Props = {
-  slideshowId: string;
+  className?: string;
+  imgElemId: string;
   slide?: Slide;
+  children?: React.ReactNode;
 };
 
 function NoSlides() {
   return <div className="slide_viewer">Slide not found</div>;
 }
 
-export default function SlideViewer({ slideshowId, slide }: Props) {
+export default function SlideViewer({
+  className,
+  imgElemId,
+  slide,
+  children,
+}: Props) {
   if (!slide) return <NoSlides />;
 
-  const imgId = 'slide_viewer__img' + slide.id;
-
   return (
-    <div className="slide_viewer">
+    <div className={clsx('slide_viewer', className)}>
       <Image
-        id={imgId}
+        id={imgElemId}
         src={slide.src}
         alt={slide.alt || 'Slide photo'}
         width={slide.width}
         height={slide.height}
       />
-      <SlidePrompt slideshowId={slideshowId} slide={slide} imgElemId={imgId} />
-      <SlideViewerControls slideshowId={slideshowId} slideId={slide.id} />
+      {children}
     </div>
   );
 }

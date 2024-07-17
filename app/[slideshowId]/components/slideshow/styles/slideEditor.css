@@ -8,9 +8,13 @@
   grid-template-rows: 4fr 1fr;
 }
 
-.slide_editor__viewer {
+.slide_editor__viewer-container {
   display: flex;
   align-items: center;
+}
+
+.slide_editor__viewer {
+  max-width: 800px;
 }
 
 .slide_editor__controller {
