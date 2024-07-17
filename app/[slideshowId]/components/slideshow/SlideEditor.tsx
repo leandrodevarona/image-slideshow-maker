@@ -3,7 +3,7 @@ import { SlideshowWithSlides } from '../../lib/types/slideshow';
 import PhotoPicker from '../slides/photos/PhotoPicker';
 import SlideController from '../slides/SlideController';
 import SlidePlayer from './player/SlidePlayer';
-import SlideEditorActions from './SlideEditorActions';
+import SlideEditorControls from './SlideEditorControls';
 import SlideViewer from './slideviewer/SlideViewer';
 
 import './styles/slideEditor.css';
@@ -14,6 +14,7 @@ type Props = {
   photosQuery?: string;
   editItems?: boolean;
   deleteItem?: boolean;
+  pause?: boolean;
 };
 
 export default function SlideEditor({
@@ -22,10 +23,13 @@ export default function SlideEditor({
   photosQuery,
   editItems = false,
   deleteItem = false,
+  pause = false,
 }: Props) {
   const currentSlide = slideshow.slides.find(
     (slide) => slide.index === slideIndex
   );
+
+  const slidePlayerKey = 'slide-player-' + currentSlide?.id + String(pause);
 
   return (
     <div className="slide_editor">
@@ -33,7 +37,7 @@ export default function SlideEditor({
         <SlideViewer slideshowId={slideshow.id} slide={currentSlide} />
       </section>
       <section className="slide_editor__controller">
-        <SlideEditorActions slideshowId={slideshow.id} />
+        <SlideEditorControls slideshowId={slideshow.id} />
         <SlideController
           slideshowId={slideshow.id}
           slides={slideshow.slides}
@@ -45,10 +49,11 @@ export default function SlideEditor({
       {currentSlide && (
         <Suspense>
           <SlidePlayer
-            key={'slide-player-' + currentSlide.id}
+            key={slidePlayerKey}
             slideId={currentSlide.id}
             slideDuration={currentSlide?.duration}
             slidesLength={slideshow.slides.length}
+            pause={pause}
           />
         </Suspense>
       )}

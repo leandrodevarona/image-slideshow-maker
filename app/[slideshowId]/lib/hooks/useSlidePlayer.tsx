@@ -15,6 +15,8 @@ export default function useSlidePlayer(slidesLength: number = 0) {
 
   const { currentIndex, seeSlide } = useSeeSlide();
 
+  const isPause = searchParams.get(PLAY_PAUSE_QUERY) === 'true';
+
   const playPause = () => {
     startTransition(() => {
       const params = new URLSearchParams(searchParams);
@@ -37,5 +39,5 @@ export default function useSlidePlayer(slidesLength: number = 0) {
     if (newIndex < slidesLength) seeSlide(newIndex);
   };
 
-  return { isPending, currentIndex, playPause, next };
+  return { isPending, isPause, playPause, next };
 }
