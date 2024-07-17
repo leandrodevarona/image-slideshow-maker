@@ -12,7 +12,7 @@ export default function useSeeSlide() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const currentIndex = parseInt(searchParams.get(INDEX_QUERY_NAME) || '');
+  const currentIndex = parseInt(searchParams.get(INDEX_QUERY_NAME) || '') || 0;
 
   const seeSlide = (index: number) => {
     startTransition(() => {

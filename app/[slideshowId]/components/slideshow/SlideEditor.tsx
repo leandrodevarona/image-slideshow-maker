@@ -2,11 +2,11 @@ import { Suspense } from 'react';
 import { SlideshowWithSlides } from '../../lib/types/slideshow';
 import PhotoPicker from '../slides/photos/PhotoPicker';
 import SlideController from '../slides/SlideController';
-import SlidePlayer from './player/SlidePlayer';
 import SlideEditorControls from './SlideEditorControls';
 import SlideViewer from './slideviewer/SlideViewer';
 import SlideViewerControls from './slideviewer/controls/SlideViewerControls';
 import SlidePrompt from '../slides/prompts/SlidePrompt';
+import SlidePlayerPainter from './player/SlidePlayerPainter';
 
 import './styles/slideEditor.css';
 
@@ -70,7 +70,7 @@ export default function SlideEditor({
       </section>
       {currentSlide && (
         <Suspense>
-          <SlidePlayer
+          <SlidePlayerPainter
             key={slidePlayerKey}
             slideId={currentSlide.id}
             slideDuration={currentSlide?.duration}

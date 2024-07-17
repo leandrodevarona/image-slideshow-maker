@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-inline: 6rem;
+  padding-block: 2rem;
+  min-height: 100vh;
+}
+
+.main_slide__viewer {
+  max-width: 90%;
+  min-width: 890px;
+}

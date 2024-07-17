@@ -1,0 +1,58 @@
+'use client';
+
+import { useCallback } from 'react';
+import SlidePlayer from './SlidePlayer';
+
+type Props = {
+  slideId: string;
+  slideDuration: number;
+  slidesLength: number;
+  pause?: boolean;
+};
+
+export default function SlidePlayerPainter({
+  slideId,
+  slideDuration,
+  slidesLength,
+  pause,
+}: Props) {
+  const slideColor = '#b4b9bc';
+  const rangeColor = '#ff0000';
+
+  const fillSlide = useCallback(
+    (value: number) => {
+      const slide = document.getElementById(slideId);
+      if (slide) {
+        const rangeDistance = slideDuration - 0;
+        const fromPosition = 0;
+        const toPosition = value;
+        slide.style.background = `linear-gradient(
+    to right,
+    ${slideColor} 0%,
+    ${slideColor} ${(fromPosition / rangeDistance) * 100}%,
+    ${rangeColor} ${(fromPosition / rangeDistance) * 100}%,
+    ${rangeColor} ${(toPosition / rangeDistance) * 100}%, 
+    ${slideColor} ${(toPosition / rangeDistance) * 100}%, 
+    ${slideColor} 100%)`;
+      }
+    },
+    [slideDuration, slideId]
+  );
+
+  const emptySlide = () => {
+    const slide = document.getElementById(slideId);
+    if (slide) {
+      slide.style.background = slideColor;
+    }
+  };
+
+  return (
+    <SlidePlayer
+      slideDuration={slideDuration}
+      slidesLength={slidesLength}
+      pause={pause}
+      onUpdateTime={fillSlide}
+      onStopTime={emptySlide}
+    />
+  );
+}

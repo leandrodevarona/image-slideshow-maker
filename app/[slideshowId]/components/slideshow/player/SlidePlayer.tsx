@@ -2,75 +2,51 @@
 
 import useElapsedTime from '@ism/app/[slideshowId]/lib/hooks/useElapsedTime';
 import useSlidePlayer from '@ism/app/[slideshowId]/lib/hooks/useSlidePlayer';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 type Props = {
-  slideId: string;
   slideDuration: number;
   pause?: boolean;
   slidesLength: number;
+  onUpdateTime?: (elapsedTime: number) => void;
+  onStopTime?: () => void;
 };
 
 export default function SlidePlayer({
-  slideId,
   slideDuration,
   pause = false,
   slidesLength,
+  onUpdateTime,
+  onStopTime,
 }: Props) {
-  const slideColor = '#b4b9bc';
-  const rangeColor = '#ff0000';
-
   const { elapsedTime } = useElapsedTime();
 
   const { next: nextSlide } = useSlidePlayer(slidesLength);
 
-  const fillSlide = useCallback(
-    (slide: HTMLLIElement, value: number) => {
-      if (slide) {
-        const rangeDistance = slideDuration - 0;
-        const fromPosition = 0;
-        const toPosition = value;
-        slide.style.background = `linear-gradient(
-    to right,
-    ${slideColor} 0%,
-    ${slideColor} ${(fromPosition / rangeDistance) * 100}%,
-    ${rangeColor} ${(fromPosition / rangeDistance) * 100}%,
-    ${rangeColor} ${(toPosition / rangeDistance) * 100}%, 
-    ${slideColor} ${(toPosition / rangeDistance) * 100}%, 
-    ${slideColor} 100%)`;
-      }
-    },
-    [slideDuration]
-  );
-
-  const emptySlide = (slide: HTMLLIElement) => {
-    if (slide) {
-      slide.style.background = slideColor;
-    }
-  };
-
   useEffect(() => {
-    if (pause) return;
+    if (pause === true) return;
 
-    const slide = document.getElementById(slideId) as HTMLLIElement;
     if (elapsedTime <= slideDuration) {
-      if (slide) fillSlide(slide, elapsedTime);
+      if (onUpdateTime) onUpdateTime(elapsedTime);
     } else {
-      emptySlide(slide);
+      if (onStopTime) onStopTime();
       nextSlide();
     }
 
-    return () => emptySlide(slide);
-  }, [elapsedTime, slideDuration, slideId, fillSlide, nextSlide, pause]);
+    return () => {
+      if (onStopTime) {
+        onStopTime();
+      }
+    };
+  }, [elapsedTime, pause, slideDuration, nextSlide, onStopTime, onUpdateTime]);
 
   useEffect(() => {
     if (pause === true) {
-      const slide = document.getElementById(slideId) as HTMLLIElement;
-      if (slide) {
-        emptySlide(slide);
+      if (onStopTime) {
+        onStopTime();
       }
     }
-  }, [pause, slideId]);
+  }, [pause, onStopTime]);
 
   return null;
 }

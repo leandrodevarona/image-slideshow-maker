@@ -2,9 +2,9 @@ import Image from 'next/image';
 import { getSlideshowById } from './lib/data/slideshow';
 import { notFound } from 'next/navigation';
 import SlideEditor from './components/slideshow/SlideEditor';
+import EditSlideshow from './components/slideshow/forms/EditSlideshow';
 
 import styles from './page.module.css';
-import EditSlideshow from './components/slideshow/forms/EditSlideshow';
 
 type Props = {
   params: {
