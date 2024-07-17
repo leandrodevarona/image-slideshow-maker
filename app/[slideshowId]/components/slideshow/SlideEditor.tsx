@@ -33,7 +33,7 @@ export default function SlideEditor({
 
   return (
     <div className="slide_editor">
-      <section>
+      <section className="slide_editor__viewer">
         <SlideViewer slideshowId={slideshow.id} slide={currentSlide} />
       </section>
       <section className="slide_editor__controller">

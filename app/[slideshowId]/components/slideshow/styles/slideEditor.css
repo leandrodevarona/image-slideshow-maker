@@ -8,6 +8,11 @@
   grid-template-rows: 4fr 1fr;
 }
 
+.slide_editor__viewer {
+  display: flex;
+  align-items: flex-end;
+}
+
 .slide_editor__controller {
   display: grid;
   grid-template-columns: 0.2fr 1fr 0.2fr;
