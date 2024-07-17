@@ -3,9 +3,9 @@
 import { useCallback, useEffect, useTransition } from 'react';
 import SaveIcon from './assets/SaveIcon';
 import { saveChangesAction } from '@ism/app/[slideshowId]/lib/actions/slideshow';
+import useSlideOrder from '@ism/app/[slideshowId]/lib/hooks/useSlideOrder';
 
 import './styles/saveChanges.css';
-import useSlideOrder from '@ism/app/[slideshowId]/lib/hooks/useSlideOrder';
 
 type Props = {
   slideshowId: string;
