@@ -35,7 +35,7 @@ export default function SearchInput({
   }, 1000);
 
   return (
-    <div className="search_input">
+    <search className="search_input">
       <input
         className={className}
         type="search"
@@ -47,6 +47,6 @@ export default function SearchInput({
         defaultValue={searchParams.get(QUERY_NAME)?.toString()}
       />
       <div className="search_input__button">{icon}</div>
-    </div>
+    </search>
   );
 }

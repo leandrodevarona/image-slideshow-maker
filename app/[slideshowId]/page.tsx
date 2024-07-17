@@ -14,12 +14,13 @@ type Props = {
     photos?: string;
     editItems?: string;
     deleteItems?: string;
+    pause?: string;
   };
 };
 
 export default async function SlideshowPage({
   params: { slideshowId },
-  searchParams: { slideIndex, photos, editItems, deleteItems },
+  searchParams: { slideIndex, photos, editItems, deleteItems, pause },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
 
@@ -57,6 +58,7 @@ export default async function SlideshowPage({
           photosQuery={photos}
           editItems={Boolean(editItems)}
           deleteItem={Boolean(deleteItems)}
+          pause={Boolean(pause)}
         />
       </div>
       <footer></footer>
