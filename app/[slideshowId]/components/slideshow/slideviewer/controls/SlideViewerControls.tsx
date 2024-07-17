@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import PlayPause from './player/PlayPause';
 import CreateSlidePrompt from './prompts/CreateSlidePrompt';
 
@@ -12,7 +13,9 @@ export default function SlideViewerControls({ slideshowId, slideId }: Props) {
   return (
     <div className="slide_viewer__controls">
       <section>
-        <PlayPause />
+        <Suspense>
+          <PlayPause />
+        </Suspense>
       </section>
       <section>
         <CreateSlidePrompt slideshowId={slideshowId} slideId={slideId} />
