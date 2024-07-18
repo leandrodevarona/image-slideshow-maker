@@ -1,0 +1,16 @@
+.slide_prompt {
+  position: absolute;
+  bottom: 3rem;
+}
+
+.slide_prompt p {
+  padding: 0.5rem;
+
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+
+  font-family: Arial;
+  font-size: medium;
+  text-align: center;
+  color: white;
+}
