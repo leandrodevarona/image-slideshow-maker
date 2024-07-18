@@ -51,6 +51,7 @@ export default async function SlideshowLandingPage({
         imgElemId={imgId}
         slide={currentSlide}
       >
+        {/* Esto debe ir dentro de slideviewer */}
         {currentSlide && <SlidePrompt slide={currentSlide} imgElemId={imgId} />}
       </SlideViewer>
       {currentSlide && (
