@@ -1,10 +1,26 @@
-import { createAction } from "../actions/slideshow";
+import { notFound, redirect } from "next/navigation";
 import { db } from "../db";
+import { revalidatePath } from "next/cache";
 
-export async function getNewSlideShow() {
-    const newSlideshow = await createAction()
+export async function generateNewSlideshowAndRedirect() {
+    let pendingAction = null;
 
-    return newSlideshow;
+    let slideshowId = null;
+
+    try {
+        const newSlideshow = await db.slideshow.create({})
+
+        if (!newSlideshow) return notFound();
+
+        slideshowId = newSlideshow.id
+    } catch (error) {
+        pendingAction = () => redirect(`?error=Something went wrong`);
+    }
+
+    if (pendingAction) return pendingAction();
+
+    revalidatePath('/')
+    redirect(`/${slideshowId}`);
 }
 
 export async function getSlideshowById(id: string) {
