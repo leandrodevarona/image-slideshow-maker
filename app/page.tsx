@@ -1,8 +1,8 @@
-import { createAction } from './[slideshowId]/lib/actions/slideshow';
 import { notFound, redirect } from 'next/navigation';
+import { getNewSlideShow } from './[slideshowId]/lib/data/slideshow';
 
 export default async function Home() {
-  const slideshow = await createAction();
+  const slideshow = await getNewSlideShow();
 
   if (!slideshow) notFound();
 

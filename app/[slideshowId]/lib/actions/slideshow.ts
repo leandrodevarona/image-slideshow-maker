@@ -6,6 +6,8 @@ import { getSlideshowById } from "../data/slideshow";
 import { revalidatePath } from "next/cache";
 
 export async function createAction(name?: string) {
+    let pendingAction = null;
+
     try {
         const slideshow = await db.slideshow.create({
             data: {
@@ -15,8 +17,12 @@ export async function createAction(name?: string) {
 
         return slideshow;
     } catch (error) {
-        redirect('/?error=Something went wrong')
+        pendingAction = () => redirect(`?error=Something went wrong`);
     }
+
+    if (pendingAction) return pendingAction();
+
+    revalidatePath('/')
 }
 
 export async function updateAction(slideshowId: string, formData: FormData) {
