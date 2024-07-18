@@ -1,7 +1,5 @@
 import { Slide } from '@prisma/client';
 import Image from 'next/image';
-import SlidePrompt from '../../slides/prompts/SlidePrompt';
-import SlideViewerControls from './controls/SlideViewerControls';
 import clsx from 'clsx';
 
 import './styles/slideViewer.css';
