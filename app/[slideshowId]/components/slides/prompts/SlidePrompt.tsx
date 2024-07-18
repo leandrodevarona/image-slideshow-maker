@@ -1,33 +1,38 @@
-import { Slide } from '@prisma/client';
+'use client';
+
 import SlidePromptWidthSetter from './SlidePromptWidthSetter';
 import SlidePromptTextarea from './SlidePromptTextarea';
-import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slides';
+import SlidePromptVisibilitySetter from './SlidePromptVisibilitySetter';
 
 import './styles/slidePrompt.css';
 
 type Props = {
-  slideshowId: string;
-  slide: Slide;
+  slideAlt?: string | null;
   imgElemId: string;
+  updateAlt: (formData: FormData) => Promise<undefined>;
 };
 
-export default function SlidePrompt({ slideshowId, slide, imgElemId }: Props) {
+export default function SlidePrompt({ slideAlt, imgElemId, updateAlt }: Props) {
   const textareaId = 'slide_prompt__textarea';
-
-  const updateSlide = updateAction.bind(null, slideshowId, slide.id);
+  const formId = 'form-' + textareaId;
 
   return (
-    <div className="slide_prompt">
-      <SlidePromptTextarea
-        key={'prompt' + slide.id}
-        id={textareaId}
-        defaultValue={slide.alt || ''}
-        updateAction={updateSlide}
+    <form id={formId} className="slide_prompt" action={updateAlt}>
+      <SlidePromptVisibilitySetter
+        imgElemId={imgElemId}
+        renderTextarea={(isVisible) => (
+          <SlidePromptTextarea
+            id={textareaId}
+            formId={formId}
+            defaultValue={slideAlt || ''}
+            isVisible={isVisible}
+          />
+        )}
       />
       <SlidePromptWidthSetter
         imgElemId={imgElemId}
         textareaElemId={textareaId}
       />
-    </div>
+    </form>
   );
 }

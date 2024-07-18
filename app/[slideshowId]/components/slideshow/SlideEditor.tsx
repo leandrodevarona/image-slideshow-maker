@@ -7,6 +7,7 @@ import SlideViewer from './slideviewer/SlideViewer';
 import SlideViewerControls from './slideviewer/controls/SlideViewerControls';
 import SlidePrompt from '../slides/prompts/SlidePrompt';
 import SlidePlayerPainter from './player/SlidePlayerPainter';
+import { updateAction } from '../../lib/actions/slides';
 
 import './styles/slideEditor.css';
 
@@ -31,9 +32,13 @@ export default function SlideEditor({
     (slide) => slide.index === slideIndex
   );
 
-  const slidePlayerKey = 'slide-player-' + currentSlide?.id + String(pause);
-
   const imgId = 'slide_viewer__img' + currentSlide?.id;
+  const slideId = currentSlide?.id || '';
+
+  const slidePlayerKey = 'slide-player-' + currentSlide?.id + String(pause);
+  const slidePromptKey = 'prompt' + slideId;
+
+  const updateAlt = updateAction.bind(null, slideshow.id, slideId);
 
   return (
     <div className="slide_editor">
@@ -46,8 +51,9 @@ export default function SlideEditor({
           {currentSlide && (
             <>
               <SlidePrompt
-                slideshowId={slideshow.id}
-                slide={currentSlide}
+                key={slidePromptKey}
+                updateAlt={updateAlt}
+                slideAlt={currentSlide.alt}
                 imgElemId={imgId}
               />
               <SlideViewerControls

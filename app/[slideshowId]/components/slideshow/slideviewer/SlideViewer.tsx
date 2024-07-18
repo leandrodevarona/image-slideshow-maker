@@ -11,8 +11,8 @@ type Props = {
   children?: React.ReactNode;
 };
 
-function NoSlides() {
-  return <div className="slide_viewer">Slide not found</div>;
+function NoSlides({ className }: { className?: string }) {
+  return <div className={clsx('slide_viewer', className)}>Slide not found</div>;
 }
 
 export default function SlideViewer({
@@ -21,7 +21,7 @@ export default function SlideViewer({
   slide,
   children,
 }: Props) {
-  if (!slide) return <NoSlides />;
+  if (!slide) return <NoSlides className={className} />;
 
   return (
     <div className={clsx('slide_viewer', className)}>
