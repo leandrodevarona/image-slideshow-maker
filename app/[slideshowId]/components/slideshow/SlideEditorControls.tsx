@@ -11,7 +11,7 @@ type Props = {
 
 export default function SlideEditorControls({ slideshowId }: Props) {
   return (
-    <div className="slide_editor__actions">
+    <div className="slide_editor__controls">
       <Suspense>
         <DeleteSlideItems />
       </Suspense>
