@@ -5,17 +5,25 @@ import { useEffect } from 'react';
 
 type Props = {
   id: string;
+  formId: string;
   defaultValue: string;
-  updateAction: (formData: FormData) => Promise<undefined>;
+  isVisible?: boolean;
 };
 
+/**
+ *
+ * @param id The element id
+ * @param formId The id of the form element to be able to save with Ctrl+s
+ * @param defaultValue The default value of the textarea
+ * @param isVisible To know if the textarea component should be shown or not
+ * @returns
+ */
 export default function SlidePromptTextarea({
   id,
+  formId,
   defaultValue,
-  updateAction,
+  isVisible = true,
 }: Props) {
-  const formId = 'form-' + id;
-
   useEffect(() => {
     const textareaElem = document.getElementById(id);
 
@@ -31,19 +39,18 @@ export default function SlidePromptTextarea({
   }, [id, formId]);
 
   return (
-    <form id={formId} action={updateAction}>
-      <TextareaAutosize
-        id={id}
-        name="alt"
-        placeholder="To save press Ctrl+S"
-        title={
-          defaultValue.length > 0
-            ? 'This area will not be seen if you do not define a prompt'
-            : undefined
-        }
-        defaultValue={defaultValue}
-        required
-      />
-    </form>
+    <TextareaAutosize
+      id={id}
+      name="alt"
+      placeholder="To save press Ctrl+S"
+      title={
+        defaultValue.length > 0
+          ? 'This area will not be seen if you do not define a prompt'
+          : undefined
+      }
+      defaultValue={defaultValue}
+      required
+      style={{ opacity: isVisible ? 1 : 0 }}
+    />
   );
 }
