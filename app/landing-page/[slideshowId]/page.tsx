@@ -4,6 +4,7 @@ import SlideViewer from '@ism/app/[slideshowId]/components/slideshow/slideviewer
 import { Suspense } from 'react';
 import SlidePlayer from '@ism/app/[slideshowId]/components/slideshow/player/SlidePlayer';
 import { Metadata } from 'next';
+import SlidePrompt from './components/SlidePrompt';
 
 import styles from './page.module.css';
 
@@ -49,7 +50,9 @@ export default async function SlideshowLandingPage({
         className={styles.main_slide__viewer}
         imgElemId={imgId}
         slide={currentSlide}
-      />
+      >
+        {currentSlide && <SlidePrompt slide={currentSlide} imgElemId={imgId} />}
+      </SlideViewer>
       {currentSlide && (
         <Suspense>
           <SlidePlayer
