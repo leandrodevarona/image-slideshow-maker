@@ -22,7 +22,7 @@ export async function createAction(name?: string) {
 
     if (pendingAction) return pendingAction();
 
-    revalidatePath('/')
+    revalidatePath(Routes.home)
 }
 
 export async function updateAction(slideshowId: string, formData: FormData) {
@@ -42,12 +42,12 @@ export async function updateAction(slideshowId: string, formData: FormData) {
             }
         })
     } catch (error) {
-        pendingAction = () => redirect(`/${slideshowId}?error=Something went wrong`);
+        pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
 
     if (pendingAction) return pendingAction();
 
-    revalidatePath(`/${slideshowId}`)
+    revalidatePath(`${Routes.slideshow(slideshowId)}`)
 }
 
 export async function saveChangesAction(slideshowId: string, slideIds: string[]) {
@@ -59,7 +59,7 @@ export async function saveChangesAction(slideshowId: string, slideIds: string[])
         const slides = slideshow?.slides;
 
         if (!slides || slides.length <= 0) {
-            pendingAction = () => redirect(`/${slideshowId}?error=Slideshow don't work`)
+            pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Slideshow don't work`)
             throw new Error("Slideshow don't work")
         }
 
@@ -73,10 +73,10 @@ export async function saveChangesAction(slideshowId: string, slideIds: string[])
         // Ejecutar todas las operaciones en una transacción
         await db.$transaction(updateOperations);
     } catch (error) {
-        pendingAction = () => redirect(`/${slideshowId}?error=Something went wrong`);
+        pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
 
     if (pendingAction) return pendingAction();
 
-    revalidatePath(`/${slideshowId}`)
+    revalidatePath(`${Routes.slideshow(slideshowId)}`)
 }

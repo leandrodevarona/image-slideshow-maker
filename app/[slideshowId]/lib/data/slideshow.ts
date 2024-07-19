@@ -19,8 +19,8 @@ export async function generateNewSlideshowAndRedirect() {
 
     if (pendingAction) return pendingAction();
 
-    revalidatePath('/')
-    redirect(`/${slideshowId}`);
+    revalidatePath(Routes.home)
+    if (slideshowId) redirect(`${Routes.slideshow(slideshowId)}`);
 }
 
 export async function getSlideshowById(id: string) {
