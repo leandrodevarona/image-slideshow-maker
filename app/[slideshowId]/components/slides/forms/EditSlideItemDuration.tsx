@@ -2,7 +2,7 @@ import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slides';
 import Submit from '@ism/app/components/common/buttons/Submit';
 import { CheckIcon } from '@radix-ui/react-icons';
 
-import './styles/editSlideItem.css';
+import './styles/editSlideItemDuration.css';
 
 type Props = {
   slideshowId: string;
@@ -10,7 +10,7 @@ type Props = {
   slideDuration: number;
 };
 
-export default function EditSlideItem({
+export default function EditSlideItemDuration({
   slideshowId,
   slideId,
   slideDuration,

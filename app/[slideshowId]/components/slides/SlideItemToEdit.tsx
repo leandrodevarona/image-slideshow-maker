@@ -1,6 +1,6 @@
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
-import EditSlideItem from './forms/EditSlideItem';
+import EditSlideItemDuration from './forms/EditSlideItemDuration';
 
 type Props = {
   slideshowId: string;
@@ -10,7 +10,7 @@ type Props = {
 export default function SlideItemToEdit({ slideshowId, slide }: Props) {
   return (
     <SlideItem slide={slide}>
-      <EditSlideItem
+      <EditSlideItemDuration
         slideshowId={slideshowId}
         slideId={slide.id}
         slideDuration={slide.duration}

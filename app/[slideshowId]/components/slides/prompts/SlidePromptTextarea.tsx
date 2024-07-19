@@ -44,12 +44,11 @@ export default function SlidePromptTextarea({
       name="alt"
       placeholder="To save press Ctrl+S"
       title={
-        defaultValue.length > 0
+        defaultValue.length <= 0
           ? 'This area will not be seen if you do not define a prompt'
           : undefined
       }
       defaultValue={defaultValue}
-      required
       style={{ opacity: isVisible ? 1 : 0 }}
     />
   );

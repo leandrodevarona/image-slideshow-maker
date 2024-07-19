@@ -13,4 +13,8 @@
   font-size: medium;
   text-align: center;
   color: white;
+
+  transition: opacity 0.3s;
+
+  text-wrap: pretty;
 }
