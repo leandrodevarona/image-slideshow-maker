@@ -31,4 +31,6 @@ model Slideshow {
   name        String  @default("New slideshow")
   description String?
   slides      Slide[]
+
+  audioSrc String?
 }
