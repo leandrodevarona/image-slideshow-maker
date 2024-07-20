@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { db } from "../db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function createAction(slideshowId: string, theme: string) {
     let pendingAction = null;
@@ -21,8 +22,8 @@ export async function createAction(slideshowId: string, theme: string) {
                     prompt: z.string()
                 })
             }),
-            prompt: `Generate a color palette from the theme ${theme}. 
-            Each attribute (background, border, prompt) must be a single color in hexadecimal.`
+            prompt: `Generate a color palette from the theme "${theme}". 
+            Each attribute (background, border, message) must be a string that has three numbers separated by a comma, which represent the color in RGB.`
         })
 
         if (!object.recipe) {
@@ -32,13 +33,20 @@ export async function createAction(slideshowId: string, theme: string) {
             throw new Error('Cannot use AI at this time.')
         }
 
-        await db.colorPalette.create({
-            data: {
-                slideshowId,
+        await db.colorPalette.upsert({
+            where: {
+                slideshowId
+            },
+            update: {
                 ...object.recipe
+            },
+            create: {
+                ...object.recipe,
+                slideshowId
             }
-        })
+        });
     } catch (error) {
+        console.log(error)
         pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
 

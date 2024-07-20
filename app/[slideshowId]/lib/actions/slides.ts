@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "../db";
 import Unsplash from "../utils/unsplash";
 import { getSlideshowById } from "../data/slideshow";
+import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function createAction(slideshowId: string, formData: FormData) {
     let pendingAction = null;

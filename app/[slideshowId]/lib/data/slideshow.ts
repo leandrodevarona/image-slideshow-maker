@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { db } from "../db";
 import { revalidatePath } from "next/cache";
+import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function generateNewSlideshowAndRedirect() {
     let pendingAction = null;
@@ -30,7 +31,8 @@ export async function getSlideshowById(id: string) {
                 id
             },
             include: {
-                slides: true
+                slides: true,
+                colorPalette: true
             }
         });
 

@@ -5,6 +5,7 @@ import SlideEditor from './components/slideshow/SlideEditor';
 import EditSlideshow from './components/slideshow/forms/EditSlideshow';
 
 import styles from './page.module.css';
+import ColorPaletteLoader from './components/slides/colors/ColorPaletteLoader';
 
 type Props = {
   params: {
@@ -66,6 +67,9 @@ export default async function SlideshowPage({
         />
       </div>
       <footer></footer>
+      {slideshow.colorPalette && (
+        <ColorPaletteLoader colorPalette={slideshow.colorPalette} />
+      )}
     </main>
   );
 }

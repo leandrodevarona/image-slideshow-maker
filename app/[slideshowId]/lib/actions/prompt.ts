@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { db } from "../db";
 import { AI_MODEL } from "../constants/ai";
+import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function createAction(slideshowId: string, slideId: string) {
     let pendingAction = null;
