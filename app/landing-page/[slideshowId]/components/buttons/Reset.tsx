@@ -17,8 +17,12 @@ export default function Reset({ slidesLength, slideDuration }: Props) {
   const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setHidden(false), slideDuration * 1000);
-  }, [slideDuration]);
+    if (currentIndex === slidesLength - 1) {
+      const timeout = setTimeout(() => setHidden(false), slideDuration * 1000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, slideDuration, slidesLength]);
 
   if (currentIndex < slidesLength - 1) return null;
 
