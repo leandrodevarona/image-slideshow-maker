@@ -17,7 +17,7 @@ export default function SlidePlayerPainter({
   pause,
 }: Props) {
   const slideColor = '#b4b9bc';
-  const rangeColor = '#ff0000';
+  const rangeColor = '#b00505';
 
   const fillSlide = useCallback(
     (value: number) => {
