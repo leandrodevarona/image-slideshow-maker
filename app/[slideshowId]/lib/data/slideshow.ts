@@ -20,7 +20,8 @@ export async function generateNewSlideshowAndRedirect() {
 
     if (pendingAction) return pendingAction();
 
-    revalidatePath(Routes.home)
+    revalidatePath(Routes.home);
+
     if (slideshowId) redirect(`${Routes.slideshow(slideshowId)}`);
 }
 

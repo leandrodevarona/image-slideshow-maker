@@ -19,7 +19,7 @@ export default function CreateColorPalette({ slideshowId }: Props) {
       buttonClassName="color_palette__button primary_button"
       buttonContent={'Colors'}
       contentClassName="color_palette__content"
-      title="Generate slideshow color palette"
+      title="Generate slideshow color palette with ai"
     >
       <form className="color_palette__form" action={createColors}>
         <input

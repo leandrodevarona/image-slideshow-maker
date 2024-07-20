@@ -3,7 +3,6 @@ import CreateSlidePrompt from './prompts/CreateSlidePrompt';
 import CreateColorPalette from './colors/CreateColorPalette';
 
 import './styles/aiControls.css';
-import { MagicWandIcon } from '@radix-ui/react-icons';
 
 type Props = {
   slideshowId: string;
