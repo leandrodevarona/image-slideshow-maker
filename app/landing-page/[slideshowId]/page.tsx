@@ -46,6 +46,8 @@ export default async function SlideshowLandingPage({
 
   const imgId = 'slide_viewer__img' + currentSlide?.id;
 
+  const isLastSlide = currentSlide?.index === slideshow.slides.length - 1;
+
   return (
     <main className={styles.main}>
       <SlideViewer
@@ -55,12 +57,9 @@ export default async function SlideshowLandingPage({
       >
         {/* Esto debe ir dentro de slideviewer */}
         {currentSlide && <SlidePrompt slide={currentSlide} imgElemId={imgId} />}
-        {currentSlide && (
+        {currentSlide && isLastSlide && (
           <Suspense>
-            <Reset
-              slidesLength={slideshow.slides.length}
-              slideDuration={currentSlide.duration}
-            />
+            <Reset slideDuration={currentSlide.duration} />
           </Suspense>
         )}
       </SlideViewer>

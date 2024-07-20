@@ -7,20 +7,19 @@ import { MouseEvent, useEffect, useState } from 'react';
 import './styles/reset.css';
 
 type Props = {
-  slidesLength: number;
   slideDuration: number;
 };
 
-export default function Reset({ slidesLength, slideDuration }: Props) {
+export default function Reset({ slideDuration }: Props) {
   const { isPending, currentIndex, seeSlide } = useSeeSlide();
 
   const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setHidden(false), slideDuration * 1000);
-  }, [slideDuration]);
+    const timeout = setTimeout(() => setHidden(false), slideDuration * 1000);
 
-  if (currentIndex < slidesLength - 1) return null;
+    return () => clearTimeout(timeout);
+  }, [currentIndex, slideDuration]);
 
   const handleOnClick = (event: MouseEvent) => {
     event.preventDefault();
