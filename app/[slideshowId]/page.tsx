@@ -3,9 +3,9 @@ import { getSlideshowById } from './lib/data/slideshow';
 import { notFound } from 'next/navigation';
 import SlideEditor from './components/slideshow/SlideEditor';
 import EditSlideshow from './components/slideshow/forms/EditSlideshow';
+import ColorPaletteLoader from './components/slideshow/colors/ColorPaletteLoader';
 
 import styles from './page.module.css';
-import ColorPaletteLoader from './components/slides/colors/ColorPaletteLoader';
 
 type Props = {
   params: {
@@ -48,7 +48,7 @@ export default async function SlideshowPage({
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
-              className={styles.vercelLogo}
+              className={styles.vercelLogo + ' vercelLogo'}
               width={100}
               height={24}
               priority

@@ -9,8 +9,12 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { Routes } from "@ism/app/lib/utils/routes";
 
-export async function createAction(slideshowId: string, theme: string) {
+export async function createAction(slideshowId: string, formData: FormData) {
     let pendingAction = null;
+
+    const colorsTheme = formData.get('colors_theme')?.toString();
+
+    if (!colorsTheme || colorsTheme.length > 10) return;
 
     try {
         const { object } = await generateObject({
@@ -19,10 +23,12 @@ export async function createAction(slideshowId: string, theme: string) {
                 recipe: z.object({
                     background: z.string(),
                     border: z.string(),
-                    prompt: z.string()
+                    prompt: z.string(),
+                    theme: z.enum(['dark', 'light'])
                 })
             }),
-            prompt: `Generate a color palette from the theme "${theme}". 
+            prompt: `Generate a color palette from the theme "${colorsTheme}".
+            Depending on the colors of the palette generated in the theme attribute, you must tell me if the palette is dark or light.
             Each attribute (background, border, message) must be a string that has three numbers separated by a comma, which represent the color in RGB.`
         })
 
@@ -42,11 +48,11 @@ export async function createAction(slideshowId: string, theme: string) {
             },
             create: {
                 ...object.recipe,
-                slideshowId
+                slideshowId,
+                name: colorsTheme
             }
         });
     } catch (error) {
-        console.log(error)
         pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
 

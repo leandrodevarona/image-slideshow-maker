@@ -4,7 +4,7 @@
 }
 
 .slide_prompt textarea {
-  background-color: transparent;
+  background-color: rgba(var(--prompt-color), 0.5);
   border: none;
 
   resize: none;
