@@ -12,6 +12,8 @@ export default function PlayPause() {
     <button
       className="play_pause primary_button"
       disabled={isPending}
+      aria-label="Play or pause button"
+      title={isPause ? 'Play slides' : 'Pause slides'}
       onClick={playPause}
     >
       {isPause ? <PlayIcon /> : <PauseIcon />}

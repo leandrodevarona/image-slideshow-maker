@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import PlayPause from './player/PlayPause';
-import CreateSlidePrompt from './prompts/CreateSlidePrompt';
+import AiControls from './ai/AiControls';
 
 import './styles/slideViewerControls.css';
 
@@ -17,8 +17,8 @@ export default function SlideViewerControls({ slideshowId, slideId }: Props) {
           <PlayPause />
         </Suspense>
       </section>
-      <section>
-        <CreateSlidePrompt slideshowId={slideshowId} slideId={slideId} />
+      <section className="controls_ai">
+        <AiControls slideshowId={slideshowId} slideId={slideId} />
       </section>
     </div>
   );

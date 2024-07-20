@@ -6,6 +6,8 @@ import { getSlideById } from "../data/slides";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { db } from "../db";
+import { AI_MODEL } from "../constants/ai";
+import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function createAction(slideshowId: string, slideId: string) {
     let pendingAction = null;
@@ -14,12 +16,12 @@ export async function createAction(slideshowId: string, slideId: string) {
         const slide = await getSlideById(slideId);
 
         if (!slide) {
-            pendingAction = () => redirect(`/${slideshowId}?error=Slide could not be found`)
+            pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Slide could not be found`)
             throw new Error('Slide could not be found', { cause: '' })
         }
 
         const result = await generateText({
-            model: google("models/gemini-1.5-pro-latest"),
+            model: google(AI_MODEL),
             messages: [
                 {
                     role: 'user',
@@ -37,7 +39,7 @@ export async function createAction(slideshowId: string, slideId: string) {
 
         if (!result.text) {
             pendingAction = () => redirect(
-                `/${slideshowId}?slideIndex=${slide.index}&error=Cannot use AI at this time. ${result.responseMessages}`
+                `${Routes.slideshow(slideshowId)}?slideIndex=${slide.index}&error=Cannot use AI at this time. ${result.responseMessages}`
             )
         }
 
@@ -52,10 +54,10 @@ export async function createAction(slideshowId: string, slideId: string) {
             }
         })
     } catch (error) {
-        pendingAction = () => redirect(`/${slideshowId}?error=Something went wrong`);
+        pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
 
     if (pendingAction) return pendingAction();
 
-    revalidatePath(`/${slideshowId}`)
+    revalidatePath(`${Routes.slideshow(slideshowId)}`)
 }

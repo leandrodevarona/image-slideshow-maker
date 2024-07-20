@@ -1,0 +1,17 @@
+.create_slide__prompt button {
+  padding: 0.3rem;
+
+  background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  text-align: start;
+
+  pointer-events: all;
+}
+
+.create_slide__prompt button:hover {
+  background-color: rgb(var(--card-rgb));
+}

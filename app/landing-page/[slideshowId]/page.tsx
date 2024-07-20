@@ -5,8 +5,10 @@ import { Suspense } from 'react';
 import SlidePlayer from '@ism/app/[slideshowId]/components/slideshow/player/SlidePlayer';
 import { Metadata } from 'next';
 import SlidePrompt from './components/SlidePrompt';
+import ColorPaletteLoader from '@ism/app/[slideshowId]/components/slideshow/colors/ColorPaletteLoader';
 
 import styles from './page.module.css';
+import Reset from './components/buttons/Reset';
 
 type Props = {
   params: {
@@ -53,6 +55,14 @@ export default async function SlideshowLandingPage({
       >
         {/* Esto debe ir dentro de slideviewer */}
         {currentSlide && <SlidePrompt slide={currentSlide} imgElemId={imgId} />}
+        {currentSlide && (
+          <Suspense>
+            <Reset
+              slidesLength={slideshow.slides.length}
+              slideDuration={currentSlide.duration}
+            />
+          </Suspense>
+        )}
       </SlideViewer>
       {currentSlide && (
         <Suspense>
@@ -62,6 +72,9 @@ export default async function SlideshowLandingPage({
             slidesLength={slideshow.slides.length}
           />
         </Suspense>
+      )}
+      {slideshow.colorPalette && (
+        <ColorPaletteLoader colorPalette={slideshow.colorPalette} />
       )}
     </main>
   );

@@ -1,4 +1,7 @@
+'use client';
+
 import SlidePromptWidthSetter from '@ism/app/[slideshowId]/components/slides/prompts/SlidePromptWidthSetter';
+import SlidePromptVisibilitySetter from '@ism/app/[slideshowId]/components/slides/prompts/SlidePromptVisibilitySetter';
 import { Slide } from '@prisma/client';
 
 import './styles/slidePrompt.css';
@@ -15,7 +18,14 @@ export default function SlidePrompt({ slide, imgElemId }: Props) {
 
   return (
     <div className="slide_prompt">
-      <p id={paragraphId}>{slide.alt}</p>
+      <SlidePromptVisibilitySetter
+        imgElemId={imgElemId}
+        renderTextarea={(isVisible) => (
+          <p id={paragraphId} style={{ opacity: isVisible ? 1 : 0 }}>
+            {slide.alt}
+          </p>
+        )}
+      />
       <SlidePromptWidthSetter
         imgElemId={imgElemId}
         textareaElemId={paragraphId}

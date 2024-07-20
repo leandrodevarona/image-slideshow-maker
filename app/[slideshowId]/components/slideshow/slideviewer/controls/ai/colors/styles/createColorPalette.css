@@ -1,0 +1,43 @@
+.create_color__palette {
+  pointer-events: all;
+}
+
+.color_palette__button {
+  padding: 0.3rem;
+
+  background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  text-align: start;
+}
+
+.color_palette__button:hover {
+  background-color: rgb(var(--card-rgb));
+}
+
+.color_palette__form {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.color_palette__form input {
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem;
+}
+
+.color_palette__form button {
+  padding: 0.2rem;
+}
+
+.color_palette__content {
+  bottom: calc(100% + 1rem);
+  right: calc(100% - 65px);
+}

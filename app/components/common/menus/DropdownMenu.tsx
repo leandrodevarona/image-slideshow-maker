@@ -12,6 +12,7 @@ type Props = {
   buttonStyle?: CSSProperties;
   buttonContent?: React.ReactNode;
   open?: boolean;
+  title?: string;
   children: React.ReactNode;
 };
 
@@ -24,6 +25,7 @@ export default function DropdownMenu({
   buttonStyle,
   buttonContent,
   open = false,
+  title,
   children,
 }: Props) {
   return (
@@ -42,6 +44,7 @@ export default function DropdownMenu({
         className={buttonClassName}
         style={buttonStyle}
         htmlFor={`dropdown-${id}`}
+        title={title}
       >
         {buttonContent}
       </label>
