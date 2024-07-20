@@ -32,5 +32,17 @@ model Slideshow {
   description String?
   slides      Slide[]
 
+  colorPalette ColorPalette?
+
   audioSrc String?
+}
+
+model ColorPalette {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  background String
+  border     String
+  prompt     String
+
+  slideshow   Slideshow @relation(fields: [slideshowId], references: [id])
+  slideshowId String    @unique @db.ObjectId
 }

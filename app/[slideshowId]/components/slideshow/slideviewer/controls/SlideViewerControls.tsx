@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import PlayPause from './player/PlayPause';
 import CreateSlidePrompt from './prompts/CreateSlidePrompt';
+import CreateColorPalette from './colors/CreateColorPalette';
 
 import './styles/slideViewerControls.css';
 
@@ -17,8 +18,9 @@ export default function SlideViewerControls({ slideshowId, slideId }: Props) {
           <PlayPause />
         </Suspense>
       </section>
-      <section>
+      <section className="controls_ai">
         <CreateSlidePrompt slideshowId={slideshowId} slideId={slideId} />
+        <CreateColorPalette slideshowId={slideshowId} />
       </section>
     </div>
   );
