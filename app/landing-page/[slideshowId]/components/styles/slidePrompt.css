@@ -14,7 +14,7 @@
   font-family: Arial;
   font-size: medium;
   text-align: center;
-  color: white;
+  color: rgb(var(--prompt-text-color));
 
   transition: opacity 0.3s;
 
