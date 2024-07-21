@@ -19,6 +19,7 @@ export default function ColorPaletteLoader({ colorPalette }: Props) {
         --callout-border-rgb: ${colors.border};
 
         --prompt-color: ${colors.prompt};
+        --prompt-text-color: ${colors.text};
       }
 
       html {

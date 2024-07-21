@@ -24,12 +24,14 @@ export async function createAction(slideshowId: string, formData: FormData) {
                     background: z.string(),
                     border: z.string(),
                     prompt: z.string(),
-                    theme: z.enum(['dark', 'light'])
+                    text: z.string(),
+                    theme: z.enum(['dark', 'light']),
                 })
             }),
             prompt: `Generate a color palette from the theme "${colorsTheme}".
             Depending on the colors of the palette generated in the theme attribute, you must tell me if the palette is dark or light.
-            Each attribute (background, border, message) must be a string that has three numbers separated by a comma, which represent the color in RGB.`
+            Each attribute (background, border, message) must be a string that has three numbers separated by a comma, which represent the color in RGB.
+            In the text attribute you must also return the same RGB format, but this color must contrast with the color saved in the "prompt" attribute.`
         })
 
         if (!object.recipe) {

@@ -49,6 +49,7 @@ model ColorPalette {
   background String
   border     String
   prompt     String
+  text       String
   theme      Theme
 
   slideshow   Slideshow @relation(fields: [slideshowId], references: [id])

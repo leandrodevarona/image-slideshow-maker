@@ -10,6 +10,7 @@
   --background-end-rgb: 255, 255, 255;
 
   --prompt-color: transparent;
+  --prompt-text-color: white;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -108,4 +109,10 @@ a {
 
   user-select: none;
   cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
 }
