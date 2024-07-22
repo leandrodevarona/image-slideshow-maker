@@ -57,7 +57,16 @@ export default function SlidePlayer({
         onStopTime();
       }
     };
-  }, [elapsedTime, pause, slideDuration, nextSlide, onStopTime, onUpdateTime]);
+  }, [
+    elapsedTime,
+    pause,
+    slideDuration,
+    imgElemId,
+    nextSlide,
+    onStopTime,
+    onUpdateTime,
+    setElapsedTime,
+  ]);
 
   useEffect(() => {
     if (pause === true) {

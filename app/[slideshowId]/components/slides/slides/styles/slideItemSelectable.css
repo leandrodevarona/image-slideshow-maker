@@ -6,8 +6,6 @@
   background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
   background-size: calc(100% / 3) 50%;
   animation: l3 1s infinite linear;
-
-  margin: 0 auto;
 }
 @keyframes l3 {
   20% {

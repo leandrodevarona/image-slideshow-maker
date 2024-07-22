@@ -69,6 +69,7 @@ export default function SlideEditor({
         <SlideController
           slideshowId={slideshow.id}
           slides={slideshow.slides}
+          currentSlideId={currentSlide?.id}
           editing={editItems}
           deleting={deleteItem}
         />
