@@ -21,7 +21,7 @@ export default function SlidePlayer({
   onUpdateTime,
   onStopTime,
 }: Props) {
-  const { elapsedTime, setElapsedTime } = useElapsedTime();
+  const { elapsedTime, setElapsedTime } = useElapsedTime(0, pause);
 
   const { next: nextSlide } = useSlidePlayer(slidesLength);
 

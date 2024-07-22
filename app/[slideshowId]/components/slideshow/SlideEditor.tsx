@@ -35,7 +35,7 @@ export default function SlideEditor({
   const imgId = 'slide_viewer__img' + currentSlide?.id;
   const slideId = currentSlide?.id || '';
 
-  const slidePlayerKey = 'slide-player-' + currentSlide?.id + String(pause);
+  const slidePlayerKey = 'slide-player-' + currentSlide?.id;
   const slidePromptKey = 'prompt' + slideId;
 
   const updateAlt = updateAction.bind(null, slideshow.id, slideId);
