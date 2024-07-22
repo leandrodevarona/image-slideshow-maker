@@ -7,6 +7,7 @@ type Props = {
   slideId: string;
   slideDuration: number;
   slidesLength: number;
+  imgElemId: string;
   pause?: boolean;
 };
 
@@ -14,6 +15,7 @@ export default function SlidePlayerPainter({
   slideId,
   slideDuration,
   slidesLength,
+  imgElemId,
   pause,
 }: Props) {
   const slideColor = '#b4b9bc';
@@ -50,6 +52,7 @@ export default function SlidePlayerPainter({
     <SlidePlayer
       slideDuration={slideDuration}
       slidesLength={slidesLength}
+      imgElemId={imgElemId}
       pause={pause}
       onUpdateTime={fillSlide}
       onStopTime={emptySlide}

@@ -69,6 +69,7 @@ export default async function SlideshowLandingPage({
             key={slidePlayerKey}
             slideDuration={currentSlide?.duration}
             slidesLength={slideshow.slides.length}
+            imgElemId={imgId}
           />
         </Suspense>
       )}

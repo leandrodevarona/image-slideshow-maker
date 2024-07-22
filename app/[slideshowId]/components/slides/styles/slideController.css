@@ -13,10 +13,5 @@
 
   overflow-x: auto;
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.slide_controller::-webkit-scrollbar {
-  display: none;
+  scrollbar-width: 3px; /* Firefox */
 }

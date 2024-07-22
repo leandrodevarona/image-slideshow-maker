@@ -12,7 +12,7 @@ type Props = {
 };
 
 function NoSlides({ className }: { className?: string }) {
-  return <div className={clsx('slide_viewer', className)}>Slide not found</div>;
+  return <div className={clsx('slide_viewer', className)}>Please, add new Slide</div>;
 }
 
 export default function SlideViewer({
