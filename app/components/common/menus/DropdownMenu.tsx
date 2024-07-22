@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 import clsx from 'clsx';
 
 import './styles/dropdownMenu.css';
+import { Cross1Icon } from '@radix-ui/react-icons';
 
 type Props = {
   id: string;
@@ -52,6 +53,14 @@ export default function DropdownMenu({
         className={clsx('dropdown_menu__content', contentClassName)}
         style={contentStyle}
       >
+        <header className='dropdown_menu__content-close'>
+          <label
+            htmlFor={`dropdown-${id}`}
+            title="Close menu"
+          >
+            <Cross1Icon />
+          </label>
+        </header>
         {children}
       </menu>
     </div>

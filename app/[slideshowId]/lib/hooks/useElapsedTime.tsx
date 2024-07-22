@@ -15,5 +15,5 @@ export default function useElapsedTime(initialTime: number = 0) {
     };
   }, []);
 
-  return { elapsedTime };
+  return { elapsedTime, setElapsedTime };
 }

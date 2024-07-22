@@ -81,6 +81,7 @@ export default function SlideEditor({
             slideId={currentSlide.id}
             slideDuration={currentSlide?.duration}
             slidesLength={slideshow.slides.length}
+            imgElemId={imgId}
             pause={pause}
           />
         </Suspense>
