@@ -7,6 +7,8 @@
   align-items: center;
   justify-content: center;
 
+  position: relative;
+
   padding: 1.5%;
   border-radius: var(--border-radius);
 
@@ -15,4 +17,10 @@
   text-align: center;
 
   cursor: pointer;
+}
+
+.slide_item__bookmark {
+  position: absolute;
+  top: -7px;
+  right: -1px;
 }

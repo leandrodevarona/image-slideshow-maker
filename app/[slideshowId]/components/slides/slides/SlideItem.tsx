@@ -26,7 +26,14 @@ export default function SlideItem({
       style={{ minWidth: width }}
       onClick={onClick}
     >
-      {isCurrent && <BookmarkFilledIcon color="#0dfd0d" />}
+      {isCurrent && (
+        <BookmarkFilledIcon
+          className="slide_item__bookmark"
+          color="#0dfd0d"
+          width={20}
+          height={20}
+        />
+      )}
       {children}
     </li>
   );

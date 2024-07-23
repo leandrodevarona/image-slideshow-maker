@@ -3,6 +3,7 @@ import PlayPause from './player/PlayPause';
 import AiControls from './ai/AiControls';
 
 import './styles/slideViewerControls.css';
+import CurrentSlide from './player/CurrentSlide';
 
 type Props = {
   slideshowId: string;
@@ -16,6 +17,7 @@ export default function SlideViewerControls({ slideshowId, slideId }: Props) {
         <Suspense>
           <PlayPause />
         </Suspense>
+        <CurrentSlide slideshowId={slideshowId} currentSlideId={slideId} />
       </section>
       <section className="controls_ai">
         <AiControls slideshowId={slideshowId} slideId={slideId} />

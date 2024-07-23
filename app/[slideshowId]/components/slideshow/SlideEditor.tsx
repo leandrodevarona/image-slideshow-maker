@@ -10,6 +10,7 @@ import SlidePlayerPainter from './player/SlidePlayerPainter';
 import { updateAction } from '../../lib/actions/slides';
 
 import './styles/slideEditor.css';
+import CurrentSlide from './slideviewer/controls/player/CurrentSlide';
 
 type Props = {
   slideshow: SlideshowWithSlides;
