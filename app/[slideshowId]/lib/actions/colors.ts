@@ -62,3 +62,21 @@ export async function createAction(slideshowId: string, formData: FormData) {
 
     revalidatePath(`${Routes.slideshow(slideshowId)}`)
 }
+
+export async function deleteAction(slideshowId: string) {
+    let pendingAction = null;
+
+    try {
+        await db.colorPalette.delete({
+            where: {
+                slideshowId
+            }
+        })
+    } catch (error) {
+        pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
+    }
+
+    if (pendingAction) return pendingAction();
+
+    revalidatePath(`${Routes.slideshow(slideshowId)}`)
+}

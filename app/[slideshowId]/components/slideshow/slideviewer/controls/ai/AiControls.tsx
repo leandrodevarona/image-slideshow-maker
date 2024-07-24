@@ -1,6 +1,6 @@
 import DropdownMenu from '@ism/app/components/common/menus/DropdownMenu';
 import CreateSlidePrompt from './prompts/CreateSlidePrompt';
-import CreateColorPalette from './colors/CreateColorPalette';
+import ColorPalette from './colors/ColorPalette';
 
 import './styles/aiControls.css';
 
@@ -20,7 +20,7 @@ export default function AiControls({ slideshowId, slideId }: Props) {
     >
       <div className="ai_controls__container">
         <CreateSlidePrompt slideshowId={slideshowId} slideId={slideId} />
-        <CreateColorPalette slideshowId={slideshowId} />
+        <ColorPalette slideshowId={slideshowId} />
       </div>
     </DropdownMenu>
   );
