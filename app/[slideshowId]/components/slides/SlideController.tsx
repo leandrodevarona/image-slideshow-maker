@@ -5,7 +5,6 @@ import { sortSlides } from '../../lib/utils/slides';
 import SlideItemToDelete from './slides/SlideItemToDelete';
 import SlideItemSelectable from './slides/SlideItemSelectable';
 import SlideItemToEdit from './slides/SlideItemToEdit';
-import CurrentSlide from '../slideshow/slideviewer/controls/player/CurrentSlide';
 
 import './styles/slideController.css';
 

@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import PlayPause from './player/PlayPause';
 import AiControls from './ai/AiControls';
+import CurrentSlide from './player/CurrentSlide';
 
 import './styles/slideViewerControls.css';
-import CurrentSlide from './player/CurrentSlide';
 
 type Props = {
   slideshowId: string;

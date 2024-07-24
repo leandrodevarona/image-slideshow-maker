@@ -1,9 +1,8 @@
 'use client';
 
-import { useCallback, useEffect, useTransition } from 'react';
+import { useEffect } from 'react';
 import SaveIcon from './assets/SaveIcon';
-import { saveChangesAction } from '@ism/app/[slideshowId]/lib/actions/slideshow';
-import useSlideOrder from '@ism/app/[slideshowId]/lib/hooks/useSlideOrder';
+import useSaveChanges from '@ism/app/[slideshowId]/lib/hooks/useSaveChanges';
 
 import './styles/saveChanges.css';
 
@@ -12,24 +11,12 @@ type Props = {
 };
 
 export default function SaveChanges({ slideshowId }: Props) {
-  const [isPending, startTransition] = useTransition();
-
-  const { getSlideOrder } = useSlideOrder(slideshowId);
-
-  const handleOnClick = useCallback(() => {
-    startTransition(() => {
-      const slideOrderIds = getSlideOrder();
-
-      if (slideOrderIds) {
-        saveChangesAction(slideshowId, slideOrderIds);
-      }
-    });
-  }, [slideshowId, getSlideOrder]);
+  const { isPending, saveChanges } = useSaveChanges(slideshowId);
 
   useEffect(() => {
-    const intervalId = setInterval(handleOnClick, 300000); // 300000 ms = 5 minutos
+    const intervalId = setInterval(saveChanges, 300000); // 300000 ms = 5 minutos
     return () => clearInterval(intervalId); // Limpiar el intervalo al desmontar el componente
-  }, [handleOnClick]);
+  }, [saveChanges]);
 
   return (
     <button
@@ -37,7 +24,7 @@ export default function SaveChanges({ slideshowId }: Props) {
       aria-label="Save changes button"
       title="Save changes"
       disabled={isPending}
-      onClick={handleOnClick}
+      onClick={saveChanges}
     >
       <SaveIcon />
     </button>

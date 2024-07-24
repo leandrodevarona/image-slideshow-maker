@@ -1,6 +1,6 @@
 'use client';
 
-import { BookmarkIcon } from '@radix-ui/react-icons';
+import { ComponentBooleanIcon } from '@radix-ui/react-icons';
 
 import './styles/currentSlide.css';
 
@@ -32,7 +32,7 @@ export default function CurrentSlide({ slideshowId, currentSlideId }: Props) {
       aria-label="See this slide on the timeline"
       onClick={handleOnClick}
     >
-      <BookmarkIcon />
+      <ComponentBooleanIcon />
     </button>
   );
 }

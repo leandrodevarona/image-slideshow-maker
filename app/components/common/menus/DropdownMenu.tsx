@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
 import clsx from 'clsx';
+import { Cross1Icon } from '@radix-ui/react-icons';
 
 import './styles/dropdownMenu.css';
-import { Cross1Icon } from '@radix-ui/react-icons';
 
 type Props = {
   id: string;

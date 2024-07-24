@@ -1,6 +1,10 @@
-.delete_slide__item button {
+.delete_slide__item {
   border: none;
   background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   cursor: pointer;
 }

@@ -8,9 +8,9 @@ import SlideViewerControls from './slideviewer/controls/SlideViewerControls';
 import SlidePrompt from '../slides/prompts/SlidePrompt';
 import SlidePlayerPainter from './player/SlidePlayerPainter';
 import { updateAction } from '../../lib/actions/slides';
+import AutoSaveChanges from './AutoSaveChanges';
 
 import './styles/slideEditor.css';
-import CurrentSlide from './slideviewer/controls/player/CurrentSlide';
 
 type Props = {
   slideshow: SlideshowWithSlides;
@@ -38,6 +38,8 @@ export default function SlideEditor({
 
   const slidePlayerKey = 'slide-player-' + currentSlide?.id;
   const slidePromptKey = 'prompt' + slideId;
+
+  const slidesLength = slideshow.slides.length;
 
   const updateAlt = updateAction.bind(null, slideshow.id, slideId);
 
@@ -82,12 +84,13 @@ export default function SlideEditor({
             key={slidePlayerKey}
             slideId={currentSlide.id}
             slideDuration={currentSlide?.duration}
-            slidesLength={slideshow.slides.length}
+            slidesLength={slidesLength}
             imgElemId={imgId}
             pause={pause}
           />
         </Suspense>
       )}
+      <AutoSaveChanges slideshowId={slideshow.id} slidesLength={slidesLength} />
     </div>
   );
 }
