@@ -74,7 +74,6 @@ export async function saveChangesAction(slideshowId: string, slideIds: string[])
         // Ejecutar todas las operaciones en una transacción
         await db.$transaction(updateOperations);
     } catch (error) {
-        console.log(error)
         pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
 

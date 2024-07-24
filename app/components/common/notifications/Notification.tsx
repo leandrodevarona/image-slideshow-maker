@@ -1,13 +1,14 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { MouseEvent, useEffect, useState, useTransition } from 'react';
 import clsx from 'clsx';
+import useNotify from '@ism/app/[slideshowId]/lib/hooks/useNotify';
 
 import './styles/notification.css';
 
-enum NotificationTypes {
+export enum NotificationTypes {
   success = 'success',
   error = 'error',
 }
@@ -21,7 +22,8 @@ export default function Notification() {
 
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
-  const { back } = useRouter();
+
+  const { hideNotify } = useNotify();
 
   useEffect(() => {
     startTransition(() => {
@@ -44,8 +46,8 @@ export default function Notification() {
     e.preventDefault();
     e.stopPropagation();
 
+    hideNotify(type);
     startTransition(() => {
-      back();
       setIsVisible(false);
     });
   };

@@ -9,6 +9,7 @@ import SlidePrompt from '../slides/prompts/SlidePrompt';
 import SlidePlayerPainter from './player/SlidePlayerPainter';
 import { updateAction } from '../../lib/actions/slides';
 import AutoSaveChanges from './AutoSaveChanges';
+import LandingPageReferences from './slideviewer/landingPage/LandingPageReferences';
 
 import './styles/slideEditor.css';
 
@@ -65,6 +66,7 @@ export default function SlideEditor({
               />
             </>
           )}
+          <LandingPageReferences />
         </SlideViewer>
       </section>
       <section className="slide_editor__controller">
