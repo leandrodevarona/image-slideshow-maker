@@ -1,4 +1,4 @@
-.create_slide__prompt button {
+.current_slide__button {
   padding: 0.3rem;
 
   background-color: rgb(var(--card-rgb));

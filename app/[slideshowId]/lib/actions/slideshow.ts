@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { db } from "../db";
 import { getSlideshowById } from "../data/slideshow";
 import { revalidatePath } from "next/cache";
+import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function createAction(name?: string) {
     let pendingAction = null;
@@ -73,6 +74,7 @@ export async function saveChangesAction(slideshowId: string, slideIds: string[])
         // Ejecutar todas las operaciones en una transacción
         await db.$transaction(updateOperations);
     } catch (error) {
+        console.log(error)
         pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
 

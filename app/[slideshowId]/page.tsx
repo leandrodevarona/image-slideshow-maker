@@ -2,7 +2,8 @@ import Image from 'next/image';
 import { getSlideshowById } from './lib/data/slideshow';
 import { notFound } from 'next/navigation';
 import SlideEditor from './components/slideshow/SlideEditor';
-import EditSlideshow from './components/slideshow/forms/EditSlideshow';
+import EditSlideshowName from './components/slideshow/forms/EditSlideshowName';
+import ColorPaletteLoader from './components/slideshow/colors/ColorPaletteLoader';
 
 import styles from './page.module.css';
 
@@ -32,7 +33,7 @@ export default async function SlideshowPage({
       <header className={styles.description}>
         <div className={styles.description_form}>
           Start by editing the{' '}
-          <EditSlideshow
+          <EditSlideshowName
             slideshowId={slideshow.id}
             slideshowName={slideshow.name}
           />
@@ -47,7 +48,7 @@ export default async function SlideshowPage({
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
-              className={styles.vercelLogo}
+              className={styles.vercelLogo + ' vercelLogo'}
               width={100}
               height={24}
               priority
@@ -66,6 +67,9 @@ export default async function SlideshowPage({
         />
       </div>
       <footer></footer>
+      {slideshow.colorPalette && (
+        <ColorPaletteLoader colorPalette={slideshow.colorPalette} />
+      )}
     </main>
   );
 }

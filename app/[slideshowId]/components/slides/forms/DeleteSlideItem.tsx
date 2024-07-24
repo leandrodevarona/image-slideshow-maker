@@ -1,6 +1,8 @@
-import Submit from '@ism/app/components/common/buttons/Submit';
+'use client';
+
 import { CrossCircledIcon } from '@radix-ui/react-icons';
 import { deleteAction } from '@ism/app/[slideshowId]/lib/actions/slides';
+import { useTransition } from 'react';
 
 import './styles/deleteSlideItem.css';
 
@@ -10,13 +12,22 @@ type Props = {
 };
 
 export default function DeleteSlideItem({ slideshowId, slideId }: Props) {
-  const deleteSlide = deleteAction.bind(null, slideshowId, slideId);
+  const [isPending, startTransition] = useTransition();
+
+  const handleOnClick = () => {
+    startTransition(() => {
+      deleteAction(slideshowId, slideId);
+    });
+  };
 
   return (
-    <form className="delete_slide__item" action={deleteSlide}>
-      <Submit ariaLabel="Delete slide" title="Delete this slide">
-        <CrossCircledIcon color="red" width={20} height={20} />
-      </Submit>
-    </form>
+    <button
+      className="delete_slide__item"
+      title="Delete this slide"
+      disabled={isPending}
+      onClick={handleOnClick}
+    >
+      <CrossCircledIcon color="red" width={20} height={20} />
+    </button>
   );
 }

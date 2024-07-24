@@ -11,6 +11,5 @@
 }
 
 .photo_item:has(input[type='radio']:checked) {
-  transform: scale(0.95);
-  opacity: 0.7;
+  transform: scale(1.1);
 }

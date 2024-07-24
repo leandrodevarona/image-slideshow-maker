@@ -1,16 +1,17 @@
 import { Suspense } from 'react';
 import { Slide } from '@prisma/client';
-import SlideItemToDelete from './SlideItemToDelete';
 import MakeSlidesSortable from './MakeSlidesSortable';
 import { sortSlides } from '../../lib/utils/slides';
-import SlideItemSelectable from './SlideItemSelectable';
-import SlideItemToEdit from './SlideItemToEdit';
+import SlideItemToDelete from './slides/SlideItemToDelete';
+import SlideItemSelectable from './slides/SlideItemSelectable';
+import SlideItemToEdit from './slides/SlideItemToEdit';
 
 import './styles/slideController.css';
 
 type Props = {
   slideshowId: string;
   slides: Slide[];
+  currentSlideId?: string;
   editing?: boolean;
   deleting?: boolean;
 };
@@ -22,6 +23,7 @@ function NoSlides() {
 export default function SlideController({
   slideshowId,
   slides,
+  currentSlideId,
   editing = false,
   deleting = false,
 }: Props) {
@@ -37,6 +39,7 @@ export default function SlideController({
               key={'to-delete' + slide.id}
               slideshowId={slideshowId}
               slide={slide}
+              isCurrent={currentSlideId === slide.id}
             />
           ))
         : editing
@@ -45,11 +48,15 @@ export default function SlideController({
               key={'to-edit' + slide.id}
               slideshowId={slideshowId}
               slide={slide}
+              isCurrent={currentSlideId === slide.id}
             />
           ))
         : sortedSlides.map((slide) => (
             <Suspense key={slide.id}>
-              <SlideItemSelectable slide={slide} />
+              <SlideItemSelectable
+                slide={slide}
+                isCurrent={currentSlideId === slide.id}
+              />
             </Suspense>
           ))}
       <MakeSlidesSortable slideshowId={slideshowId} />

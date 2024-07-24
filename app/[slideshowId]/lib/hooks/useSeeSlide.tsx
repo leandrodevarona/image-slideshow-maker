@@ -16,12 +16,12 @@ export default function useSeeSlide() {
 
   const seeSlide = (index: number) => {
     startTransition(() => {
-      const params = new URLSearchParams(searchParams);
-      const currentIndex = parseInt(params.get(INDEX_QUERY_NAME) || '');
+      const queryParams = new URLSearchParams(searchParams);
+      const currentIndex = parseInt(queryParams.get(INDEX_QUERY_NAME) || '');
 
       if (currentIndex !== index) {
-        params.set(INDEX_QUERY_NAME, String(index));
-        replace(`${pathname}?${params.toString()}`);
+        queryParams.set(INDEX_QUERY_NAME, String(index));
+        replace(`${pathname}?${queryParams.toString()}`);
       }
     });
   };

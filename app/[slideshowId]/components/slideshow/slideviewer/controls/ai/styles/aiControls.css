@@ -1,0 +1,27 @@
+.ai_controls {
+  pointer-events: all;
+}
+
+.ai_controls__button {
+  padding: 0.3rem;
+
+  background-color: rgb(var(--card-rgb));
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ai_controls__content {
+  bottom: calc(100% + 1rem);
+  right: calc(100% - 65px);
+}
+
+.ai_controls__container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

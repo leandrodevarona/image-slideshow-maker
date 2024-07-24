@@ -13,10 +13,11 @@
 
   overflow-x: auto;
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
 }
 
-.slide_controller::-webkit-scrollbar {
-  display: none;
+@supports (scrollbar-width: auto) {
+  .slide_controller {
+    scrollbar-width: thin;
+  }
 }

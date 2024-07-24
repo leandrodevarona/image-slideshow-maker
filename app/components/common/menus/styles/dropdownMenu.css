@@ -20,6 +20,30 @@
   background-color: rgb(var(--callout-rgb));
 }
 
+.dropdown_menu__content-close {
+  display: flex;
+  justify-content: flex-end;
+
+  position: relative;
+}
+
+.dropdown_menu__content-close label {
+  position: absolute;
+
+  top: -1.5rem;
+  right: -1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.3rem;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
 .dropdown_menu__content {
   display: none;
 }

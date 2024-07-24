@@ -4,7 +4,6 @@
 }
 
 .slide_prompt textarea {
-  background-color: transparent;
   border: none;
 
   resize: none;
@@ -14,10 +13,12 @@
   backdrop-filter: blur(10px);
   border-radius: 5px;
 
+  background-color: rgba(var(--prompt-color), 0.5);
+
   font-family: Arial;
   font-size: medium;
   text-align: center;
-  color: white;
+  color: rgb(var(--prompt-text-color));
 
   overflow: hidden;
 

@@ -7,6 +7,7 @@ type Props = {
   slideId: string;
   slideDuration: number;
   slidesLength: number;
+  imgElemId: string;
   pause?: boolean;
 };
 
@@ -14,10 +15,11 @@ export default function SlidePlayerPainter({
   slideId,
   slideDuration,
   slidesLength,
+  imgElemId,
   pause,
 }: Props) {
   const slideColor = '#b4b9bc';
-  const rangeColor = '#ff0000';
+  const rangeColor = '#b00505';
 
   const fillSlide = useCallback(
     (value: number) => {
@@ -39,10 +41,18 @@ export default function SlidePlayerPainter({
     [slideDuration, slideId]
   );
 
-  const emptySlide = () => {
+  const emptyFillSlide = () => {
     const slide = document.getElementById(slideId);
     if (slide) {
       slide.style.background = slideColor;
+    }
+  };
+
+  const scrollIntoViewSlide = () => {
+    const item = document.getElementById(slideId);
+
+    if (item) {
+      item.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -50,9 +60,13 @@ export default function SlidePlayerPainter({
     <SlidePlayer
       slideDuration={slideDuration}
       slidesLength={slidesLength}
+      imgElemId={imgElemId}
       pause={pause}
-      onUpdateTime={fillSlide}
-      onStopTime={emptySlide}
+      onUpdateTime={(time) => {
+        fillSlide(time);
+        scrollIntoViewSlide();
+      }}
+      onStopTime={emptyFillSlide}
     />
   );
 }

@@ -6,6 +6,8 @@ import { getSlideById } from "../data/slides";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { db } from "../db";
+import { AI_MODEL } from "../constants/ai";
+import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function createAction(slideshowId: string, slideId: string) {
     let pendingAction = null;
@@ -19,7 +21,7 @@ export async function createAction(slideshowId: string, slideId: string) {
         }
 
         const result = await generateText({
-            model: google("models/gemini-1.5-pro-latest"),
+            model: google(AI_MODEL),
             messages: [
                 {
                     role: 'user',

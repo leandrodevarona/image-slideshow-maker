@@ -6,6 +6,7 @@
 
   display: grid;
   grid-template-rows: 4fr 1fr;
+  align-items: center;
 }
 
 .slide_editor__viewer-container {

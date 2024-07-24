@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { MouseEvent, useEffect, useState, useTransition } from 'react';
 import clsx from 'clsx';
@@ -21,22 +21,23 @@ export default function Notification() {
 
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const { back } = useRouter();
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    const isSuccess = params.has(NotificationTypes.success);
-    const isError = params.has(NotificationTypes.error);
+    startTransition(() => {
+      const params = new URLSearchParams(searchParams);
+      const isSuccess = params.has(NotificationTypes.success);
+      const isError = params.has(NotificationTypes.error);
 
-    if (!isSuccess && !isError) return;
+      if (!isSuccess && !isError) return;
 
-    setType(isSuccess ? NotificationTypes.success : NotificationTypes.error);
+      setType(isSuccess ? NotificationTypes.success : NotificationTypes.error);
 
-    const value = params.get(type.toString()) || '';
-    setText(value);
+      const value = params.get(type.toString()) || '';
+      setText(value);
 
-    setIsVisible(true);
+      setIsVisible(true);
+    });
   }, [searchParams, type]);
 
   const handleOnClose = (e: MouseEvent) => {
@@ -44,11 +45,7 @@ export default function Notification() {
     e.stopPropagation();
 
     startTransition(() => {
-      const params = new URLSearchParams(searchParams);
-      params.delete(type.toString());
-
-      replace(`${pathname}?${params.toString()}`);
-
+      back();
       setIsVisible(false);
     });
   };

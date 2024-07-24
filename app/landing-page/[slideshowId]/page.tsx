@@ -5,6 +5,8 @@ import { Suspense } from 'react';
 import SlidePlayer from '@ism/app/[slideshowId]/components/slideshow/player/SlidePlayer';
 import { Metadata } from 'next';
 import SlidePrompt from './components/SlidePrompt';
+import ColorPaletteLoader from '@ism/app/[slideshowId]/components/slideshow/colors/ColorPaletteLoader';
+import Reset from './components/buttons/Reset';
 
 import styles from './page.module.css';
 
@@ -44,6 +46,8 @@ export default async function SlideshowLandingPage({
 
   const imgId = 'slide_viewer__img' + currentSlide?.id;
 
+  const isLastSlide = currentSlide?.index === slideshow.slides.length - 1;
+
   return (
     <main className={styles.main}>
       <SlideViewer
@@ -53,6 +57,11 @@ export default async function SlideshowLandingPage({
       >
         {/* Esto debe ir dentro de slideviewer */}
         {currentSlide && <SlidePrompt slide={currentSlide} imgElemId={imgId} />}
+        {currentSlide && isLastSlide && (
+          <Suspense>
+            <Reset slideDuration={currentSlide.duration} />
+          </Suspense>
+        )}
       </SlideViewer>
       {currentSlide && (
         <Suspense>
@@ -60,8 +69,12 @@ export default async function SlideshowLandingPage({
             key={slidePlayerKey}
             slideDuration={currentSlide?.duration}
             slidesLength={slideshow.slides.length}
+            imgElemId={imgId}
           />
         </Suspense>
+      )}
+      {slideshow.colorPalette && (
+        <ColorPaletteLoader colorPalette={slideshow.colorPalette} />
       )}
     </main>
   );
