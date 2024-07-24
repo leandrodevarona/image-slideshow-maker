@@ -1,7 +1,6 @@
 .edit_slide__item {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .edit_slide__item input {

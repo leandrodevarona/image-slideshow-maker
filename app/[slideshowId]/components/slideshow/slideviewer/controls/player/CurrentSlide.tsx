@@ -27,7 +27,7 @@ export default function CurrentSlide({ slideshowId, currentSlideId }: Props) {
 
   return (
     <button
-      className="current_slide__button primary_button"
+      className="current_slide__button primary_button centered_button"
       title="See this slide on the timeline"
       aria-label="See this slide on the timeline"
       onClick={handleOnClick}

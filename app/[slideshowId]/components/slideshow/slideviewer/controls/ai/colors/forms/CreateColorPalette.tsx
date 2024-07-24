@@ -21,7 +21,7 @@ export default function CreateColorPalette({ slideshowId }: Props) {
         max={10}
         min={3}
       />
-      <Submit className="primary_button">
+      <Submit className="primary_button centered_button">
         <CheckIcon />
       </Submit>
     </form>

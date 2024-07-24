@@ -10,7 +10,7 @@ export default function PlayPause() {
 
   return (
     <button
-      className="play_pause primary_button"
+      className="play_pause primary_button centered_button"
       disabled={isPending}
       aria-label="Play or pause button"
       title={isPause ? 'Play slides' : 'Pause slides'}

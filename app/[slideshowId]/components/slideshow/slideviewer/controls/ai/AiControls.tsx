@@ -14,9 +14,10 @@ export default function AiControls({ slideshowId, slideId }: Props) {
     <DropdownMenu
       id="ai_controls"
       className="ai_controls"
-      buttonClassName="ai_controls__button primary_button"
+      buttonClassName="ai_controls__button primary_button centered_button"
       buttonContent={'AI'}
       contentClassName="ai_controls__content"
+      title="Ai options"
     >
       <div className="ai_controls__container">
         <CreateSlidePrompt slideshowId={slideshowId} slideId={slideId} />

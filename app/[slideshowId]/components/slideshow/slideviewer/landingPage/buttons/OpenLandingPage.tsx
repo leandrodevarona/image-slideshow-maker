@@ -28,7 +28,7 @@ export default function OpenLandingPage() {
 
   return (
     <Link
-      className="landingPage_button primary_button"
+      className="landingPage_button primary_button centered_button"
       href={url}
       target="_blank"
       title="See the result of the edition on a landing page"

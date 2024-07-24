@@ -29,7 +29,7 @@ export default function Reset({ slideDuration }: Props) {
 
   return (
     <button
-      className="reset_button primary_button"
+      className="reset_button primary_button centered_button"
       disabled={isPending}
       style={{ display: hidden ? 'none' : 'flex' }}
       title="Reset slideshow"

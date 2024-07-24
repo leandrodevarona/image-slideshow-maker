@@ -22,7 +22,7 @@ export default function DeleteSlideItem({ slideshowId, slideId }: Props) {
 
   return (
     <button
-      className="delete_slide__item"
+      className="delete_slide__item centered_button"
       title="Delete this slide"
       disabled={isPending}
       onClick={handleOnClick}

@@ -55,7 +55,7 @@ export default function DropdownMenu({
       >
         <header className="dropdown_menu__content-close">
           <label
-            className="primary_button"
+            className="primary_button centered_button"
             htmlFor={`dropdown-${id}`}
             title="Close menu"
           >

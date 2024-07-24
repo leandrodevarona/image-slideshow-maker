@@ -11,7 +11,7 @@ export default function EditSlideshowName({ slideshowId, slideshowName }: Props)
   const updateSlideshow = updateAction.bind(null, slideshowId);
 
   return (
-    <form className="edit_slideshow" action={updateSlideshow}>
+    <form className="edit_slideshow__name" action={updateSlideshow}>
       <input
         type="text"
         defaultValue={slideshowName}
