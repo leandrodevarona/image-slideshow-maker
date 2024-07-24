@@ -24,12 +24,13 @@ export default function useEditOrDeleteSlides() {
 
       const isDeleting = Boolean(params.get(deleteQueryName)) === true;
 
-      if (!isDeleting) {
-        if (isEditing) params.delete(editQueryName);
-        else params.set(editQueryName, 'true');
+      // Que se cancele la eliminación si decido empezar a editar
+      if (isDeleting) params.delete(deleteQueryName);
 
-        replace(`${pathname}?${params.toString()}`);
-      }
+      if (isEditing) params.delete(editQueryName);
+      else params.set(editQueryName, 'true');
+
+      replace(`${pathname}?${params.toString()}`);
     });
   };
 
@@ -41,12 +42,13 @@ export default function useEditOrDeleteSlides() {
 
       const isEditing = Boolean(params.get(editQueryName)) === true;
 
-      if (!isEditing) {
-        if (isDeleting) params.delete(deleteQueryName);
-        else params.set(deleteQueryName, 'true');
+      // Que cancele la edición si decido empezar a eliminar
+      if (isEditing) params.delete(editQueryName);
 
-        replace(`${pathname}?${params.toString()}`);
-      }
+      if (isDeleting) params.delete(deleteQueryName);
+      else params.set(deleteQueryName, 'true');
+
+      replace(`${pathname}?${params.toString()}`);
     });
   };
 

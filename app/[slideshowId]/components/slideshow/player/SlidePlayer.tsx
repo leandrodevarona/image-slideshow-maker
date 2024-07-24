@@ -21,7 +21,7 @@ export default function SlidePlayer({
   onUpdateTime,
   onStopTime,
 }: Props) {
-  const { elapsedTime, setElapsedTime } = useElapsedTime();
+  const { elapsedTime, setElapsedTime } = useElapsedTime(0, pause);
 
   const { next: nextSlide } = useSlidePlayer(slidesLength);
 
@@ -57,7 +57,16 @@ export default function SlidePlayer({
         onStopTime();
       }
     };
-  }, [elapsedTime, pause, slideDuration, nextSlide, onStopTime, onUpdateTime]);
+  }, [
+    elapsedTime,
+    pause,
+    slideDuration,
+    imgElemId,
+    nextSlide,
+    onStopTime,
+    onUpdateTime,
+    setElapsedTime,
+  ]);
 
   useEffect(() => {
     if (pause === true) {

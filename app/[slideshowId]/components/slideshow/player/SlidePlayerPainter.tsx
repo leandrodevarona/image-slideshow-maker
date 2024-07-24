@@ -41,10 +41,18 @@ export default function SlidePlayerPainter({
     [slideDuration, slideId]
   );
 
-  const emptySlide = () => {
+  const emptyFillSlide = () => {
     const slide = document.getElementById(slideId);
     if (slide) {
       slide.style.background = slideColor;
+    }
+  };
+
+  const scrollIntoViewSlide = () => {
+    const item = document.getElementById(slideId);
+
+    if (item) {
+      item.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -54,8 +62,11 @@ export default function SlidePlayerPainter({
       slidesLength={slidesLength}
       imgElemId={imgElemId}
       pause={pause}
-      onUpdateTime={fillSlide}
-      onStopTime={emptySlide}
+      onUpdateTime={(time) => {
+        fillSlide(time);
+        scrollIntoViewSlide();
+      }}
+      onStopTime={emptyFillSlide}
     />
   );
 }

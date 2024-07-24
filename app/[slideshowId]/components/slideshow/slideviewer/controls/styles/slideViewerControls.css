@@ -15,6 +15,12 @@
   pointer-events: none;
 }
 
+.slide_viewer__controls > section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .slide_viewer__controls .controls_ai {
   display: flex;
   align-items: center;

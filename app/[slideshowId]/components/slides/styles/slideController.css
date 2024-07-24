@@ -13,5 +13,11 @@
 
   overflow-x: auto;
 
-  scrollbar-width: 3px; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
+}
+
+@supports (scrollbar-width: auto) {
+  .slide_controller {
+    scrollbar-width: thin;
+  }
 }
