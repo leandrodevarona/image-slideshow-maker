@@ -1,4 +1,4 @@
-.create_color__palette {
+.color_palette {
   pointer-events: all;
 }
 
@@ -21,23 +21,13 @@
   background-color: rgb(var(--card-rgb));
 }
 
-.color_palette__form {
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-}
-
-.color_palette__form input {
-  border: none;
-  border-radius: 5px;
-  padding: 0.2rem;
-}
-
-.color_palette__form button {
-  padding: 0.2rem;
-}
-
 .color_palette__content {
   bottom: calc(100% + 1rem);
   right: calc(100% - 65px);
+}
+
+.color_palette__container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }

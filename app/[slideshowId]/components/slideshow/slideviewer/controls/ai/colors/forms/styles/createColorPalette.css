@@ -1,0 +1,15 @@
+.create_color__palette {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.create_color__palette input {
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem;
+}
+
+.create_color__palette button {
+  padding: 0.2rem;
+}
