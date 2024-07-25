@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import DropdownMenu from '@ism/app/components/common/menus/DropdownMenu';
 import { ImageIcon } from '@radix-ui/react-icons';
 import SearchPhotos from './inputs/SearchPhotos';
@@ -33,9 +32,7 @@ export default function PhotoPicker({ slideshowId, query }: Props) {
           <SearchPhotos />
         </section>
         <section>
-          <Suspense fallback={'Loading photos...'}>
-            <PhotoPickerForm slideshowId={slideshowId} query={query} />
-          </Suspense>
+          <PhotoPickerForm slideshowId={slideshowId} query={query} />
         </section>
       </div>
     </DropdownMenu>

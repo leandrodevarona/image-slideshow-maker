@@ -3,6 +3,7 @@
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
 import useSeeSlide from '@ism/app/[slideshowId]/lib/hooks/useSeeSlide';
+import { Suspense } from 'react';
 
 import './styles/slideItemSelectable.css';
 
@@ -11,7 +12,7 @@ type Props = {
   isCurrent: boolean;
 };
 
-export default function SlideItemSelectable({ slide, isCurrent }: Props) {
+function Component({ slide, isCurrent }: Props) {
   const { isPending, seeSlide } = useSeeSlide();
 
   const handleOnClick = () => {
@@ -26,5 +27,13 @@ export default function SlideItemSelectable({ slide, isCurrent }: Props) {
         <span>{slide.duration}s</span>
       )}
     </SlideItem>
+  );
+}
+
+export default function SlideItemSelectable(props: Props) {
+  return (
+    <Suspense>
+      <Component {...props} />
+    </Suspense>
   );
 }

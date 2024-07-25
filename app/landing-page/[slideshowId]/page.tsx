@@ -1,7 +1,6 @@
 import { getSlideshowById } from '@ism/app/[slideshowId]/lib/data/slideshow';
 import { notFound } from 'next/navigation';
 import SlideViewer from '@ism/app/[slideshowId]/components/slideshow/slideviewer/SlideViewer';
-import { Suspense } from 'react';
 import SlidePlayer from '@ism/app/[slideshowId]/components/slideshow/player/SlidePlayer';
 import { Metadata } from 'next';
 import SlidePrompt from './components/SlidePrompt';
@@ -66,21 +65,17 @@ export default async function SlideshowLandingPage({
           />
         )}
         {currentSlide && isLastSlide && (
-          <Suspense>
-            <Reset slideDuration={currentSlide.duration} />
-          </Suspense>
+          <Reset slideDuration={currentSlide.duration} />
         )}
         <LandingPageControls />
       </SlideViewer>
       {currentSlide && (
-        <Suspense>
-          <SlidePlayer
-            key={slidePlayerKey}
-            slideDuration={currentSlide?.duration}
-            slidesLength={slideshow.slides.length}
-            imgElemId={imgId}
-          />
-        </Suspense>
+        <SlidePlayer
+          key={slidePlayerKey}
+          slideDuration={currentSlide?.duration}
+          slidesLength={slideshow.slides.length}
+          imgElemId={imgId}
+        />
       )}
       {slideshow.colorPalette && (
         <ColorPaletteLoader colorPalette={slideshow.colorPalette} />

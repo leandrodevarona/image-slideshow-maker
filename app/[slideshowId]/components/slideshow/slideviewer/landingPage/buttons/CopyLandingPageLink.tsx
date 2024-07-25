@@ -3,13 +3,13 @@
 import { Routes } from '@ism/app/lib/utils/routes';
 import { Link2Icon } from '@radix-ui/react-icons';
 import { useParams } from 'next/navigation';
-import { useTransition } from 'react';
+import { Suspense, useTransition } from 'react';
 import useNotify from '@ism/app/[slideshowId]/lib/hooks/useNotify';
 import { NotificationTypes } from '@ism/app/components/common/notifications/Notification';
 
 import './styles/landingPageButtons.css';
 
-export default function CopyLandingPageLink() {
+function Component() {
   const [isPending, startTransition] = useTransition();
 
   const params = useParams<{ slideshowId: string }>();
@@ -60,5 +60,13 @@ export default function CopyLandingPageLink() {
     >
       <Link2Icon />
     </button>
+  );
+}
+
+export default function CopyLandingPageLink() {
+  return (
+    <Suspense>
+      <Component />
+    </Suspense>
   );
 }

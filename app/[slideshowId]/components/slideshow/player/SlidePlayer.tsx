@@ -2,7 +2,7 @@
 
 import useElapsedTime from '@ism/app/[slideshowId]/lib/hooks/useElapsedTime';
 import useSlidePlayer from '@ism/app/[slideshowId]/lib/hooks/useSlidePlayer';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 type Props = {
   slideDuration: number;
@@ -13,7 +13,7 @@ type Props = {
   onStopTime?: () => void;
 };
 
-export default function SlidePlayer({
+function Component({
   slideDuration,
   pause = false,
   slidesLength,
@@ -77,4 +77,12 @@ export default function SlidePlayer({
   }, [pause, onStopTime]);
 
   return null;
+}
+
+export default function SlidePlayer(props: Props) {
+  return (
+    <Suspense>
+      <Component {...props} />
+    </Suspense>
+  );
 }

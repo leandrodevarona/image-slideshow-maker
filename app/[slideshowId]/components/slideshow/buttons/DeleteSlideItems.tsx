@@ -1,12 +1,12 @@
 'use client';
 
 import { Cross2Icon, TrashIcon } from '@radix-ui/react-icons';
-import { MouseEvent } from 'react';
+import { MouseEvent, Suspense } from 'react';
 import useEditOrDeleteSlides from '@ism/app/[slideshowId]/lib/hooks/useEditOrDeleteSlides';
 
 import './styles/deleteSlideItems.css';
 
-export default function DeleteSlideItems() {
+function Component() {
   const { isPending, isDeleting, deleteSlides } = useEditOrDeleteSlides();
 
   const handleOnClick = (evt: MouseEvent) => {
@@ -26,5 +26,13 @@ export default function DeleteSlideItems() {
     >
       {isDeleting ? <Cross2Icon /> : <TrashIcon />}
     </button>
+  );
+}
+
+export default function DeleteSlideItems() {
+  return (
+    <Suspense>
+      <Component />
+    </Suspense>
   );
 }

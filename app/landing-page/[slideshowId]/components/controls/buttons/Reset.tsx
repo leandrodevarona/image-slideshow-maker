@@ -2,7 +2,7 @@
 
 import useSeeSlide from '@ism/app/[slideshowId]/lib/hooks/useSeeSlide';
 import { ResetIcon } from '@radix-ui/react-icons';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, Suspense, useEffect, useState } from 'react';
 
 import './styles/reset.css';
 
@@ -10,7 +10,7 @@ type Props = {
   slideDuration: number;
 };
 
-export default function Reset({ slideDuration }: Props) {
+function Component({ slideDuration }: Props) {
   const { isPending, currentIndex, seeSlide } = useSeeSlide();
 
   const [hidden, setHidden] = useState(true);
@@ -38,5 +38,13 @@ export default function Reset({ slideDuration }: Props) {
     >
       <ResetIcon width={100} height={100} />
     </button>
+  );
+}
+
+export default function Reset(props: Props) {
+  return (
+    <Suspense>
+      <Component {...props} />
+    </Suspense>
   );
 }
