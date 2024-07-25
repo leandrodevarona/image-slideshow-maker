@@ -58,8 +58,13 @@ export default async function SlideshowLandingPage({
         slide={currentSlide}
         fullScreen={Boolean(fullScreen)}
       >
-        {/* Esto debe ir dentro de slideviewer */}
-        {currentSlide && <SlidePrompt slide={currentSlide} imgElemId={imgId} />}
+        {currentSlide && (
+          <SlidePrompt
+            key={fullScreen}
+            slide={currentSlide}
+            imgElemId={imgId}
+          />
+        )}
         {currentSlide && isLastSlide && (
           <Suspense>
             <Reset slideDuration={currentSlide.duration} />
