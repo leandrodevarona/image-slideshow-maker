@@ -8,6 +8,7 @@ import { db } from "../db";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { Routes } from "@ism/app/lib/utils/routes";
+import { getSlideshowById } from "../data/slideshow";
 
 export async function createAction(slideshowId: string, formData: FormData) {
     let pendingAction = null;
@@ -67,6 +68,10 @@ export async function deleteAction(slideshowId: string) {
     let pendingAction = null;
 
     try {
+        const slideshow = await getSlideshowById(slideshowId);
+
+        if (!slideshow?.colorPalette) return;
+
         await db.colorPalette.delete({
             where: {
                 slideshowId
