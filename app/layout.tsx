@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Suspense } from 'react';
 import Notification from './components/common/notifications/Notification';
 
 import './globals.css';
@@ -27,9 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {children}
-        <Suspense>
-          <Notification />
-        </Suspense>
+        <Notification />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { Suspense, useCallback } from 'react';
 import SlidePlayer from './SlidePlayer';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
   pause?: boolean;
 };
 
-export default function SlidePlayerPainter({
+function Component({
   slideId,
   slideDuration,
   slidesLength,
@@ -68,5 +68,13 @@ export default function SlidePlayerPainter({
       }}
       onStopTime={emptyFillSlide}
     />
+  );
+}
+
+export default function SlidePlayerPainter(props: Props) {
+  return (
+    <Suspense>
+      <Component {...props} />
+    </Suspense>
   );
 }

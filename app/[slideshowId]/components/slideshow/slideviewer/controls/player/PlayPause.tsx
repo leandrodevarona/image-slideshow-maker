@@ -1,11 +1,12 @@
 'use client';
 
+import { Suspense } from 'react';
 import useSlidePlayer from '@ism/app/[slideshowId]/lib/hooks/useSlidePlayer';
 import { PauseIcon, PlayIcon } from '@radix-ui/react-icons';
 
 import './styles/playPause.css';
 
-export default function PlayPause() {
+function Component() {
   const { isPause, isPending, playPause } = useSlidePlayer();
 
   return (
@@ -18,5 +19,13 @@ export default function PlayPause() {
     >
       {isPause ? <PlayIcon /> : <PauseIcon />}
     </button>
+  );
+}
+
+export default function PlayPause() {
+  return (
+    <Suspense>
+      <Component />
+    </Suspense>
   );
 }

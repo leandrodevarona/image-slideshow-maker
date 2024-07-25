@@ -2,7 +2,13 @@
 
 import { useSearchParams } from 'next/navigation';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import { MouseEvent, useEffect, useState, useTransition } from 'react';
+import {
+  MouseEvent,
+  Suspense,
+  useEffect,
+  useState,
+  useTransition,
+} from 'react';
 import clsx from 'clsx';
 import useNotify from '@ism/app/[slideshowId]/lib/hooks/useNotify';
 
@@ -13,7 +19,7 @@ export enum NotificationTypes {
   error = 'error',
 }
 
-export default function Notification() {
+function Component() {
   const [text, setText] = useState('');
   const [type, setType] = useState<NotificationTypes>(
     NotificationTypes.success
@@ -65,5 +71,13 @@ export default function Notification() {
         <Cross2Icon width={20} height={20} />
       </button>
     </article>
+  );
+}
+
+export default function Notification() {
+  return (
+    <Suspense>
+      <Component />
+    </Suspense>
   );
 }

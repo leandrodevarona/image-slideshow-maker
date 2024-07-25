@@ -1,12 +1,12 @@
 'use client';
 
-import { MouseEvent } from 'react';
+import { MouseEvent, Suspense } from 'react';
 import { Cross1Icon, Pencil1Icon } from '@radix-ui/react-icons';
 import useEditOrDeleteSlides from '@ism/app/[slideshowId]/lib/hooks/useEditOrDeleteSlides';
 
 import './styles/editSlideItems.css';
 
-export default function EditSlideItems() {
+function Component() {
   const { isPending, isEditing, editSlides } = useEditOrDeleteSlides();
 
   const handleOnClick = (evt: MouseEvent) => {
@@ -26,5 +26,13 @@ export default function EditSlideItems() {
     >
       {isEditing ? <Cross1Icon /> : <Pencil1Icon />}
     </button>
+  );
+}
+
+export default function EditSlideItems() {
+  return (
+    <Suspense>
+      <Component />
+    </Suspense>
   );
 }

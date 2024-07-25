@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { SlideshowWithSlides } from '../../lib/types/slideshow';
 import PhotoPicker from '../slides/photos/PhotoPicker';
 import SlideController from '../slides/SlideController';
@@ -81,16 +80,14 @@ export default function SlideEditor({
         <PhotoPicker slideshowId={slideshow.id} query={photosQuery} />
       </section>
       {currentSlide && (
-        <Suspense>
-          <SlidePlayerPainter
-            key={slidePlayerKey}
-            slideId={currentSlide.id}
-            slideDuration={currentSlide?.duration}
-            slidesLength={slidesLength}
-            imgElemId={imgId}
-            pause={pause}
-          />
-        </Suspense>
+        <SlidePlayerPainter
+          key={slidePlayerKey}
+          slideId={currentSlide.id}
+          slideDuration={currentSlide?.duration}
+          slidesLength={slidesLength}
+          imgElemId={imgId}
+          pause={pause}
+        />
       )}
       <AutoSaveChanges slideshowId={slideshow.id} slidesLength={slidesLength} />
     </div>
