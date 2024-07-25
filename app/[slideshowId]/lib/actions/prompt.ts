@@ -10,17 +10,16 @@ import { AI_MODEL } from "../constants/ai";
 import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function createAction(slideshowId: string, slideId: string) {
-    let pendingAction = null;
+    const slide = await getSlideById(slideId);
+
+    if (!slide) {
+        redirect(`${Routes.slideshow(slideshowId)}?error=Slide could not be found`);
+    }
+
+    let result = null;
 
     try {
-        const slide = await getSlideById(slideId);
-
-        if (!slide) {
-            pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Slide could not be found`)
-            throw new Error('Slide could not be found', { cause: '' })
-        }
-
-        const result = await generateText({
+        result = await generateText({
             model: google(AI_MODEL),
             messages: [
                 {
@@ -36,15 +35,15 @@ export async function createAction(slideshowId: string, slideId: string) {
                 },
             ],
         });
+    } catch (error) {
+        redirect(
+            `${Routes.slideshow(slideshowId)}?slideIndex=${slide.index}&error=Cannot use AI at this time.`
+        )
+    }
 
-        if (!result.text) {
-            pendingAction = () => redirect(
-                `${Routes.slideshow(slideshowId)}?slideIndex=${slide.index}&error=Cannot use AI at this time. ${result.responseMessages}`
-            )
-        }
+    const resultText = result.text || undefined;
 
-        const resultText = result.text || undefined;
-
+    try {
         await db.slide.update({
             where: {
                 id: slideId
@@ -54,10 +53,8 @@ export async function createAction(slideshowId: string, slideId: string) {
             }
         })
     } catch (error) {
-        pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
+        redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
-
-    if (pendingAction) return pendingAction();
 
     revalidatePath(`${Routes.slideshow(slideshowId)}`)
 }

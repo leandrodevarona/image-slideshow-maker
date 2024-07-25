@@ -11,11 +11,11 @@ import { Routes } from "@ism/app/lib/utils/routes";
 import { getSlideshowById } from "../data/slideshow";
 
 export async function createAction(slideshowId: string, formData: FormData) {
-    let pendingAction = null;
-
     const colorsTheme = formData.get('colors_theme')?.toString();
 
     if (!colorsTheme || colorsTheme.length > 10) return;
+
+    let recipe = null;
 
     try {
         const { object } = await generateObject({
@@ -30,43 +30,40 @@ export async function createAction(slideshowId: string, formData: FormData) {
                 })
             }),
             prompt: `Generate a color palette from the theme "${colorsTheme}".
-            Depending on the colors of the palette generated in the theme attribute, you must tell me if the palette is dark or light.
-            Each attribute (background, border, message) must be a string that has three numbers separated by a comma, which represent the color in RGB.
-            In the text attribute you must also return the same RGB format, but this color must contrast with the color saved in the "prompt" attribute.`
+                Depending on the colors of the palette generated in the theme attribute, you must tell me if the palette is dark or light.
+                Each attribute (background, border, message) must be a string that has three numbers separated by a comma, which represent the color in RGB.
+                In the text attribute you must also return the same RGB format, but this color must contrast with the color saved in the "prompt" attribute.`
         })
 
-        if (!object.recipe) {
-            pendingAction = () => redirect(
-                `${Routes.slideshow(slideshowId)}?error=Cannot use AI at this time.`
-            )
-            throw new Error('Cannot use AI at this time.')
-        }
+        recipe = object.recipe;
+    } catch (error) {
+        redirect(
+            `${Routes.slideshow(slideshowId)}?error=Cannot use AI at this time.`
+        )
+    }
 
+    try {
         await db.colorPalette.upsert({
             where: {
                 slideshowId
             },
             update: {
-                ...object.recipe
+                ...recipe
             },
             create: {
-                ...object.recipe,
+                ...recipe,
                 slideshowId,
                 name: colorsTheme
             }
         });
     } catch (error) {
-        pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
+        redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
-
-    if (pendingAction) return pendingAction();
 
     revalidatePath(`${Routes.slideshow(slideshowId)}`)
 }
 
 export async function deleteAction(slideshowId: string) {
-    let pendingAction = null;
-
     try {
         const slideshow = await getSlideshowById(slideshowId);
 
@@ -78,10 +75,8 @@ export async function deleteAction(slideshowId: string) {
             }
         })
     } catch (error) {
-        pendingAction = () => redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
+        redirect(`${Routes.slideshow(slideshowId)}?error=Something went wrong`);
     }
-
-    if (pendingAction) return pendingAction();
 
     revalidatePath(`${Routes.slideshow(slideshowId)}`)
 }

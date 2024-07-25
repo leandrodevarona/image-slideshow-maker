@@ -4,8 +4,6 @@ import { revalidatePath } from "next/cache";
 import { Routes } from "@ism/app/lib/utils/routes";
 
 export async function generateNewSlideshowAndRedirect() {
-    let pendingAction = null;
-
     let slideshowId = null;
 
     try {
@@ -15,10 +13,8 @@ export async function generateNewSlideshowAndRedirect() {
 
         slideshowId = newSlideshow.id
     } catch (error) {
-        pendingAction = () => redirect(`?error=Something went wrong`);
+        redirect(`?error=Something went wrong`);
     }
-
-    if (pendingAction) return pendingAction();
 
     revalidatePath(Routes.home);
 
