@@ -2,11 +2,11 @@
 
 import { EnterFullScreenIcon, ExitFullScreenIcon } from '@radix-ui/react-icons';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useTransition } from 'react';
+import { Suspense, useTransition } from 'react';
 
 import './styles/fullScreen.css';
 
-export default function FullScreen() {
+function Component() {
   const fullScreenQueryName = 'fullScreen';
 
   const [isPending, startTransition] = useTransition();
@@ -40,5 +40,13 @@ export default function FullScreen() {
     >
       {isFullScreen ? <ExitFullScreenIcon /> : <EnterFullScreenIcon />}
     </button>
+  );
+}
+
+export default function FullScreen() {
+  return (
+    <Suspense>
+      <Component />
+    </Suspense>
   );
 }
