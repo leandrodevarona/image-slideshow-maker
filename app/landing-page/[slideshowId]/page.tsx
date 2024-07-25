@@ -16,6 +16,7 @@ type Props = {
   };
   searchParams: {
     slideIndex?: string;
+    pause?: string;
     fullScreen?: string;
   };
 };
@@ -33,7 +34,7 @@ export async function generateMetadata({
 
 export default async function SlideshowLandingPage({
   params: { slideshowId },
-  searchParams: { slideIndex, fullScreen },
+  searchParams: { slideIndex, pause, fullScreen },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
 
@@ -75,6 +76,7 @@ export default async function SlideshowLandingPage({
           slideDuration={currentSlide?.duration}
           slidesLength={slideshow.slides.length}
           imgElemId={imgId}
+          pause={Boolean(pause)}
         />
       )}
       {slideshow.colorPalette && (
