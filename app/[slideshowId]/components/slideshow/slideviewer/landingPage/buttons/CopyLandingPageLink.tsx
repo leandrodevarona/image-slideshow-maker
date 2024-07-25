@@ -52,7 +52,7 @@ export default function CopyLandingPageLink() {
 
   return (
     <button
-      className="landingPage_button primary_button"
+      className="landingPage_button primary_button centered_button"
       disabled={isPending}
       title="Copy landing page link to the clipboard"
       aria-label="Copy landing page link to the clipboard"

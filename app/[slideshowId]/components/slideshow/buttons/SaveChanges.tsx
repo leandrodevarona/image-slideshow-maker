@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import SaveIcon from './assets/SaveIcon';
-import useSaveChanges from '@ism/app/[slideshowId]/lib/hooks/useSaveChanges';
+import useReorderSlides from '@ism/app/[slideshowId]/lib/hooks/useReorderSlides';
 
 import './styles/saveChanges.css';
 
@@ -11,12 +11,12 @@ type Props = {
 };
 
 export default function SaveChanges({ slideshowId }: Props) {
-  const { isPending, saveChanges } = useSaveChanges(slideshowId);
+  const { isPending, reorder } = useReorderSlides(slideshowId);
 
   useEffect(() => {
-    const intervalId = setInterval(saveChanges, 300000); // 300000 ms = 5 minutos
+    const intervalId = setInterval(reorder, 300000); // 300000 ms = 5 minutos
     return () => clearInterval(intervalId); // Limpiar el intervalo al desmontar el componente
-  }, [saveChanges]);
+  }, [reorder]);
 
   return (
     <button
@@ -24,7 +24,7 @@ export default function SaveChanges({ slideshowId }: Props) {
       aria-label="Save changes button"
       title="Save changes"
       disabled={isPending}
-      onClick={saveChanges}
+      onClick={reorder}
     >
       <SaveIcon />
     </button>

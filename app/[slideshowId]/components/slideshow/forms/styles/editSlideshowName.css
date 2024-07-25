@@ -1,10 +1,10 @@
-.edit_slideshow {
+.edit_slideshow__name {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.edit_slideshow input {
+.edit_slideshow__name input {
   max-width: fit-content;
 
   border: none;

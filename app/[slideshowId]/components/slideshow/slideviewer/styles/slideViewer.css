@@ -25,3 +25,21 @@
   background-color: black;
   border-radius: var(--border-radius);
 }
+
+.slide_viewer.full_screen {
+  border: none;
+  padding: 0;
+  border-radius: 0;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.slide_viewer.full_screen img {
+  border-radius: 0;
+}

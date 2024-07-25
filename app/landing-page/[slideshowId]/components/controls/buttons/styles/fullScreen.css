@@ -1,7 +1,4 @@
-.play_pause {
+.full_screen__button {
   padding: 0.3rem;
-
   background-color: rgb(var(--card-rgb));
-
-  pointer-events: all;
 }

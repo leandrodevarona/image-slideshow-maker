@@ -28,7 +28,7 @@ export default function EditSlideItemDuration({
         required
       />
       <Submit
-        className="primary_button"
+        className="primary_button centered_button"
         ariaLabel="Edit slide duration"
         title="Edit slide duration"
       >

@@ -6,7 +6,8 @@ import SlidePlayer from '@ism/app/[slideshowId]/components/slideshow/player/Slid
 import { Metadata } from 'next';
 import SlidePrompt from './components/SlidePrompt';
 import ColorPaletteLoader from '@ism/app/[slideshowId]/components/slideshow/colors/ColorPaletteLoader';
-import Reset from './components/buttons/Reset';
+import Reset from './components/controls/buttons/Reset';
+import LandingPageControls from './components/controls/LandingPageControls';
 
 import styles from './page.module.css';
 
@@ -16,6 +17,7 @@ type Props = {
   };
   searchParams: {
     slideIndex?: string;
+    fullScreen?: string;
   };
 };
 
@@ -32,7 +34,7 @@ export async function generateMetadata({
 
 export default async function SlideshowLandingPage({
   params: { slideshowId },
-  searchParams: { slideIndex },
+  searchParams: { slideIndex, fullScreen },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
 
@@ -54,6 +56,7 @@ export default async function SlideshowLandingPage({
         className={styles.main_slide__viewer}
         imgElemId={imgId}
         slide={currentSlide}
+        fullScreen={Boolean(fullScreen)}
       >
         {/* Esto debe ir dentro de slideviewer */}
         {currentSlide && <SlidePrompt slide={currentSlide} imgElemId={imgId} />}
@@ -62,6 +65,7 @@ export default async function SlideshowLandingPage({
             <Reset slideDuration={currentSlide.duration} />
           </Suspense>
         )}
+        <LandingPageControls />
       </SlideViewer>
       {currentSlide && (
         <Suspense>

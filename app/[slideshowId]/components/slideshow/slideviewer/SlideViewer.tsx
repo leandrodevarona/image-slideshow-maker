@@ -8,6 +8,7 @@ type Props = {
   className?: string;
   imgElemId: string;
   slide?: Slide;
+  fullScreen?: boolean;
   children?: React.ReactNode;
 };
 
@@ -21,12 +22,15 @@ export default function SlideViewer({
   className,
   imgElemId,
   slide,
+  fullScreen = false,
   children,
 }: Props) {
   if (!slide) return <NoSlides className={className} />;
 
   return (
-    <div className={clsx('slide_viewer', className)}>
+    <div
+      className={clsx('slide_viewer', fullScreen && 'full_screen', className)}
+    >
       <Image
         id={imgElemId}
         src={slide.src}

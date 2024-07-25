@@ -4,12 +4,12 @@ import { useCallback, useTransition } from 'react';
 import useSlideOrder from './useSlideOrder';
 import { saveChangesAction } from '../actions/slideshow';
 
-export default function useSaveChanges(slideshowId: string) {
+export default function useReorderSlides(slideshowId: string) {
   const [isPending, startTransition] = useTransition();
 
   const { getSlideOrder } = useSlideOrder(slideshowId);
 
-  const handleOnSave = useCallback(() => {
+  const reorder = useCallback(() => {
     startTransition(() => {
       const slideOrderIds = getSlideOrder();
 
@@ -19,5 +19,5 @@ export default function useSaveChanges(slideshowId: string) {
     });
   }, [slideshowId, getSlideOrder]);
 
-  return { isPending, saveChanges: handleOnSave };
+  return { isPending, reorder };
 }

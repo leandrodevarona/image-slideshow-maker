@@ -14,7 +14,7 @@ export default function DeleteColorPalette({ slideshowId }: Props) {
   return (
     <form action={deleteColors}>
       <Submit
-        className="delete_color__palette primary_button"
+        className="delete_color__palette primary_button centered_button"
         title="Delete this color palette"
         ariaLabel="Delete this color palette"
       >
