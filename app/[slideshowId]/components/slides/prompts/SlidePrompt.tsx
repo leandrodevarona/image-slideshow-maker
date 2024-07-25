@@ -9,7 +9,7 @@ import './styles/slidePrompt.css';
 type Props = {
   slideAlt?: string | null;
   imgElemId: string;
-  updateAlt: (formData: FormData) => Promise<undefined>;
+  updateAlt: (formData: FormData) => Promise<void>;
 };
 
 export default function SlidePrompt({ slideAlt, imgElemId, updateAlt }: Props) {
