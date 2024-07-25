@@ -1,0 +1,9 @@
+.landing_page__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+}

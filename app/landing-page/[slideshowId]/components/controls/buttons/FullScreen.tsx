@@ -4,6 +4,8 @@ import { EnterFullScreenIcon, ExitFullScreenIcon } from '@radix-ui/react-icons';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTransition } from 'react';
 
+import './styles/fullScreen.css';
+
 export default function FullScreen() {
   const fullScreenQueryName = 'fullScreen';
 
@@ -30,7 +32,7 @@ export default function FullScreen() {
 
   return (
     <button
-      className="primary_button centered_button"
+      className="full_screen__button primary_button centered_button"
       disabled={isPending}
       title={isFullScreen ? 'Exit full screen' : 'Enter full screen'}
       aria-label="Enter/exit full screen button"

@@ -2,7 +2,7 @@
 
 import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
-import useSeeSlide from '../../../lib/hooks/useSeeSlide';
+import useSeeSlide from '@ism/app/[slideshowId]/lib/hooks/useSeeSlide';
 
 import './styles/slideItemSelectable.css';
 

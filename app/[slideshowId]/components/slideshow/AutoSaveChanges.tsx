@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import useSaveChanges from '../../lib/hooks/useSaveChanges';
+import useReorderSlides from '../../lib/hooks/useReorderSlides';
 
 type Props = {
   slideshowId: string;
@@ -11,14 +11,14 @@ type Props = {
 export default function AutoSaveChanges({ slideshowId, slidesLength }: Props) {
   const [length, setLength] = useState(0);
 
-  const { saveChanges } = useSaveChanges(slideshowId);
+  const { reorder } = useReorderSlides(slideshowId);
 
   useEffect(() => {
     if (length !== slidesLength) {
-      saveChanges();
+      reorder();
       setLength(slidesLength);
     }
-  }, [slidesLength, saveChanges, length]);
+  }, [slidesLength, reorder, length]);
 
   return null;
 }
