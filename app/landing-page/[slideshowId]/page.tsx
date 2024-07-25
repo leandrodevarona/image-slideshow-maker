@@ -7,6 +7,7 @@ import SlidePrompt from './components/SlidePrompt';
 import ColorPaletteLoader from '@ism/app/[slideshowId]/components/slideshow/colors/ColorPaletteLoader';
 import Reset from './components/controls/buttons/Reset';
 import LandingPageControls from './components/controls/LandingPageControls';
+import ZoomableImage from './components/zoom/ZoomableImage';
 
 import styles from './page.module.css';
 
@@ -17,6 +18,7 @@ type Props = {
   searchParams: {
     slideIndex?: string;
     fullScreen?: string;
+    zoom?: string;
   };
 };
 
@@ -33,7 +35,7 @@ export async function generateMetadata({
 
 export default async function SlideshowLandingPage({
   params: { slideshowId },
-  searchParams: { slideIndex, fullScreen },
+  searchParams: { slideIndex, fullScreen, zoom },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
 
@@ -48,6 +50,8 @@ export default async function SlideshowLandingPage({
   const imgId = 'slide_viewer__img' + currentSlide?.id;
 
   const isLastSlide = currentSlide?.index === slideshow.slides.length - 1;
+
+  const isZoomable = Boolean(zoom);
 
   return (
     <main className={styles.main}>
@@ -68,6 +72,7 @@ export default async function SlideshowLandingPage({
           <Reset slideDuration={currentSlide.duration} />
         )}
         <LandingPageControls />
+        {isZoomable && <ZoomableImage />}
       </SlideViewer>
       {currentSlide && (
         <SlidePlayer
