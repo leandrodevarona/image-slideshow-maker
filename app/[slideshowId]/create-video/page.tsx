@@ -20,7 +20,7 @@ export default async function CreateVideoPage({
 
   return (
     <main className={styles.main}>
-      <h1>Please do not refresh or close this page</h1>
+      <h1>Please, do not refresh or close this page</h1>
       <NoSSRWrapper>
         <CreateVideo slideshow={slideshow} />
       </NoSSRWrapper>

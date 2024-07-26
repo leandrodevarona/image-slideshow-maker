@@ -2,6 +2,7 @@ import { Slide } from '@prisma/client';
 import { ComponentBooleanIcon } from '@radix-ui/react-icons';
 
 import './styles/slideItem.css';
+import clsx from 'clsx';
 
 type Props = {
   slide: Slide;
@@ -21,18 +22,10 @@ export default function SlideItem({
   return (
     <li
       id={slide.id}
-      className="slide_item"
+      className={clsx('slide_item', isCurrent && 'is_current')}
       style={{ minWidth: width }}
       onClick={onClick}
     >
-      {isCurrent && (
-        <ComponentBooleanIcon
-          className="slide_item__bookmark"
-          color="#0dfd0d"
-          width={20}
-          height={20}
-        />
-      )}
       {children}
     </li>
   );
