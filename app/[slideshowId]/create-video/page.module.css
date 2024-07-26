@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  padding-inline: 6rem;
+  padding-block: 2rem;
+  min-height: 100vh;
+}
+
+.main h1 {
+  font-size: 24px;
+  font-weight: 500;
+}

@@ -1,0 +1,14 @@
+.create_video {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  text-align: center;
+}
+
+.create_video button {
+  padding: 0.5rem;
+
+  font-size: large;
+}
