@@ -13,7 +13,7 @@ import { getSlideshowById } from "../data/slideshow";
 export async function createAction(slideshowId: string, formData: FormData) {
     const colorsTheme = formData.get('colors_theme')?.toString();
 
-    if (!colorsTheme || colorsTheme.length > 10) return;
+    if (!colorsTheme || colorsTheme.length > 20) return;
 
     let recipe = null;
 
