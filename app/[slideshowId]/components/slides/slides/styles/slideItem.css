@@ -19,8 +19,6 @@
   cursor: pointer;
 }
 
-.slide_item__bookmark {
-  position: absolute;
-  top: -7px;
-  right: -1px;
+.slide_item.is_current {
+  border: 3px solid #0dfd0d;
 }
