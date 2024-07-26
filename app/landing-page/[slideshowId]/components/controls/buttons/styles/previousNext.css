@@ -1,3 +1,25 @@
 .previous_next__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
   padding: 0.3rem;
+
+  opacity: 0.2;
+}
+
+.previous_next__button:hover {
+  opacity: 1;
+}
+
+.previous_next__button.no_visible {
+  display: none;
+}
+
+.previous_button {
+  left: 2rem;
+}
+
+.next_button {
+  right: 2rem;
 }

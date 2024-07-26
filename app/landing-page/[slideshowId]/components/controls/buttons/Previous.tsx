@@ -1,9 +1,13 @@
-import useSeeSlide from "@ism/app/[slideshowId]/lib/hooks/useSeeSlide";
-import { TrackPreviousIcon } from "@radix-ui/react-icons";
+'use client';
 
-import "./styles/previousNext.css";
+import { Suspense } from 'react';
+import useSeeSlide from '@ism/app/[slideshowId]/lib/hooks/useSeeSlide';
+import { CaretLeftIcon } from '@radix-ui/react-icons';
 
-export default function Previous() {
+import './styles/previousNext.css';
+import clsx from 'clsx';
+
+function Component() {
   const { isPending, currentIndex, seeSlide } = useSeeSlide();
 
   const handleOnClick = () => {
@@ -16,12 +20,26 @@ export default function Previous() {
 
   return (
     <button
-      className="previous_next__button primary_button centered_button"
+      className={clsx(
+        'previous_next__button',
+        'previous_button',
+        'primary_button',
+        'centered_button',
+        currentIndex <= 0 && 'no_visible'
+      )}
       title="Previous"
       disabled={isPending}
       onClick={handleOnClick}
     >
-      <TrackPreviousIcon />
+      <CaretLeftIcon width={30} height={30} />
     </button>
+  );
+}
+
+export default function Previous() {
+  return (
+    <Suspense>
+      <Component />
+    </Suspense>
   );
 }
