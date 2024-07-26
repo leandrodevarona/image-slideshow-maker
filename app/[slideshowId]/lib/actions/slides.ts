@@ -50,7 +50,7 @@ export async function createAction(slideshowId: string, formData: FormData) {
 
 export async function updateAction(slideshowId: string, slideId: string, formData: FormData) {
     const duration = Number(formData.get('duration')?.toString()) || undefined;
-    const alt = formData.get('alt')?.toString() || undefined;
+    const alt = formData.get('alt')?.toString() || null;
 
     if (duration && (duration < 5 || duration > 20)) {
         redirect(`${Routes.slideshow(slideshowId)}?error=Duration value is invalid`);

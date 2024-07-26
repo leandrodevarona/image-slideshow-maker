@@ -22,7 +22,7 @@ export default function MakeSlidesSortable({ slideshowId }: Props) {
         saveChangesAction(slideshowId, slideOrderIds);
       }
     });
-  }, 2000);
+  }, 3000);
 
   return <MakeSortable elemId={slideshowId} onChange={handleOnChange} />;
 }
