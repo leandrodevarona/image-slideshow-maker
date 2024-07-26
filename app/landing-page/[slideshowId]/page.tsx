@@ -9,6 +9,7 @@ import Reset from './components/controls/buttons/Reset';
 import LandingPageControls from './components/controls/LandingPageControls';
 
 import styles from './page.module.css';
+import Previous from './components/controls/buttons/Previous';
 
 type Props = {
   params: {
@@ -69,6 +70,7 @@ export default async function SlideshowLandingPage({
           <Reset slideDuration={currentSlide.duration} />
         )}
         <LandingPageControls />
+        <Previous/>
       </SlideViewer>
       {currentSlide && (
         <SlidePlayer
