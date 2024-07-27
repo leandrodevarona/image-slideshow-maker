@@ -2,6 +2,7 @@
 
 import useCreateSlideshowVideo from '../../lib/hooks/useCreateSlideshowVideo';
 import { SlideshowWithSlides } from '../../lib/types/slideshow';
+import CreateVideoLoader from './loaders/CreateVideoLoader';
 
 import './styles/createVideo.css';
 
@@ -10,17 +11,27 @@ type Props = {
 };
 
 export default function CreateVideo({ slideshow }: Props) {
-  const { isLoadingLib, progress, createVideo } =
-    useCreateSlideshowVideo(slideshow);
+  const { isLoading, createVideo } = useCreateSlideshowVideo(slideshow);
 
   return (
     <div className="create_video">
-      <div className="create_video__progress" hidden={progress <= 0}>
-        Progress: {progress} %
-      </div>
+      {isLoading ? (
+        <>
+          <h4>
+            Creating the video file <q>{slideshow.name}.mp4</q>
+          </h4>
+          <h5>
+            Please do not close or reload the page while the video is being
+            created
+          </h5>
+          <CreateVideoLoader />
+        </>
+      ) : (
+        <h4>Press the button below to start creating your video.</h4>
+      )}
       <button
         className="primary_button centered_button"
-        disabled={isLoadingLib || progress > 0}
+        disabled={isLoading}
         onClick={createVideo}
       >
         Start creating the video
