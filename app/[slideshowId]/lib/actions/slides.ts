@@ -44,6 +44,7 @@ export async function createAction(slideshowId: string, formData: FormData) {
   }
 
   revalidatePath(`${Routes.slideshow(slideshowId)}`);
+  revalidatePath(`${Routes.landingPage(slideshowId)}`);
 }
 
 export async function updateAction(
@@ -75,6 +76,7 @@ export async function updateAction(
   }
 
   revalidatePath(`${Routes.slideshow(slideshowId)}`);
+  revalidatePath(`${Routes.landingPage(slideshowId)}`);
 }
 
 export async function deleteAction(slideshowId: string, slideId: string) {
@@ -89,4 +91,5 @@ export async function deleteAction(slideshowId: string, slideId: string) {
   }
 
   revalidatePath(`${Routes.slideshow(slideshowId)}`);
+  revalidatePath(`${Routes.landingPage(slideshowId)}`);
 }
