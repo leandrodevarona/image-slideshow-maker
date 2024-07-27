@@ -39,6 +39,7 @@ export async function updateAction(slideshowId: string, formData: FormData) {
   }
 
   revalidatePath(`${Routes.slideshow(slideshowId)}`);
+  revalidatePath(`${Routes.landingPage(slideshowId)}`);
 }
 
 export async function saveChangesAction(

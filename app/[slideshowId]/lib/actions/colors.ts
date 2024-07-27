@@ -62,6 +62,7 @@ export async function createAction(slideshowId: string, formData: FormData) {
   }
 
   revalidatePath(`${Routes.slideshow(slideshowId)}`);
+  revalidatePath(`${Routes.landingPage(slideshowId)}`);
 }
 
 export async function deleteAction(slideshowId: string) {
@@ -80,4 +81,5 @@ export async function deleteAction(slideshowId: string) {
   }
 
   revalidatePath(`${Routes.slideshow(slideshowId)}`);
+  revalidatePath(`${Routes.landingPage(slideshowId)}`);
 }

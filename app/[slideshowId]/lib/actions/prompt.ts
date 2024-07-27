@@ -61,4 +61,5 @@ export async function createAction(slideshowId: string, slideId: string) {
   }
 
   revalidatePath(`${Routes.slideshow(slideshowId)}`);
+  revalidatePath(`${Routes.landingPage(slideshowId)}`);
 }
