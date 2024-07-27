@@ -74,7 +74,7 @@ export default function useCreateSlideshowVideo(
           '-i',
           `img${i}.jpeg`,
           '-vf',
-          'scale=iw*min(1280/iw\,720/ih):ih*min(1280/iw\,720/ih),scale=trunc(iw/2)*2:trunc(ih/2)*2',
+          'scale=trunc(iw/2)*2:trunc(ih/2)*2',
           `img${i}_scaled.jpeg`,
         ]);
       }
