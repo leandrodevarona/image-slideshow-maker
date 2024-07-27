@@ -1,6 +1,4 @@
-import DeleteSlideItems from './buttons/DeleteSlideItems';
-import SaveChanges from './buttons/SaveChanges';
-import EditSlideItems from './buttons/EditSlideItems';
+import { DeleteSlideItems, EditSlideItems, SaveChanges } from './buttons';
 
 import './styles/slideEditorControls.css';
 

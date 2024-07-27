@@ -1,8 +1,7 @@
 import { Slide } from '@prisma/client';
-import { ComponentBooleanIcon } from '@radix-ui/react-icons';
+import clsx from 'clsx';
 
 import './styles/slideItem.css';
-import clsx from 'clsx';
 
 type Props = {
   slide: Slide;

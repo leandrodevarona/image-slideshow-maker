@@ -1,6 +1,8 @@
-import CopyLandingPageLink from './buttons/CopyLandingPageLink';
-import CreateAndDownloadVideo from './buttons/CreateAndDownloadVideo';
-import OpenLandingPage from './buttons/OpenLandingPage';
+import {
+  CopyLandingPageLink,
+  CreateAndDownloadVideo,
+  OpenLandingPage,
+} from './buttons';
 
 import './styles/landingPageReferences.css';
 
