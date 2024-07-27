@@ -9,7 +9,7 @@ import { SlideshowWithSlides } from "../types/slideshow";
 import { sortSlides } from "../utils/slides";
 
 export default function useCreateSlideshowVideo(slideshow: SlideshowWithSlides) {
-    const [isLoadingLib, setIsLoadingLib] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
     const [progress, setProgress] = useState(0);
     const ffmpegRef = useRef(new FFmpeg());
@@ -17,7 +17,7 @@ export default function useCreateSlideshowVideo(slideshow: SlideshowWithSlides) 
     const { showNotify } = useNotify();
 
     const load = async () => {
-        setIsLoadingLib(true);
+        setIsLoading(true);
         const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd'
         const ffmpeg = ffmpegRef.current;
         ffmpeg.on('log', ({ message }) => {
@@ -29,13 +29,14 @@ export default function useCreateSlideshowVideo(slideshow: SlideshowWithSlides) 
             coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
             wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
         });
-        setIsLoadingLib(false);
+        setIsLoading(false);
     }
 
     const createVideo = async () => {
         try {
             await load();
 
+            setIsLoading(true);
             const ffmpeg = ffmpegRef.current;
 
             if (!ffmpeg.loaded) throw new Error('Ffmpeg no loaded.')
@@ -76,6 +77,8 @@ export default function useCreateSlideshowVideo(slideshow: SlideshowWithSlides) 
         } catch (error) {
             showNotify(NotificationTypes.error, 'An error occurred while creating the video, please try again later.')
         }
+
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -90,5 +93,5 @@ export default function useCreateSlideshowVideo(slideshow: SlideshowWithSlides) 
         }
     }, [slideshow.name, videoUrl])
 
-    return { isLoadingLib, progress, createVideo }
+    return { isLoading, progress, createVideo }
 }
