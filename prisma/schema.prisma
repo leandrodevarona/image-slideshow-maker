@@ -29,12 +29,9 @@ model Slide {
 model Slideshow {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   name        String  @default("New slideshow")
-  description String?
   slides      Slide[]
 
   colorPalette ColorPalette?
-
-  audioSrc String?
 }
 
 enum Theme {

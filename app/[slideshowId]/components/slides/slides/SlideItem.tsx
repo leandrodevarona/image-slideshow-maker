@@ -16,7 +16,7 @@ export default function SlideItem({
   onClick,
   children,
 }: Props) {
-  const width = slide.duration * 20;
+  const width = slide.duration * 25;
 
   return (
     <li
