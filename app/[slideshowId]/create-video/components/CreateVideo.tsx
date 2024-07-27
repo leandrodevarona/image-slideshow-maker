@@ -24,21 +24,21 @@ export default function CreateVideo({ slideshow, quality }: Props) {
     <div className="create_video">
       {isLoading ? (
         <>
-          <h4>
+          <h1>
             Creating the video file <q>{slideshow.name}.mp4</q>
-          </h4>
-          <h5>
+          </h1>
+          <h2>
             Please, do not close or reload the page while the video is being
             created
-          </h5>
+          </h2>
           <CreateVideoLoader />
         </>
       ) : (
         <>
-          <h4>
+          <h1>
             Select the quality and press the button below to start creating your
             video.
-          </h4>
+          </h1>
           <VideoQualityControl />
         </>
       )}

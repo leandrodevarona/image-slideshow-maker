@@ -8,6 +8,14 @@
   text-align: center;
 }
 
+.create_video h1 {
+  font-size: medium;
+}
+
+.create_video h2 {
+  font-size: smaller;
+}
+
 .create_video__button {
   padding: 0.5rem;
 
