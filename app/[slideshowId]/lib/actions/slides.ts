@@ -27,11 +27,7 @@ export async function createAction(slideshowId: string, formData: FormData) {
     redirect(`${Routes.slideshow(slideshowId)}?error=Slideshow don't work`);
   }
 
-  const maxIndex = slides.reduce(
-    (max, slide) => Math.max(max, slide.index),
-    -1
-  );
-  const newIndex = maxIndex + 1;
+  const newIndex = slides.length;
 
   try {
     await db.slide.create({
@@ -58,7 +54,7 @@ export async function updateAction(
   const duration = Number(formData.get('duration')?.toString()) || undefined;
   const alt = formData.get('alt')?.toString() || null;
 
-  if (duration && (duration < 5 || duration > 20)) {
+  if (duration && (duration < 3 || duration > 20)) {
     redirect(
       `${Routes.slideshow(slideshowId)}?error=Duration value is invalid`
     );
