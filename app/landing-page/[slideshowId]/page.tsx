@@ -50,6 +50,8 @@ export default async function SlideshowLandingPage({
 
   const isLastSlide = currentSlide?.index === slideshow.slides.length - 1;
 
+  const slidePromptKey = 'prompt' + currentSlide?.id + fullScreen;
+
   return (
     <main className={styles.main}>
       <SlideViewer
@@ -60,7 +62,7 @@ export default async function SlideshowLandingPage({
       >
         {currentSlide && (
           <SlidePrompt
-            key={fullScreen}
+            key={slidePromptKey}
             slide={currentSlide}
             imgElemId={imgId}
           />
