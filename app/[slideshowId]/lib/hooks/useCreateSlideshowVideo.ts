@@ -79,16 +79,21 @@ export default function useCreateSlideshowVideo(
         ]);
       }
 
-      const scaledFileList = sortedSlide
-        .map(
-          (_, i) =>
-            `file 'img${i}_scaled.jpeg'\nduration ${sortedSlide[i].duration}`
-        )
-        .join('\n');
+      let lastIndex = 0;
 
-      console.log('Scaled file list ', fileList);
+      const scaledFileList = sortedSlide.map((_, i) => {
+        lastIndex = i;
+        return `file 'img${i}_scaled.jpeg'\nduration ${sortedSlide[i].duration}`;
+      });
 
-      await ffmpeg.writeFile('scaled_filelist.txt', scaledFileList);
+      // Due to a quirk, the last image has to be specified twice - the 2nd time without any duration directive
+      scaledFileList.push(`file 'img${lastIndex}_scaled.jpeg'`);
+
+      const scaledFileListStr = scaledFileList.join('\n');
+
+      console.log('Scaled file list: ', scaledFileListStr);
+
+      await ffmpeg.writeFile('scaled_filelist.txt', scaledFileListStr);
 
       await ffmpeg.exec([
         '-f',

@@ -28,7 +28,13 @@ export default function SlidePromptWidthSetter({
           const width = mediaWidth * aspectRatio || 300;
           const textareaWidth = width * 0.8;
 
-          textareaElem.style.width = `${textareaWidth}px`;
+          // Tuve que hacer esto por el comportamiento del textarea
+          if (textareaElem.tagName === 'TEXTAREA') {
+            textareaElem.style.width = `${textareaWidth}px`;
+            return;
+          }
+
+          textareaElem.style.maxWidth = `${textareaWidth}px`;
         }
       }
     };
