@@ -23,7 +23,7 @@ export async function createAction(slideshowId: string, formData: FormData) {
   const slideshow = await getSlideshowById(slideshowId);
   const slides = slideshow?.slides;
 
-  if (!slides || slides.length <= 0) {
+  if (!slideshow || !slides) {
     redirect(`${Routes.slideshow(slideshowId)}?error=Slideshow don't work`);
   }
 
