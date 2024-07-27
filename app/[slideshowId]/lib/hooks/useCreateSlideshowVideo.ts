@@ -74,7 +74,7 @@ export default function useCreateSlideshowVideo(
           '-i',
           `img${i}.jpeg`,
           '-vf',
-          'scale=trunc(iw/2)*2:trunc(ih/2)*2',
+          'scale=1280:720:force_original_aspect_ratio=1,pad=1280:720:(ow-iw)/2:(oh-ih)/2',
           `img${i}_scaled.jpeg`,
         ]);
       }
