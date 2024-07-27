@@ -41,7 +41,7 @@ export default function SlideEditor({
 
   const slidesLength = slideshow.slides.length;
 
-  const updateAlt = updateAction.bind(null, slideshow.id, slideId);
+  const updateSlideAlt = updateAction.bind(null, slideshow.id, slideId);
 
   return (
     <div className="slide_editor">
@@ -55,7 +55,7 @@ export default function SlideEditor({
             <>
               <SlidePrompt
                 key={slidePromptKey}
-                updateAlt={updateAlt}
+                updateAlt={updateSlideAlt}
                 slideAlt={currentSlide.alt}
                 imgElemId={imgId}
               />

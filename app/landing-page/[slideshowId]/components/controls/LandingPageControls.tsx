@@ -1,5 +1,5 @@
 import PlayPause from '@ism/app/[slideshowId]/components/slideshow/slideviewer/controls/player/PlayPause';
-import FullScreen from './buttons/FullScreen';
+import { FullScreen } from './buttons';
 
 import './styles/landingPageControls.css';
 

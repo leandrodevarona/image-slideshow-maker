@@ -1,9 +1,11 @@
 import { Slide } from '@prisma/client';
 import MakeSlidesSortable from './MakeSlidesSortable';
 import { sortSlides } from '../../lib/utils/slides';
-import SlideItemToDelete from './slides/SlideItemToDelete';
-import SlideItemSelectable from './slides/SlideItemSelectable';
-import SlideItemToEdit from './slides/SlideItemToEdit';
+import {
+  SlideItemSelectable,
+  SlideItemToDelete,
+  SlideItemToEdit,
+} from './slides';
 
 import './styles/slideController.css';
 
