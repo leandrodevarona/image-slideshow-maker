@@ -1,0 +1,11 @@
+.define_quality__button {
+  padding: 0.3rem;
+
+  font-size: small;
+}
+
+.define_quality__button.is_current {
+  scale: 1.1;
+  opacity: 1;
+  border: 1px solid var(--border-selected);
+}

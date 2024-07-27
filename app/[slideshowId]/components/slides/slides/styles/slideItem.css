@@ -20,5 +20,5 @@
 }
 
 .slide_item.is_current {
-  border: 3px solid #0dfd0d;
+  border: 3px solid var(--border-selected);
 }

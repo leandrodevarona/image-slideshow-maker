@@ -1,0 +1,5 @@
+.video_quality__control{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

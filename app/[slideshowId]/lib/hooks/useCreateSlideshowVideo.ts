@@ -8,8 +8,21 @@ import { NotificationTypes } from '@ism/app/components/common/notifications/Noti
 import { SlideshowWithSlides } from '../types/slideshow';
 import { sortSlides } from '../utils/slides';
 
+export enum VideoQuality {
+  FHD = 'FHD',
+  HD = 'HD',
+  SD = 'SD',
+}
+
+const qualities: Record<VideoQuality, string> = {
+  FHD: '1920:1080',
+  HD: '1280:720',
+  SD: '720:480',
+};
+
 export default function useCreateSlideshowVideo(
-  slideshow: SlideshowWithSlides
+  slideshow: SlideshowWithSlides,
+  quality: VideoQuality = VideoQuality.HD
 ) {
   const [isLoading, setIsLoading] = useState(false);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -69,12 +82,16 @@ export default function useCreateSlideshowVideo(
         setProgress(event.progress * 100);
       });
 
+      const scale = qualities[quality] || qualities[VideoQuality.HD];
+
+      console.log('Scale: ', scale);
+
       for (let i = 0; i < sortedSlide.length; i++) {
         await ffmpeg.exec([
           '-i',
           `img${i}.jpeg`,
           '-vf',
-          'scale=1280:720:force_original_aspect_ratio=1,pad=1280:720:(ow-iw)/2:(oh-ih)/2',
+          `scale=${scale}:force_original_aspect_ratio=1,pad=${scale}:(ow-iw)/2:(oh-ih)/2`,
           `img${i}_scaled.jpeg`,
         ]);
       }
