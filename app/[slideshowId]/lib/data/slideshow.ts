@@ -13,6 +13,7 @@ export async function generateNewSlideshowAndRedirect() {
 
         slideshowId = newSlideshow.id
     } catch (error) {
+        console.log(error);
         redirect(`?error=Something went wrong`);
     }
 
