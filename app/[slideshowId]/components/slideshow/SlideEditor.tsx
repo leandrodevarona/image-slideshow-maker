@@ -69,15 +69,23 @@ export default function SlideEditor({
         </SlideViewer>
       </section>
       <section className="slide_editor__controller">
-        <SlideEditorControls slideshowId={slideshow.id} />
+        <SlideEditorControls
+          className="slide_editor__right-controls"
+          slideshowId={slideshow.id}
+        />
         <SlideController
+          className="slide_editor__slide-controller"
           slideshowId={slideshow.id}
           slides={slideshow.slides}
           currentSlideId={currentSlide?.id}
           editing={editItems}
           deleting={deleteItem}
         />
-        <PhotoPicker slideshowId={slideshow.id} query={photosQuery} />
+        <PhotoPicker
+          className="slide_editor__photo-picker"
+          slideshowId={slideshow.id}
+          query={photosQuery}
+        />
       </section>
       {currentSlide && (
         <SlidePlayerPainter

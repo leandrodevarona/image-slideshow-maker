@@ -13,7 +13,7 @@
 
 .ai_controls__content {
   bottom: calc(100% + 1rem);
-  right: calc(100% - 65px);
+  right: calc(100% - 25px);
 }
 
 .ai_controls__container {
