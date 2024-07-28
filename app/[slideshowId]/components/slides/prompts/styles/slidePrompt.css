@@ -2,3 +2,10 @@
   position: absolute;
   bottom: 3rem;
 }
+
+/* Mobile */
+@media (max-width: 700px) {
+  .slide_prompt {
+    bottom: 4rem;
+  }
+}

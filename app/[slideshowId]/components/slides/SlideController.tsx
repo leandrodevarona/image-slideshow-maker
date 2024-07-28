@@ -8,8 +8,10 @@ import {
 } from './slides';
 
 import './styles/slideController.css';
+import clsx from 'clsx';
 
 type Props = {
+  className?: string;
   slideshowId: string;
   slides: Slide[];
   currentSlideId?: string;
@@ -22,6 +24,7 @@ function NoSlides() {
 }
 
 export default function SlideController({
+  className,
   slideshowId,
   slides,
   currentSlideId,
@@ -33,7 +36,7 @@ export default function SlideController({
   const sortedSlides = sortSlides(slides);
 
   return (
-    <ul id={slideshowId} className="slide_controller">
+    <ul id={slideshowId} className={clsx('slide_controller', className)}>
       {deleting
         ? sortedSlides.map((slide) => (
             <SlideItemToDelete
