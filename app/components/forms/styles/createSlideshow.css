@@ -1,0 +1,8 @@
+.create_slideshow button{
+    padding: 0.6rem;
+    border-radius: 30px;
+    border: 2px solid rgba(var(--foreground-rgb), 0.5);
+
+    font-size: small;
+    font-weight: 600;
+}
