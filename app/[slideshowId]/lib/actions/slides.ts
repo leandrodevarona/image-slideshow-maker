@@ -14,7 +14,17 @@ export async function createAction(slideshowId: string, formData: FormData) {
     redirect(`${Routes.slideshow(slideshowId)}?error=Photo is required`);
   }
 
-  const photo = (await Unsplash.photos.get({ photoId })).response;
+  let photo = null;
+
+  try {
+    photo = (await Unsplash.photos.get({ photoId })).response;
+  } catch (error) {
+    redirect(
+      `${Routes.slideshow(
+        slideshowId
+      )}?error=Unsplash library is not working at the moment. Please try again later.`
+    );
+  }
 
   if (!photo) {
     redirect(`${Routes.slideshow(slideshowId)}?error=Photo could not be found`);
