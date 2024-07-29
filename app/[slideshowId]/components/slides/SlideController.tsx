@@ -6,9 +6,9 @@ import {
   SlideItemToDelete,
   SlideItemToEdit,
 } from './slides';
+import clsx from 'clsx';
 
 import './styles/slideController.css';
-import clsx from 'clsx';
 
 type Props = {
   className?: string;

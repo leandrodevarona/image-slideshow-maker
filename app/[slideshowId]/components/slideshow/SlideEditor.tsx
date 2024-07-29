@@ -4,11 +4,11 @@ import SlideController from '../slides/SlideController';
 import SlideEditorControls from './SlideEditorControls';
 import SlideViewer from './slideviewer/SlideViewer';
 import SlideViewerControls from './slideviewer/controls/SlideViewerControls';
-import SlidePrompt from '../slides/prompts/SlidePrompt';
 import SlidePlayerPainter from './player/SlidePlayerPainter';
 import { updateAction } from '../../lib/actions/slides';
 import AutoSaveChanges from './AutoSaveChanges';
 import LandingPageReferences from './slideviewer/landingPage/LandingPageReferences';
+import EditSlidePrompt from '../slides/prompts/forms/EditSlidePrompt';
 
 import './styles/slideEditor.css';
 
@@ -53,11 +53,11 @@ export default function SlideEditor({
         >
           {currentSlide && (
             <>
-              <SlidePrompt
+              <EditSlidePrompt
                 key={slidePromptKey}
-                updateAlt={updateSlideAlt}
-                slideAlt={currentSlide.alt}
                 imgElemId={imgId}
+                slideAlt={currentSlide.alt}
+                updateAlt={updateSlideAlt}
               />
               <SlideViewerControls
                 slideshowId={slideshow.id}
