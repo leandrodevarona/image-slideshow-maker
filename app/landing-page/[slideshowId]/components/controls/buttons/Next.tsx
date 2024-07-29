@@ -5,6 +5,8 @@ import { CaretRightIcon } from '@radix-ui/react-icons';
 import clsx from 'clsx';
 import { Suspense } from 'react';
 
+import './styles/previousNext.css';
+
 type Props = {
   slideLength: number;
 };

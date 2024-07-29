@@ -3,10 +3,10 @@ import { notFound } from 'next/navigation';
 import SlideViewer from '@ism/app/[slideshowId]/components/slideshow/slideviewer/SlideViewer';
 import SlidePlayer from '@ism/app/[slideshowId]/components/slideshow/player/SlidePlayer';
 import { Metadata } from 'next';
-import SlidePrompt from './components/SlidePrompt';
 import ColorPaletteLoader from '@ism/app/[slideshowId]/components/slideshow/colors/ColorPaletteLoader';
 import LandingPageControls from './components/controls/LandingPageControls';
 import { Reset, Next, Previous } from './components/controls/buttons';
+import SlidePrompt from './components/SlidePrompt';
 
 import styles from './page.module.css';
 
@@ -63,8 +63,8 @@ export default async function SlideshowLandingPage({
         {currentSlide && (
           <SlidePrompt
             key={slidePromptKey}
-            slide={currentSlide}
             imgElemId={imgId}
+            slideAlt={currentSlide.alt}
           />
         )}
         {currentSlide && isLastSlide && (
