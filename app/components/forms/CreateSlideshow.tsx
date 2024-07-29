@@ -1,7 +1,7 @@
 import { createAction } from "@ism/app/lib/actions/slideshow";
 import Submit from "../common/buttons/Submit";
 
-import './styles/CreateSlideshow.css'
+import './styles/createSlideshow.css'
 
 export default function CreateSlideshow() {
   return (
