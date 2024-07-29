@@ -5,7 +5,6 @@
 
   padding: 0.5rem;
 
-  backdrop-filter: blur(10px);
   border-radius: 5px;
 
   background-color: rgba(var(--prompt-color), 0.5);
@@ -16,8 +15,6 @@
   color: rgb(var(--prompt-text-color));
 
   overflow: hidden;
-
-  transition: opacity 0.3s;
 }
 
 .slide_prompt__textarea::placeholder {

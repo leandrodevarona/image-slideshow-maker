@@ -3,6 +3,8 @@
 import SlidePrompt from '../SlidePrompt';
 import SlidePromptTextarea from '../textarea/SlidePromptTextarea';
 
+import './styles/editSlidePrompt.css';
+
 type Props = {
   slideAlt: string | null;
   imgElemId: string;

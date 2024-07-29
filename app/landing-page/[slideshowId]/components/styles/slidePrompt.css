@@ -3,7 +3,6 @@
 
   padding: 0.5rem;
 
-  backdrop-filter: blur(10px);
   border-radius: 5px;
 
   background-color: rgba(var(--prompt-color), 0.5);
