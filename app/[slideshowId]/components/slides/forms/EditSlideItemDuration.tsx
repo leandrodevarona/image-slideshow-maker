@@ -23,7 +23,7 @@ export default function EditSlideItemDuration({
         type="number"
         name="duration"
         defaultValue={slideDuration}
-        min={5}
+        min={3}
         max={20}
         required
       />

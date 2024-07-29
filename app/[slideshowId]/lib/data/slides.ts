@@ -1,15 +1,15 @@
-import { db } from "../db";
+import { db } from '../db';
 
 export async function getSlideById(slideId: string) {
-    try {
-        const slide = await db.slide.findUnique(({
-            where: {
-                id: slideId
-            }
-        }))
+  try {
+    const slide = await db.slide.findUnique({
+      where: {
+        id: slideId,
+      },
+    });
 
-        return slide;
-    } catch (error) {
-        return null;
-    }
+    return slide;
+  } catch (error) {
+    return null;
+  }
 }

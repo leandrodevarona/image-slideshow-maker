@@ -1,8 +1,7 @@
 import { Slide } from '@prisma/client';
-import { ComponentBooleanIcon } from '@radix-ui/react-icons';
+import clsx from 'clsx';
 
 import './styles/slideItem.css';
-import clsx from 'clsx';
 
 type Props = {
   slide: Slide;
@@ -17,7 +16,7 @@ export default function SlideItem({
   onClick,
   children,
 }: Props) {
-  const width = slide.duration * 20;
+  const width = slide.duration * 25;
 
   return (
     <li

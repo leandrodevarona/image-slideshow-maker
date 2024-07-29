@@ -1,13 +1,22 @@
 .create_video {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
 
   text-align: center;
 }
 
-.create_video button {
+.create_video h1 {
+  font-size: medium;
+}
+
+.create_video h2 {
+  font-size: smaller;
+}
+
+.create_video__button {
   padding: 0.5rem;
 
   font-size: large;

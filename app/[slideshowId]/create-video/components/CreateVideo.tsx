@@ -1,26 +1,50 @@
 'use client';
 
-import useCreateSlideshowVideo from '../../lib/hooks/useCreateSlideshowVideo';
+import useCreateSlideshowVideo, {
+  VideoQuality,
+} from '../../lib/hooks/useCreateSlideshowVideo';
 import { SlideshowWithSlides } from '../../lib/types/slideshow';
+import VideoQualityControl from './controls/VideoQualityControl';
+import CreateVideoLoader from './loaders/CreateVideoLoader';
 
 import './styles/createVideo.css';
 
 type Props = {
   slideshow: SlideshowWithSlides;
+  quality?: VideoQuality;
 };
 
-export default function CreateVideo({ slideshow }: Props) {
-  const { isLoadingLib, progress, createVideo } =
-    useCreateSlideshowVideo(slideshow);
+export default function CreateVideo({ slideshow, quality }: Props) {
+  const { isLoading, createVideo } = useCreateSlideshowVideo(
+    slideshow,
+    quality
+  );
 
   return (
     <div className="create_video">
-      <div className="create_video__progress" hidden={progress <= 0}>
-        Progress: {progress} %
-      </div>
+      {isLoading ? (
+        <>
+          <h1>
+            Creating the video file <q>{slideshow.name}.mp4</q>
+          </h1>
+          <h2>
+            Please, do not close or reload the page while the video is being
+            created
+          </h2>
+          <CreateVideoLoader />
+        </>
+      ) : (
+        <>
+          <h1>
+            Select the quality and press the button below to start creating your
+            video.
+          </h1>
+          <VideoQualityControl />
+        </>
+      )}
       <button
-        className="primary_button centered_button"
-        disabled={isLoadingLib || progress > 0}
+        className="create_video__button primary_button centered_button"
+        disabled={isLoading}
         onClick={createVideo}
       >
         Start creating the video

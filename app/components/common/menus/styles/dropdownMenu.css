@@ -18,6 +18,8 @@
   border: 2px solid rgba(var(--callout-border-rgb), 0.5);
 
   background-color: rgb(var(--callout-rgb));
+
+  z-index: 999999;
 }
 
 .dropdown_menu__content-close {

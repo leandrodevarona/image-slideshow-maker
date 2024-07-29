@@ -6,14 +6,16 @@ import PhotoPickerForm from './forms/PhotoPickerForm';
 import './styles/photoPicker.css';
 
 type Props = {
+  className?: string;
   slideshowId: string;
   query?: string;
 };
 
-export default function PhotoPicker({ slideshowId, query }: Props) {
+export default function PhotoPicker({ className, slideshowId, query }: Props) {
   return (
     <DropdownMenu
       id="photo_picker"
+      className={className}
       buttonClassName="photo_picker__button primary_button"
       buttonContent={
         <>

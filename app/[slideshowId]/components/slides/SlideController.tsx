@@ -1,13 +1,17 @@
 import { Slide } from '@prisma/client';
 import MakeSlidesSortable from './MakeSlidesSortable';
 import { sortSlides } from '../../lib/utils/slides';
-import SlideItemToDelete from './slides/SlideItemToDelete';
-import SlideItemSelectable from './slides/SlideItemSelectable';
-import SlideItemToEdit from './slides/SlideItemToEdit';
+import {
+  SlideItemSelectable,
+  SlideItemToDelete,
+  SlideItemToEdit,
+} from './slides';
+import clsx from 'clsx';
 
 import './styles/slideController.css';
 
 type Props = {
+  className?: string;
   slideshowId: string;
   slides: Slide[];
   currentSlideId?: string;
@@ -20,6 +24,7 @@ function NoSlides() {
 }
 
 export default function SlideController({
+  className,
   slideshowId,
   slides,
   currentSlideId,
@@ -31,7 +36,7 @@ export default function SlideController({
   const sortedSlides = sortSlides(slides);
 
   return (
-    <ul id={slideshowId} className="slide_controller">
+    <ul id={slideshowId} className={clsx('slide_controller', className)}>
       {deleting
         ? sortedSlides.map((slide) => (
             <SlideItemToDelete

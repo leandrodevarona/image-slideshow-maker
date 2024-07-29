@@ -12,6 +12,8 @@
   --prompt-color: transparent;
   --prompt-text-color: white;
 
+  --border-selected: #0dfd0d;
+
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,

@@ -3,14 +3,12 @@ import { notFound } from 'next/navigation';
 import SlideViewer from '@ism/app/[slideshowId]/components/slideshow/slideviewer/SlideViewer';
 import SlidePlayer from '@ism/app/[slideshowId]/components/slideshow/player/SlidePlayer';
 import { Metadata } from 'next';
-import SlidePrompt from './components/SlidePrompt';
 import ColorPaletteLoader from '@ism/app/[slideshowId]/components/slideshow/colors/ColorPaletteLoader';
-import Reset from './components/controls/buttons/Reset';
 import LandingPageControls from './components/controls/LandingPageControls';
-import Previous from './components/controls/buttons/Previous';
+import { Reset, Next, Previous } from './components/controls/buttons';
+import SlidePrompt from './components/SlidePrompt';
 
 import styles from './page.module.css';
-import Next from './components/controls/buttons/Next';
 
 type Props = {
   params: {
@@ -52,6 +50,8 @@ export default async function SlideshowLandingPage({
 
   const isLastSlide = currentSlide?.index === slideshow.slides.length - 1;
 
+  const slidePromptKey = 'prompt' + currentSlide?.id + fullScreen;
+
   return (
     <main className={styles.main}>
       <SlideViewer
@@ -62,9 +62,9 @@ export default async function SlideshowLandingPage({
       >
         {currentSlide && (
           <SlidePrompt
-            key={fullScreen}
-            slide={currentSlide}
+            key={slidePromptKey}
             imgElemId={imgId}
+            slideAlt={currentSlide.alt}
           />
         )}
         {currentSlide && isLastSlide && (

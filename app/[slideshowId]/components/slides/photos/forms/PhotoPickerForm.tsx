@@ -24,7 +24,7 @@ function Component({ slideshowId, query }: Props) {
 export default function PhotoPickerForm(props: Props) {
   return (
     <Suspense fallback={'Loading photos...'}>
-      <Component {...props}></Component>
+      <Component {...props} />
     </Suspense>
   );
 }

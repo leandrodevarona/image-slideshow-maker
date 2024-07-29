@@ -1,33 +1,14 @@
 .slide_prompt {
   position: absolute;
   bottom: 3rem;
+
+  mix-blend-mode: difference;
+  color: white;
 }
 
-.slide_prompt textarea {
-  border: none;
-
-  resize: none;
-
-  padding: 0.5rem;
-
-  backdrop-filter: blur(10px);
-  border-radius: 5px;
-
-  background-color: rgba(var(--prompt-color), 0.5);
-
-  font-family: Arial;
-  font-size: medium;
-  text-align: center;
-  color: rgb(var(--prompt-text-color));
-
-  overflow: hidden;
-
-  transition: opacity 0.3s;
-}
-
-.slide_prompt textarea::placeholder {
-  font-family: Arial;
-  font-size: medium;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.3);
+/* Mobile */
+@media (max-width: 700px) {
+  .slide_prompt {
+    bottom: 4rem;
+  }
 }

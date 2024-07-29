@@ -4,11 +4,11 @@ import SlideController from '../slides/SlideController';
 import SlideEditorControls from './SlideEditorControls';
 import SlideViewer from './slideviewer/SlideViewer';
 import SlideViewerControls from './slideviewer/controls/SlideViewerControls';
-import SlidePrompt from '../slides/prompts/SlidePrompt';
 import SlidePlayerPainter from './player/SlidePlayerPainter';
 import { updateAction } from '../../lib/actions/slides';
 import AutoSaveChanges from './AutoSaveChanges';
 import LandingPageReferences from './slideviewer/landingPage/LandingPageReferences';
+import EditSlidePrompt from '../slides/prompts/forms/EditSlidePrompt';
 
 import './styles/slideEditor.css';
 
@@ -41,7 +41,7 @@ export default function SlideEditor({
 
   const slidesLength = slideshow.slides.length;
 
-  const updateAlt = updateAction.bind(null, slideshow.id, slideId);
+  const updateSlideAlt = updateAction.bind(null, slideshow.id, slideId);
 
   return (
     <div className="slide_editor">
@@ -53,11 +53,11 @@ export default function SlideEditor({
         >
           {currentSlide && (
             <>
-              <SlidePrompt
+              <EditSlidePrompt
                 key={slidePromptKey}
-                updateAlt={updateAlt}
-                slideAlt={currentSlide.alt}
                 imgElemId={imgId}
+                slideAlt={currentSlide.alt}
+                updateAlt={updateSlideAlt}
               />
               <SlideViewerControls
                 slideshowId={slideshow.id}
@@ -69,15 +69,23 @@ export default function SlideEditor({
         </SlideViewer>
       </section>
       <section className="slide_editor__controller">
-        <SlideEditorControls slideshowId={slideshow.id} />
+        <SlideEditorControls
+          className="slide_editor__right-controls"
+          slideshowId={slideshow.id}
+        />
         <SlideController
+          className="slide_editor__slide-controller"
           slideshowId={slideshow.id}
           slides={slideshow.slides}
           currentSlideId={currentSlide?.id}
           editing={editItems}
           deleting={deleteItem}
         />
-        <PhotoPicker slideshowId={slideshow.id} query={photosQuery} />
+        <PhotoPicker
+          className="slide_editor__photo-picker"
+          slideshowId={slideshow.id}
+          query={photosQuery}
+        />
       </section>
       {currentSlide && (
         <SlidePlayerPainter

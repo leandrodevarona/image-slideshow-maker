@@ -3,6 +3,8 @@
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { useEffect } from 'react';
 
+import './styles/slidePromptTextarea.css';
+
 type Props = {
   id: string;
   formId: string;
@@ -22,7 +24,6 @@ export default function SlidePromptTextarea({
   id,
   formId,
   defaultValue,
-  isVisible = true,
 }: Props) {
   useEffect(() => {
     const textareaElem = document.getElementById(id);
@@ -41,6 +42,7 @@ export default function SlidePromptTextarea({
   return (
     <TextareaAutosize
       id={id}
+      className="slide_prompt__textarea"
       name="alt"
       placeholder="To save press Ctrl+S"
       title={
@@ -49,7 +51,6 @@ export default function SlidePromptTextarea({
           : undefined
       }
       defaultValue={defaultValue}
-      style={{ opacity: isVisible ? 1 : 0 }}
     />
   );
 }

@@ -1,38 +1,31 @@
 'use client';
 
 import SlidePromptWidthSetter from './SlidePromptWidthSetter';
-import SlidePromptTextarea from './SlidePromptTextarea';
 import SlidePromptVisibilitySetter from './SlidePromptVisibilitySetter';
 
 import './styles/slidePrompt.css';
 
 type Props = {
-  slideAlt?: string | null;
+  textareaId: string;
   imgElemId: string;
-  updateAlt: (formData: FormData) => Promise<void>;
+  renderTextBox: (isVisible: boolean) => React.ReactNode;
 };
 
-export default function SlidePrompt({ slideAlt, imgElemId, updateAlt }: Props) {
-  const textareaId = 'slide_prompt__textarea';
-  const formId = 'form-' + textareaId;
-
+export default function SlidePrompt({
+  textareaId,
+  imgElemId,
+  renderTextBox,
+}: Props) {
   return (
-    <form id={formId} className="slide_prompt" action={updateAlt}>
+    <div className="slide_prompt">
       <SlidePromptVisibilitySetter
         imgElemId={imgElemId}
-        renderTextarea={(isVisible) => (
-          <SlidePromptTextarea
-            id={textareaId}
-            formId={formId}
-            defaultValue={slideAlt || ''}
-            isVisible={isVisible}
-          />
-        )}
+        renderTextBox={renderTextBox}
       />
       <SlidePromptWidthSetter
         imgElemId={imgElemId}
         textareaElemId={textareaId}
       />
-    </form>
+    </div>
   );
 }

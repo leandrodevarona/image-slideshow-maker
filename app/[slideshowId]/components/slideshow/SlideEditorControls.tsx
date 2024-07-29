@@ -1,16 +1,16 @@
-import DeleteSlideItems from './buttons/DeleteSlideItems';
-import SaveChanges from './buttons/SaveChanges';
-import EditSlideItems from './buttons/EditSlideItems';
+import clsx from 'clsx';
+import { DeleteSlideItems, EditSlideItems, SaveChanges } from './buttons';
 
 import './styles/slideEditorControls.css';
 
 type Props = {
+  className?: string;
   slideshowId: string;
 };
 
-export default function SlideEditorControls({ slideshowId }: Props) {
+export default function SlideEditorControls({ className, slideshowId }: Props) {
   return (
-    <div className="slide_editor__controls">
+    <div className={clsx('slide_editor__controls', className)}>
       <DeleteSlideItems />
       <EditSlideItems />
       <SaveChanges slideshowId={slideshowId} />

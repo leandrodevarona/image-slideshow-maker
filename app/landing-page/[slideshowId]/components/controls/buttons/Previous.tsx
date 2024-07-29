@@ -3,9 +3,9 @@
 import { Suspense } from 'react';
 import useSeeSlide from '@ism/app/[slideshowId]/lib/hooks/useSeeSlide';
 import { CaretLeftIcon } from '@radix-ui/react-icons';
+import clsx from 'clsx';
 
 import './styles/previousNext.css';
-import clsx from 'clsx';
 
 function Component() {
   const { isPending, currentIndex, seeSlide } = useSeeSlide();
