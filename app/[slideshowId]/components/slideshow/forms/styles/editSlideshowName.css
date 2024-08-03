@@ -5,7 +5,7 @@
 }
 
 .edit_slideshow__name input {
-  max-width: fit-content;
+  max-width: 150px;
 
   border: none;
   border-radius: 2px;
@@ -14,6 +14,10 @@
 
   font-weight: 700;
   font-family: var(--font-mono);
+}
+
+.edit_slideshow__name button {
+  padding: 0.1rem;
 }
 
 @media (max-width: 700px) {

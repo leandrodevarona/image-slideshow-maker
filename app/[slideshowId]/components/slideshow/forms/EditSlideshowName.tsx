@@ -1,13 +1,18 @@
 import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slideshow';
 
 import './styles/editSlideshowName.css';
+import Submit from '@ism/app/components/common/buttons/Submit';
+import { CheckIcon } from '@radix-ui/react-icons';
 
 type Props = {
   slideshowId: string;
   slideshowName: string;
 };
 
-export default function EditSlideshowName({ slideshowId, slideshowName }: Props) {
+export default function EditSlideshowName({
+  slideshowId,
+  slideshowName,
+}: Props) {
   const updateSlideshow = updateAction.bind(null, slideshowId);
 
   return (
@@ -20,6 +25,13 @@ export default function EditSlideshowName({ slideshowId, slideshowName }: Props)
         required
         role="textbox"
       />
+      <Submit
+        className="primary_button centered_button"
+        ariaLabel="Edit slideshow name"
+        title='Edit slideshow name'
+      >
+        <CheckIcon />
+      </Submit>
     </form>
   );
 }
