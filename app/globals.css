@@ -104,6 +104,10 @@ a {
   text-decoration: none;
 }
 
+button:disabled{
+  cursor: no-drop;
+}
+
 .primary_button {
   border: none;
   border-radius: 5px;
