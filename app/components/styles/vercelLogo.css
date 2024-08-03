@@ -1,0 +1,18 @@
+.vercel_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 700px) {
+  .vercel_logo {
+    padding: 1rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .vercel_logo img {
+    filter: invert(1);
+  }
+}
