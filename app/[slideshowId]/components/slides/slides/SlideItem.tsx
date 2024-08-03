@@ -23,6 +23,7 @@ export default function SlideItem({
       id={slide.id}
       className={clsx('slide_item', isCurrent && 'is_current')}
       style={{ minWidth: width }}
+      tabIndex={-1}
       onClick={onClick}
     >
       {children}
