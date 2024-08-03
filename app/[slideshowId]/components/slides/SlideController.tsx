@@ -19,8 +19,12 @@ type Props = {
   deleting?: boolean;
 };
 
-function NoSlides() {
-  return <div className="slide_controller">No slides</div>;
+type NoSlideProps = {
+  className?: string;
+};
+
+function NoSlides({ className }: NoSlideProps) {
+  return <div className={clsx('slide_controller', className)}>No slides</div>;
 }
 
 export default function SlideController({
@@ -31,7 +35,7 @@ export default function SlideController({
   editing = false,
   deleting = false,
 }: Props) {
-  if (!slides || slides.length <= 0) return <NoSlides />;
+  if (!slides || slides.length <= 0) return <NoSlides className={className} />;
 
   const sortedSlides = sortSlides(slides);
 
