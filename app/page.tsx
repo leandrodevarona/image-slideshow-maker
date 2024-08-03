@@ -1,8 +1,15 @@
-import Header from "./components/Header";
+import Header from './components/Header';
+import CreateSlideshowAiModal from './components/slideshow/modals/CreateSlideshowAiModal';
 
-import styles from "./page.module.css";
+import styles from './page.module.css';
 
-export default function Home() {
+type Props = {
+  searchParams: {
+    useAi?: string;
+  };
+};
+
+export default function Home({ searchParams: { useAi } }: Props) {
   return (
     <main className={styles.main}>
       <Header />
@@ -11,6 +18,7 @@ export default function Home() {
           <source src="/presentation.mp4" type="video/mp4" />
         </video>
       </div>
+      <CreateSlideshowAiModal open={Boolean(useAi)} />
     </main>
   );
 }

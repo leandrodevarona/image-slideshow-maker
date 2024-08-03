@@ -4,8 +4,7 @@ import { Slide } from '@prisma/client';
 import SlideItem from './SlideItem';
 import useSeeSlide from '@ism/app/[slideshowId]/lib/hooks/useSeeSlide';
 import { Suspense } from 'react';
-
-import './styles/slideItemSelectable.css';
+import DotsLoader from '@ism/app/components/common/loaders/DotsLoader';
 
 type Props = {
   slide: Slide;
@@ -21,11 +20,7 @@ function Component({ slide, isCurrent }: Props) {
 
   return (
     <SlideItem slide={slide} isCurrent={isCurrent} onClick={handleOnClick}>
-      {isPending ? (
-        <div className="slide_loader" />
-      ) : (
-        <span>{slide.duration}s</span>
-      )}
+      {isPending ? <DotsLoader /> : <span>{slide.duration}s</span>}
     </SlideItem>
   );
 }

@@ -1,5 +1,5 @@
 /* HTML: <div class="loader"></div> */
-.slide_loader {
+.dots_loader {
   width: 38px;
   aspect-ratio: 2;
   --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);

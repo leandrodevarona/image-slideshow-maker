@@ -9,6 +9,7 @@ type Props = {
   className?: string;
   ariaLabel?: string;
   title?: string;
+  pendingNode?: React.ReactNode;
   children: React.ReactNode;
 };
 
@@ -16,6 +17,7 @@ export default function Submit({
   className,
   ariaLabel,
   title,
+  pendingNode,
   children,
 }: Props) {
   const { pending } = useFormStatus();
@@ -28,7 +30,7 @@ export default function Submit({
       aria-label={ariaLabel}
       title={title}
     >
-      {children}
+      {pendingNode && pending ? pendingNode : children}
     </button>
   );
 }
