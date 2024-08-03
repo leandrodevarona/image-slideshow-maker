@@ -32,7 +32,7 @@ export default async function SlideshowPage({
     <main className={styles.main}>
       <header className={styles.description}>
         <div className={styles.description_form}>
-          <span>Start by editing the </span>
+          <span>Project: </span>
           <EditSlideshowName
             slideshowId={slideshow.id}
             slideshowName={slideshow.name}
