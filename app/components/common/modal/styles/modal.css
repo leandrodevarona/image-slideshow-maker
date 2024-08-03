@@ -1,0 +1,25 @@
+.modal {
+  border-radius: var(--border-radius);
+  border: 2px solid rgba(var(--callout-border-rgb), 0.5);
+
+  padding: 0.8rem;
+
+  background-color: rgb(var(--callout-rgb));
+
+  overflow: visible;
+}
+
+.modal_title {
+  font-weight: 600;
+}
+
+.modal_close {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.modal_close button {
+  background-color: transparent;
+  border: none;
+}

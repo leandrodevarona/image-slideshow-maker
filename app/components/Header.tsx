@@ -1,5 +1,5 @@
-import CreateSlideshow from './forms/CreateSlideshow';
 import VercelLogo from './VercelLogo';
+import CreateSlideshowMenu from './slideshow/menus/CreateSlideshowMenu';
 
 import './styles/header.css';
 
@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="header">
       <VercelLogo />
-      <CreateSlideshow />
+      <CreateSlideshowMenu />
     </header>
   );
 }
