@@ -52,7 +52,13 @@ function Component({
     const item = document.getElementById(slideId);
 
     if (item) {
-      item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const parentList = item.closest('ul');
+      if (parentList) {
+        parentList.scrollTo({
+          left: item.offsetLeft - parentList.offsetLeft,
+          behavior: 'smooth',
+        });
+      }
     }
   };
 
