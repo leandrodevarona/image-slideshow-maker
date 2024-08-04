@@ -2,6 +2,7 @@ import React from 'react';
 import { CSSProperties } from 'react';
 import ModalOpener from './ModalOpener';
 import CloseModal, { ClosingProps } from './buttons/CloseModal';
+import clsx from 'clsx';
 
 import './styles/modal.css';
 
@@ -25,7 +26,7 @@ export default function Modal({
   children,
 }: ModalProps) {
   return (
-    <dialog id={id} className={`modal ${className || ''}`} style={style}>
+    <dialog id={id} className={clsx('modal', className)} style={style}>
       <ModalOpener menuId={id} open={open || false} />
       <form action="dialog">
         <section

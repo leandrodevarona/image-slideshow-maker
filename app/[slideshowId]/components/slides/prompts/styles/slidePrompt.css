@@ -1,9 +1,6 @@
 .slide_prompt {
   position: absolute;
   bottom: 3rem;
-
-  mix-blend-mode: difference;
-  color: white;
 }
 
 /* Mobile */

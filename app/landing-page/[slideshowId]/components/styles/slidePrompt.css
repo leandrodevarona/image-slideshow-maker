@@ -5,6 +5,7 @@
 
   border-radius: 5px;
 
+  backdrop-filter: blur(1.5rem);
   background-color: rgba(var(--prompt-color), 0.5);
 
   font-family: Arial;

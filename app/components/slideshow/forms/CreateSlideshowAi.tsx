@@ -12,8 +12,7 @@ export default function CreateSlideshowAi() {
         name="theme"
         placeholder="Type a theme..."
         required
-        max={10}
-        min={3}
+        maxLength={20}
       />
       <Submit className="primary_button" pendingNode={<DotsLoader />}>
         Create slideshow using AI

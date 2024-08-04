@@ -18,8 +18,7 @@ export default function CreateColorPalette({ slideshowId }: Props) {
         name="colors_theme"
         placeholder="Type a theme..."
         required
-        max={10}
-        min={3}
+        maxLength={20}
       />
       <Submit className="primary_button centered_button">
         <CheckIcon />

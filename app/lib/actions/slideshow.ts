@@ -28,6 +28,9 @@ export async function autoCreateAction(formData: FormData) {
 
   if (!theme) redirect(`${Routes.home}?error=Theme is required`);
 
+  if (theme.length > 20)
+    redirect(`${Routes.home}?error=Use less than 20 characters for the theme`);
+
   const photos = await getPhotos(theme);
 
   if (!photos || photos.length <= 0)
