@@ -1,5 +1,5 @@
 /* HTML: <div class="loader"></div> */
-.create_video__loader {
+.bar_loader {
   width: 45px;
   aspect-ratio: 0.75;
   --c: no-repeat linear-gradient(#000 0 0);
@@ -9,7 +9,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .create_video__loader {
+  .bar_loader {
     --c: no-repeat linear-gradient(#fff 0 0);
   }
 }
