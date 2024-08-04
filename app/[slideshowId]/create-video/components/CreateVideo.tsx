@@ -1,11 +1,11 @@
 'use client';
 
+import BarLoader from '@ism/app/components/common/loaders/BarLoader';
 import useCreateSlideshowVideo, {
   VideoQuality,
 } from '../../lib/hooks/useCreateSlideshowVideo';
 import { SlideshowWithSlides } from '../../lib/types/slideshow';
 import VideoQualityControl from './controls/VideoQualityControl';
-import CreateVideoLoader from './loaders/CreateVideoLoader';
 
 import './styles/createVideo.css';
 
@@ -31,7 +31,7 @@ export default function CreateVideo({ slideshow, quality }: Props) {
             Please, do not close or reload the page while the video is being
             created
           </h2>
-          <CreateVideoLoader />
+          <BarLoader />
         </>
       ) : (
         <>
