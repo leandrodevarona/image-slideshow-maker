@@ -25,11 +25,6 @@ export default function ColorPaletteLoader({ colorPalette }: Props) {
       html {
         color-scheme: only ${colors.theme};
       }
-
-      ${colors.theme == Theme.dark &&
-      `.vercelLogo {
-        filter: invert(1);
-      }`}
     `}</style>
   );
 }
