@@ -78,8 +78,8 @@ export default function useCreateSlideshowVideo(
 
       await ffmpeg.writeFile('filelist.txt', fileList);
 
-      ffmpeg.on('progress', (event) => {
-        setProgress(event.progress * 100);
+      ffmpeg.on('progress', (evt) => {
+        setProgress(evt.progress * 100);
       });
 
       const scale = qualities[quality] || qualities[VideoQuality.HD];

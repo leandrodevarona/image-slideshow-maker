@@ -15,7 +15,7 @@ export default function SaveChanges({ slideshowId }: Props) {
 
   useEffect(() => {
     const intervalId = setInterval(reorder, 300000); // 300000 ms = 5 minutos
-    return () => clearInterval(intervalId); // Limpiar el intervalo al desmontar el componente
+    return () => clearInterval(intervalId);
   }, [reorder]);
 
   return (

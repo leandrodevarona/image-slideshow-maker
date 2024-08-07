@@ -22,8 +22,8 @@ export default function ModalCloser({ id, back, href }: Props) {
       if (href) push(href);
     };
 
-    const stopClose = (event: MouseEvent) => {
-      event.stopPropagation();
+    const stopClose = (evt: MouseEvent) => {
+      evt.stopPropagation();
     };
 
     if (myDialog) myDialog.addEventListener('click', onClose);
