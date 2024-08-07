@@ -1,8 +1,8 @@
-import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slideshow';
+import { updateAction } from "@ism/app/[slideshowId]/lib/actions/slideshow";
+import Submit from "@ism/app/components/common/buttons/Submit";
+import { CheckIcon } from "@radix-ui/react-icons";
 
-import './styles/editSlideshowName.css';
-import Submit from '@ism/app/components/common/buttons/Submit';
-import { CheckIcon } from '@radix-ui/react-icons';
+import "./styles/editSlideshowName.css";
 
 type Props = {
   slideshowId: string;
@@ -28,7 +28,7 @@ export default function EditSlideshowName({
       <Submit
         className="primary_button centered_button"
         ariaLabel="Edit slideshow name"
-        title='Edit slideshow name'
+        title="Edit slideshow name"
       >
         <CheckIcon />
       </Submit>

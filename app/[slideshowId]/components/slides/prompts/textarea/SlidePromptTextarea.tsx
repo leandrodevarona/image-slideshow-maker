@@ -17,7 +17,6 @@ type Props = {
  * @param id The element id
  * @param formId The id of the form element to be able to save with Ctrl+s
  * @param defaultValue The default value of the textarea
- * @param isVisible To know if the textarea component should be shown or not
  * @returns
  */
 export default function SlidePromptTextarea({
@@ -29,9 +28,9 @@ export default function SlidePromptTextarea({
     const textareaElem = document.getElementById(id);
 
     if (textareaElem) {
-      textareaElem.addEventListener('keydown', (event) => {
-        if (event.ctrlKey && event.key === 's') {
-          event.preventDefault();
+      textareaElem.addEventListener('keydown', (evt) => {
+        if (evt.ctrlKey && evt.key === 's') {
+          evt.preventDefault();
           const formElem = document.getElementById(formId) as HTMLFormElement;
           if (formElem) formElem.requestSubmit();
         }

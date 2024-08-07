@@ -1,8 +1,8 @@
-import { autoCreateAction } from '@ism/app/lib/actions/slideshow';
-import Submit from '../../common/buttons/Submit';
+import { autoCreateAction } from "@ism/app/lib/actions/slideshow";
+import Submit from "../../common/buttons/Submit";
+import DotsLoader from "../../common/loaders/DotsLoader";
 
-import './styles/createSlideshowAi.css';
-import DotsLoader from '../../common/loaders/DotsLoader';
+import "./styles/createSlideshowAi.css";
 
 export default function CreateSlideshowAi() {
   return (

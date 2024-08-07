@@ -21,9 +21,9 @@ function Component({ slideDuration }: Props) {
     return () => clearTimeout(timeout);
   }, [currentIndex, slideDuration]);
 
-  const handleOnClick = (event: MouseEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
+  const handleOnClick = (evt: MouseEvent) => {
+    evt.preventDefault();
+    evt.stopPropagation();
     seeSlide(0);
   };
 
