@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
-import { Routes } from '@ism/app/lib/utils/routes';
-import { Link2Icon } from '@radix-ui/react-icons';
-import { useParams } from 'next/navigation';
-import { Suspense, useTransition } from 'react';
-import useNotify from '@ism/app/[slideshowId]/lib/hooks/useNotify';
-import { NotificationTypes } from '@ism/app/components/common/notifications/Notification';
+import { Routes } from "@ism/app/lib/utils/routes";
+import { Link2Icon } from "@radix-ui/react-icons";
+import { useParams } from "next/navigation";
+import { Suspense, useTransition } from "react";
+import useNotify from "@ism/app/[slideshowId]/lib/hooks/useNotify";
+import { NotificationTypes } from "@ism/app/components/common/notifications/Notification";
+import clsx from "clsx";
 
-import './styles/landingPageButtons.css';
+import "./styles/landingPageButtons.css";
 
 function Component() {
   const [isPending, startTransition] = useTransition();
@@ -27,8 +28,8 @@ function Component() {
 
       const data = [
         new ClipboardItem({
-          'text/plain': Promise.resolve(
-            new Blob([url], { type: 'text/plain' })
+          "text/plain": Promise.resolve(
+            new Blob([url], { type: "text/plain" })
           ),
         }),
       ];
@@ -37,13 +38,13 @@ function Component() {
         function () {
           showNotify(
             NotificationTypes.success,
-            'Copied to clipboard successfully!'
+            "Copied to clipboard successfully!"
           );
         },
         function () {
           showNotify(
             NotificationTypes.error,
-            'Unable to write to clipboard. :-('
+            "Unable to write to clipboard. :-("
           );
         }
       );
@@ -52,7 +53,11 @@ function Component() {
 
   return (
     <button
-      className="landingPage_button primary_button centered_button"
+      className={clsx(
+        "landingPage_button",
+        "primary_button",
+        "centered_button"
+      )}
       disabled={isPending}
       title="Copy landing page link to the clipboard"
       aria-label="Copy landing page link to the clipboard"

@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { Cross2Icon, TrashIcon } from '@radix-ui/react-icons';
-import { MouseEvent, Suspense } from 'react';
-import useEditOrDeleteSlides from '@ism/app/[slideshowId]/lib/hooks/useEditOrDeleteSlides';
+import { Cross2Icon, TrashIcon } from "@radix-ui/react-icons";
+import { MouseEvent, Suspense } from "react";
+import useEditOrDeleteSlides from "@ism/app/[slideshowId]/lib/hooks/useEditOrDeleteSlides";
+import clsx from "clsx";
 
-import './styles/deleteSlideItems.css';
+import "./styles/deleteSlideItems.css";
 
 function Component() {
   const { isPending, isDeleting, deleteSlides } = useEditOrDeleteSlides();
@@ -18,9 +19,9 @@ function Component() {
 
   return (
     <button
-      className="delete_slide__items primary_button"
+      className={clsx("delete_slides__button", "primary_button")}
       aria-label="Delete slides button"
-      title={isDeleting ? 'Cancel delete slides' : 'Delete slides'}
+      title={isDeleting ? "Cancel delete slides" : "Delete slides"}
       disabled={isPending}
       onClick={handleOnClick}
     >

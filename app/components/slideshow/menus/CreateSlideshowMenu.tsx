@@ -1,16 +1,17 @@
-import DropdownMenu from '../../common/menus/DropdownMenu';
-import Link from 'next/link';
-import CreateSlideshowManually from '../forms/CreateSlideshowManually';
+import DropdownMenu from "../../common/menus/DropdownMenu";
+import Link from "next/link";
+import CreateSlideshowManually from "../forms/CreateSlideshowManually";
+import clsx from "clsx";
 
-import './styles/createSlideshowMenu.css';
+import "./styles/createSlideshowMenu.css";
 
 export default function CreateSlideshowMenu() {
   return (
     <DropdownMenu
       className="create_slideshow"
       id="create_slideshow"
-      buttonClassName="create_slideshow__button primary_button"
-      buttonContent={'Create slideshow'}
+      buttonClassName={clsx("create_slideshow__button", "primary_button")}
+      buttonContent={"Create slideshow"}
       contentClassName="create_slideshow__content"
     >
       <div className="create_slideshow__container">

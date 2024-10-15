@@ -1,6 +1,7 @@
 import { updateAction } from "@ism/app/[slideshowId]/lib/actions/slideshow";
 import Submit from "@ism/app/components/common/buttons/Submit";
 import { CheckIcon } from "@radix-ui/react-icons";
+import clsx from "clsx";
 
 import "./styles/editSlideshowName.css";
 
@@ -26,7 +27,7 @@ export default function EditSlideshowName({
         role="textbox"
       />
       <Submit
-        className="primary_button centered_button"
+        className={clsx("primary_button", "centered_button")}
         ariaLabel="Edit slideshow name"
         title="Edit slideshow name"
       >

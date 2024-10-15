@@ -1,16 +1,18 @@
-import { SlideshowWithSlides } from '../../lib/types/slideshow';
-import PhotoPicker from '../slides/photos/PhotoPicker';
-import SlideController from '../slides/SlideController';
-import SlideEditorControls from './SlideEditorControls';
-import SlideViewer from './slideviewer/SlideViewer';
-import SlideViewerControls from './slideviewer/controls/SlideViewerControls';
-import SlidePlayerPainter from './player/SlidePlayerPainter';
-import { updateAction } from '../../lib/actions/slides';
-import AutoSaveChanges from './AutoSaveChanges';
-import LandingPageReferences from './slideviewer/landingPage/LandingPageReferences';
-import EditSlidePrompt from '../slides/prompts/forms/EditSlidePrompt';
+import { SlideshowWithSlides } from "../../lib/types/slideshow";
+import PhotoPicker from "../slides/photos/PhotoPicker";
+import SlideController from "../slides/SlideController";
+import SlideEditorControls from "./SlideEditorControls";
+import SlideViewer from "./slideviewer/SlideViewer";
+import SlideViewerControls from "./slideviewer/controls/SlideViewerControls";
+import SlidePlayerPainter from "./player/SlidePlayerPainter";
+import { updateAction } from "../../lib/actions/slides";
+import AutoSaveChanges from "./AutoSaveChanges";
+import LandingPageReferences from "./slideviewer/landingPage/LandingPageReferences";
+import EditSlidePrompt from "../slides/prompts/forms/EditSlidePrompt";
+import MobileResolution from "./slideviewer/resolution/MobileResolution";
+import clsx from "clsx";
 
-import './styles/slideEditor.css';
+import "./styles/slideEditor.css";
 
 type Props = {
   slideshow: SlideshowWithSlides;
@@ -19,6 +21,7 @@ type Props = {
   editItems?: boolean;
   deleteItem?: boolean;
   pause?: boolean;
+  mobile?: boolean;
 };
 
 export default function SlideEditor({
@@ -28,16 +31,17 @@ export default function SlideEditor({
   editItems = false,
   deleteItem = false,
   pause = false,
+  mobile = false,
 }: Props) {
   const currentSlide = slideshow.slides.find(
     (slide) => slide.index === slideIndex
   );
 
-  const imgId = 'slide_viewer__img' + currentSlide?.id;
-  const slideId = currentSlide?.id || '';
+  const imgId = "slide_viewer__img" + currentSlide?.id;
+  const slideId = currentSlide?.id || "";
 
-  const slidePlayerKey = 'slide-player-' + currentSlide?.id;
-  const slidePromptKey = 'prompt' + slideId;
+  const slidePlayerKey = "slide-player-" + currentSlide?.id;
+  const slidePromptKey = "prompt" + slideId + String(mobile);
 
   const slidesLength = slideshow.slides.length;
 
@@ -47,10 +51,12 @@ export default function SlideEditor({
     <div className="slide_editor">
       <section className="slide_editor__viewer-container">
         <SlideViewer
-          className="slide_editor__viewer"
+          className={clsx("slide_editor__viewer", mobile && "mobile")}
           imgElemId={imgId}
           slide={currentSlide}
+          mobile={mobile}
         >
+          <MobileResolution />
           {currentSlide && (
             <>
               <EditSlidePrompt
@@ -65,7 +71,7 @@ export default function SlideEditor({
               />
             </>
           )}
-          <LandingPageReferences />
+          <LandingPageReferences mobile={mobile} />
         </SlideViewer>
       </section>
       <section className="slide_editor__controller">

@@ -26,6 +26,10 @@
   gap: 2rem;
 }
 
+.slide_editor__viewer.mobile {
+  width: 33%;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
   .slide_editor {
@@ -56,5 +60,9 @@
 
     display: flex;
     justify-content: flex-end;
+  }
+
+  .slide_editor__viewer.mobile {
+    width: 100%;
   }
 }

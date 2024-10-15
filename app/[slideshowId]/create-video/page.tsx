@@ -1,11 +1,11 @@
-import { notFound } from 'next/navigation';
-import { getSlideshowById } from '../lib/data/slideshow';
-import CreateVideo from './components/CreateVideo';
-import NoSSRWrapper from './components/NoSSRWrapper';
-import { VideoQuality } from '../lib/hooks/useCreateSlideshowVideo';
-import { Metadata } from 'next';
+import { notFound } from "next/navigation";
+import { getSlideshowById } from "../lib/data/slideshow";
+import CreateVideo from "./components/CreateVideo";
+import NoSSRWrapper from "./components/NoSSRWrapper";
+import { VideoQuality } from "../lib/hooks/useCreateSlideshowVideo";
+import { Metadata } from "next";
 
-import styles from './page.module.css';
+import styles from "./page.module.css";
 
 type Props = {
   params: {
@@ -13,6 +13,7 @@ type Props = {
   };
   searchParams: {
     quality?: string;
+    mobile?: string;
   };
 };
 
@@ -31,7 +32,7 @@ export async function generateMetadata({
 
 export default async function CreateVideoPage({
   params: { slideshowId },
-  searchParams: { quality },
+  searchParams: { quality, mobile },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
 
@@ -40,7 +41,11 @@ export default async function CreateVideoPage({
   return (
     <main className={styles.main}>
       <NoSSRWrapper>
-        <CreateVideo slideshow={slideshow} quality={quality as VideoQuality} />
+        <CreateVideo
+          slideshow={slideshow}
+          quality={quality as VideoQuality}
+          mobile={Boolean(mobile)}
+        />
       </NoSSRWrapper>
     </main>
   );

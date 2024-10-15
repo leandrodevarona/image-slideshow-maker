@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import SaveIcon from './assets/SaveIcon';
-import useReorderSlides from '@ism/app/[slideshowId]/lib/hooks/useReorderSlides';
+import { useEffect } from "react";
+import SaveIcon from "./assets/SaveIcon";
+import useReorderSlides from "@ism/app/[slideshowId]/lib/hooks/useReorderSlides";
+import clsx from "clsx";
 
-import './styles/saveChanges.css';
+import "./styles/saveChanges.css";
 
 type Props = {
   slideshowId: string;
@@ -20,7 +21,7 @@ export default function SaveChanges({ slideshowId }: Props) {
 
   return (
     <button
-      className="save_changes primary_button"
+      className={clsx("save_changes__button", "primary_button")}
       aria-label="Save changes button"
       title="Save changes"
       disabled={isPending}

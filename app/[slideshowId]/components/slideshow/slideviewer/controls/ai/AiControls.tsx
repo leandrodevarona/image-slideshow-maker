@@ -1,8 +1,9 @@
-import DropdownMenu from '@ism/app/components/common/menus/DropdownMenu';
-import CreateSlidePrompt from './prompts/CreateSlidePrompt';
-import ColorPalette from './colors/ColorPalette';
+import DropdownMenu from "@ism/app/components/common/menus/DropdownMenu";
+import CreateSlidePrompt from "./prompts/CreateSlidePrompt";
+import ColorPalette from "./colors/ColorPalette";
+import clsx from "clsx";
 
-import './styles/aiControls.css';
+import "./styles/aiControls.css";
 
 type Props = {
   slideshowId: string;
@@ -14,8 +15,12 @@ export default function AiControls({ slideshowId, slideId }: Props) {
     <DropdownMenu
       id="ai_controls"
       className="ai_controls"
-      buttonClassName="ai_controls__button primary_button centered_button"
-      buttonContent={'AI'}
+      buttonClassName={clsx(
+        "ai_controls__button",
+        "primary_button",
+        "centered_button"
+      )}
+      buttonContent={"AI"}
       contentClassName="ai_controls__content"
       title="Ai options"
     >

@@ -1,28 +1,29 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { FFmpeg } from '@ffmpeg/ffmpeg';
-import { fetchFile, toBlobURL } from '@ffmpeg/util';
-import useNotify from './useNotify';
-import { NotificationTypes } from '@ism/app/components/common/notifications/Notification';
-import { SlideshowWithSlides } from '../types/slideshow';
-import { sortSlides } from '../utils/slides';
+import { useEffect, useRef, useState } from "react";
+import { FFmpeg } from "@ffmpeg/ffmpeg";
+import { fetchFile, toBlobURL } from "@ffmpeg/util";
+import useNotify from "./useNotify";
+import { NotificationTypes } from "@ism/app/components/common/notifications/Notification";
+import { SlideshowWithSlides } from "../types/slideshow";
+import { sortSlides } from "../utils/slides";
 
 export enum VideoQuality {
-  FHD = 'FHD',
-  HD = 'HD',
-  SD = 'SD',
+  FHD = "FHD",
+  HD = "HD",
+  SD = "SD",
 }
 
 const qualities: Record<VideoQuality, string> = {
-  FHD: '1920:1080',
-  HD: '1280:720',
-  SD: '720:480',
+  FHD: "1920:1080",
+  HD: "1280:720",
+  SD: "720:480",
 };
 
 export default function useCreateSlideshowVideo(
   slideshow: SlideshowWithSlides,
-  quality: VideoQuality = VideoQuality.HD
+  quality: VideoQuality = VideoQuality.HD,
+  mobile = false
 ) {
   const [isLoading, setIsLoading] = useState(false);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -33,18 +34,18 @@ export default function useCreateSlideshowVideo(
 
   const load = async () => {
     setIsLoading(true);
-    const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
+    const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd";
     const ffmpeg = ffmpegRef.current;
-    ffmpeg.on('log', ({ message }) => {
+    ffmpeg.on("log", ({ message }) => {
       console.log(message);
     });
     // toBlobURL is used to bypass CORS issue, urls with the same
     // domain can be used directly.
     await ffmpeg.load({
-      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
       wasmURL: await toBlobURL(
         `${baseURL}/ffmpeg-core.wasm`,
-        'application/wasm'
+        "application/wasm"
       ),
     });
     setIsLoading(false);
@@ -57,7 +58,7 @@ export default function useCreateSlideshowVideo(
       setIsLoading(true);
       const ffmpeg = ffmpegRef.current;
 
-      if (!ffmpeg.loaded) throw new Error('Ffmpeg no loaded.');
+      if (!ffmpeg.loaded) throw new Error("Ffmpeg no loaded.");
 
       const slides = slideshow.slides;
 
@@ -74,23 +75,23 @@ export default function useCreateSlideshowVideo(
         .map(
           (_, i) => `file 'img${i}.jpeg'\nduration ${sortedSlide[i].duration}`
         )
-        .join('\n');
+        .join("\n");
 
-      await ffmpeg.writeFile('filelist.txt', fileList);
+      await ffmpeg.writeFile("filelist.txt", fileList);
 
-      ffmpeg.on('progress', (evt) => {
+      ffmpeg.on("progress", (evt) => {
         setProgress(evt.progress * 100);
       });
 
       const scale = qualities[quality] || qualities[VideoQuality.HD];
 
-      console.log('Scale: ', scale);
+      console.log("Scale: ", scale);
 
       for (let i = 0; i < sortedSlide.length; i++) {
         await ffmpeg.exec([
-          '-i',
+          "-i",
           `img${i}.jpeg`,
-          '-vf',
+          "-vf",
           `scale=${scale}:force_original_aspect_ratio=1,pad=${scale}:(ow-iw)/2:(oh-ih)/2`,
           `img${i}_scaled.jpeg`,
         ]);
@@ -106,37 +107,37 @@ export default function useCreateSlideshowVideo(
       // Due to a quirk, the last image has to be specified twice - the 2nd time without any duration directive
       scaledFileList.push(`file 'img${lastIndex}_scaled.jpeg'`);
 
-      const scaledFileListStr = scaledFileList.join('\n');
+      const scaledFileListStr = scaledFileList.join("\n");
 
-      console.log('Scaled file list: ', scaledFileListStr);
+      console.log("Scaled file list: ", scaledFileListStr);
 
-      await ffmpeg.writeFile('scaled_filelist.txt', scaledFileListStr);
+      await ffmpeg.writeFile("scaled_filelist.txt", scaledFileListStr);
 
       await ffmpeg.exec([
-        '-f',
-        'concat',
-        '-safe',
-        '0',
-        '-i',
-        'scaled_filelist.txt',
-        '-vsync',
-        'vfr',
-        '-pix_fmt',
-        'yuv420p',
-        'output.mp4',
+        "-f",
+        "concat",
+        "-safe",
+        "0",
+        "-i",
+        "scaled_filelist.txt",
+        "-vsync",
+        "vfr",
+        "-pix_fmt",
+        "yuv420p",
+        "output.mp4",
       ]);
 
-      const data = await ffmpeg.readFile('output.mp4');
+      const data = await ffmpeg.readFile("output.mp4");
 
       const downloadUrl = URL.createObjectURL(
-        new Blob([data], { type: 'video/mp4' })
+        new Blob([data], { type: "video/mp4" })
       );
 
       setVideoUrl(downloadUrl);
     } catch (error) {
       showNotify(
         NotificationTypes.error,
-        'An error occurred while creating the video, please try again later.'
+        "An error occurred while creating the video, please try again later."
       );
     }
 
@@ -146,7 +147,7 @@ export default function useCreateSlideshowVideo(
   useEffect(() => {
     if (videoUrl) {
       // Crear un enlace de descarga y simular un clic
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = videoUrl;
       a.download = `${slideshow.name}.mp4`;
       document.body.appendChild(a);

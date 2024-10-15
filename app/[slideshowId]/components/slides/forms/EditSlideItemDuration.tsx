@@ -1,8 +1,9 @@
-import { updateAction } from '@ism/app/[slideshowId]/lib/actions/slides';
-import Submit from '@ism/app/components/common/buttons/Submit';
-import { CheckIcon } from '@radix-ui/react-icons';
+import { updateAction } from "@ism/app/[slideshowId]/lib/actions/slides";
+import Submit from "@ism/app/components/common/buttons/Submit";
+import { CheckIcon } from "@radix-ui/react-icons";
+import clsx from "clsx";
 
-import './styles/editSlideItemDuration.css';
+import "./styles/editSlideItemDuration.css";
 
 type Props = {
   slideshowId: string;
@@ -28,7 +29,7 @@ export default function EditSlideItemDuration({
         required
       />
       <Submit
-        className="primary_button centered_button"
+        className={clsx("primary_button", "centered_button")}
         ariaLabel="Edit slide duration"
         title="Edit slide duration"
       >

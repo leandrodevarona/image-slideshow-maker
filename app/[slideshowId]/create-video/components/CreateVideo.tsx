@@ -1,20 +1,22 @@
-'use client';
+"use client";
 
-import BarLoader from '@ism/app/components/common/loaders/BarLoader';
+import BarLoader from "@ism/app/components/common/loaders/BarLoader";
 import useCreateSlideshowVideo, {
   VideoQuality,
-} from '../../lib/hooks/useCreateSlideshowVideo';
-import { SlideshowWithSlides } from '../../lib/types/slideshow';
-import VideoQualityControl from './controls/VideoQualityControl';
+} from "../../lib/hooks/useCreateSlideshowVideo";
+import { SlideshowWithSlides } from "../../lib/types/slideshow";
+import VideoQualityControl from "./controls/VideoQualityControl";
+import clsx from "clsx";
 
-import './styles/createVideo.css';
+import "./styles/createVideo.css";
 
 type Props = {
   slideshow: SlideshowWithSlides;
   quality?: VideoQuality;
+  mobile?: boolean;
 };
 
-export default function CreateVideo({ slideshow, quality }: Props) {
+export default function CreateVideo({ slideshow, quality, mobile }: Props) {
   const { isLoading, createVideo } = useCreateSlideshowVideo(
     slideshow,
     quality
@@ -43,7 +45,11 @@ export default function CreateVideo({ slideshow, quality }: Props) {
         </>
       )}
       <button
-        className="create_video__button primary_button centered_button"
+        className={clsx(
+          "create_video__button",
+          "primary_button",
+          "centered_button"
+        )}
         disabled={isLoading}
         onClick={createVideo}
       >

@@ -2,16 +2,20 @@ import {
   CopyLandingPageLink,
   CreateAndDownloadVideo,
   OpenLandingPage,
-} from './buttons';
+} from "./buttons";
 
-import './styles/landingPageReferences.css';
+import "./styles/landingPageReferences.css";
 
-export default function LandingPageReferences() {
+type Props = {
+  mobile?: boolean;
+};
+
+export default function LandingPageReferences({ mobile = false }: Props) {
   return (
     <div className="landing_page__references">
       <CopyLandingPageLink />
       <OpenLandingPage />
-      <CreateAndDownloadVideo />
+      <CreateAndDownloadVideo mobileResolution={mobile} />
     </div>
   );
 }
