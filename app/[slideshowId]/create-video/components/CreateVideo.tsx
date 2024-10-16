@@ -3,6 +3,7 @@
 import BarLoader from "@ism/app/components/common/loaders/BarLoader";
 import useCreateSlideshowVideo, {
   VideoQuality,
+  VideoQualityMobile,
 } from "../../lib/hooks/useCreateSlideshowVideo";
 import { SlideshowWithSlides } from "../../lib/types/slideshow";
 import VideoQualityControl from "./controls/VideoQualityControl";
@@ -12,14 +13,15 @@ import "./styles/createVideo.css";
 
 type Props = {
   slideshow: SlideshowWithSlides;
-  quality?: VideoQuality;
+  quality?: VideoQuality | VideoQualityMobile;
   mobile?: boolean;
 };
 
 export default function CreateVideo({ slideshow, quality, mobile }: Props) {
   const { isLoading, createVideo } = useCreateSlideshowVideo(
     slideshow,
-    quality
+    quality,
+    mobile
   );
 
   return (

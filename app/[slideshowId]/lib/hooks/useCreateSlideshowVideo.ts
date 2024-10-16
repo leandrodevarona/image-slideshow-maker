@@ -31,8 +31,12 @@ const qualities: Record<VideoQuality | VideoQualityMobile, string> = {
 
 export default function useCreateSlideshowVideo(
   slideshow: SlideshowWithSlides,
-  quality: VideoQuality | VideoQualityMobile = VideoQuality.HD
+  quality?: VideoQuality | VideoQualityMobile,
+  mobile?: boolean
 ) {
+  if (!quality)
+    quality = mobile ? VideoQualityMobile.HD_MOBILE : VideoQuality.HD;
+
   const [isLoading, setIsLoading] = useState(false);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);

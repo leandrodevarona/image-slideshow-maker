@@ -1,12 +1,13 @@
-'use server';
+"use server";
 
-import { db } from '@ism/app/[slideshowId]/lib/db';
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
-import { Routes } from '../utils/routes';
-import { getPhotos } from '@ism/app/[slideshowId]/lib/data/photos';
-import { getColors } from '@ism/app/[slideshowId]/lib/utils/colors';
-import { capitalize } from '../utils/utils';
+import { db } from "@ism/app/[slideshowId]/lib/db";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { Routes } from "../utils/routes";
+import { getPhotos } from "@ism/app/[slideshowId]/lib/data/photos";
+import { getColors } from "@ism/app/[slideshowId]/lib/utils/colors";
+import { capitalize } from "../utils/utils";
+import { getPrompts } from "../data/prompt";
 
 export async function createAction() {
   let slideshowId = null;
@@ -24,7 +25,7 @@ export async function createAction() {
 }
 
 export async function autoCreateAction(formData: FormData) {
-  const theme = formData.get('theme')?.toString();
+  const theme = formData.get("theme")?.toString();
 
   if (!theme) redirect(`${Routes.home}?error=Theme is required`);
 
@@ -38,12 +39,20 @@ export async function autoCreateAction(formData: FormData) {
       `${Routes.home}?error=Unsplash library is not working at the moment. Please try again later or with another theme.`
     );
 
-  let colorPalette = null;
+  let colorPalette = undefined;
 
   try {
     colorPalette = await getColors(theme);
   } catch (error) {
-    redirect(`${Routes.home}?error=Cannot use AI at this time.`);
+    console.error(error);
+  }
+
+  let prompts = undefined;
+
+  try {
+    prompts = await getPrompts(theme, photos.length);
+  } catch (error) {
+    console.error(error);
   }
 
   let slideshow = null;
@@ -77,6 +86,7 @@ export async function autoCreateAction(formData: FormData) {
           width: photo.width,
           height: photo.height,
           index,
+          alt: prompts?.[index],
         },
       });
     });
