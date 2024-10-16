@@ -51,6 +51,10 @@
     rgb(var(--background-start-rgb));
 }
 
+.slide_viewer.mobile {
+  aspect-ratio: 9 / 16;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
   .slide_viewer {

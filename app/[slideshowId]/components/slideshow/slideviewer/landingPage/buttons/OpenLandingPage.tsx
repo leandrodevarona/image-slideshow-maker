@@ -1,12 +1,13 @@
-'use client';
+"use client";
 
-import { Routes } from '@ism/app/lib/utils/routes';
-import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
-import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Routes } from "@ism/app/lib/utils/routes";
+import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
 
-import './styles/landingPageButtons.css';
+import "./styles/landingPageButtons.css";
 
 export default function OpenLandingPage() {
   const params = useParams<{ slideshowId: string }>();
@@ -14,7 +15,7 @@ export default function OpenLandingPage() {
   const [url, setUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !params.slideshowId) return;
+    if (typeof window === "undefined" || !params.slideshowId) return;
 
     const landingUrl =
       window.location.origin + Routes.landingPage(params.slideshowId);
@@ -28,7 +29,11 @@ export default function OpenLandingPage() {
 
   return (
     <Link
-      className="landingPage_button primary_button centered_button"
+      className={clsx(
+        "landingPage_button",
+        "primary_button",
+        "centered_button"
+      )}
       href={url}
       target="_blank"
       title="See the result of the edition on a landing page"

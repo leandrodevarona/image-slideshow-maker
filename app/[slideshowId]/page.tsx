@@ -1,11 +1,11 @@
-import { getSlideshowById } from './lib/data/slideshow';
-import { notFound } from 'next/navigation';
-import SlideEditor from './components/slideshow/SlideEditor';
-import EditSlideshowName from './components/slideshow/forms/EditSlideshowName';
-import ColorPaletteLoader from './components/slideshow/colors/ColorPaletteLoader';
-import VercelLogo from '../components/VercelLogo';
+import { getSlideshowById } from "./lib/data/slideshow";
+import { notFound } from "next/navigation";
+import SlideEditor from "./components/slideshow/SlideEditor";
+import EditSlideshowName from "./components/slideshow/forms/EditSlideshowName";
+import ColorPaletteLoader from "./components/slideshow/colors/ColorPaletteLoader";
+import VercelLogo from "../components/VercelLogo";
 
-import styles from './page.module.css';
+import styles from "./page.module.css";
 
 type Props = {
   params: {
@@ -17,12 +17,13 @@ type Props = {
     editItems?: string;
     deleteItems?: string;
     pause?: string;
+    mobile?: string;
   };
 };
 
 export default async function SlideshowPage({
   params: { slideshowId },
-  searchParams: { slideIndex, photos, editItems, deleteItems, pause },
+  searchParams: { slideIndex, photos, editItems, deleteItems, pause, mobile },
 }: Props) {
   const slideshow = await getSlideshowById(slideshowId);
 
@@ -50,6 +51,7 @@ export default async function SlideshowPage({
           editItems={Boolean(editItems)}
           deleteItem={Boolean(deleteItems)}
           pause={Boolean(pause)}
+          mobile={Boolean(mobile)}
         />
       </div>
       <footer></footer>

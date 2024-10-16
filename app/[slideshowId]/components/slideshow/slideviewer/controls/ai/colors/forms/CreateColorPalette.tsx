@@ -1,8 +1,9 @@
-import { createAction } from '@ism/app/[slideshowId]/lib/actions/colors';
-import Submit from '@ism/app/components/common/buttons/Submit';
-import { CheckIcon } from '@radix-ui/react-icons';
+import { createAction } from "@ism/app/[slideshowId]/lib/actions/colors";
+import Submit from "@ism/app/components/common/buttons/Submit";
+import { CheckIcon } from "@radix-ui/react-icons";
+import clsx from "clsx";
 
-import './styles/createColorPalette.css';
+import "./styles/createColorPalette.css";
 
 type Props = {
   slideshowId: string;
@@ -20,7 +21,7 @@ export default function CreateColorPalette({ slideshowId }: Props) {
         required
         maxLength={20}
       />
-      <Submit className="primary_button centered_button">
+      <Submit className={clsx("primary_button", "centered_button")}>
         <CheckIcon />
       </Submit>
     </form>

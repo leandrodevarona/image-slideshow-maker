@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import useSeeSlide from '@ism/app/[slideshowId]/lib/hooks/useSeeSlide';
-import { ResetIcon } from '@radix-ui/react-icons';
-import { MouseEvent, Suspense, useEffect, useState } from 'react';
+import useSeeSlide from "@ism/app/[slideshowId]/lib/hooks/useSeeSlide";
+import { ResetIcon } from "@radix-ui/react-icons";
+import { MouseEvent, Suspense, useEffect, useState } from "react";
+import clsx from "clsx";
 
-import './styles/reset.css';
+import "./styles/reset.css";
 
 type Props = {
   slideDuration: number;
@@ -29,9 +30,9 @@ function Component({ slideDuration }: Props) {
 
   return (
     <button
-      className="reset_button primary_button centered_button"
+      className={clsx("reset_button", "primary_button", "centered_button")}
       disabled={isPending}
-      style={{ display: hidden ? 'none' : 'flex' }}
+      style={{ display: hidden ? "none" : "flex" }}
       title="Reset slideshow"
       aria-label="Reset slideshow"
       onClick={handleOnClick}

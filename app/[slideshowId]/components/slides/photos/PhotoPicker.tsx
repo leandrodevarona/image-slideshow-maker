@@ -1,9 +1,10 @@
-import DropdownMenu from '@ism/app/components/common/menus/DropdownMenu';
-import { ImageIcon } from '@radix-ui/react-icons';
-import SearchPhotos from './inputs/SearchPhotos';
-import PhotoPickerForm from './forms/PhotoPickerForm';
+import DropdownMenu from "@ism/app/components/common/menus/DropdownMenu";
+import { ImageIcon } from "@radix-ui/react-icons";
+import SearchPhotos from "./inputs/SearchPhotos";
+import PhotoPickerForm from "./forms/PhotoPickerForm";
+import clsx from "clsx";
 
-import './styles/photoPicker.css';
+import "./styles/photoPicker.css";
 
 type Props = {
   className?: string;
@@ -16,7 +17,7 @@ export default function PhotoPicker({ className, slideshowId, query }: Props) {
     <DropdownMenu
       id="photo_picker"
       className={className}
-      buttonClassName="photo_picker__button primary_button"
+      buttonClassName={clsx("photo_picker__button", "primary_button")}
       buttonContent={
         <>
           <ImageIcon />

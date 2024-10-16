@@ -1,0 +1,14 @@
+.full_screen__button {
+  position: absolute;
+  top: 0;
+  left: -2rem;
+
+  padding: 0.3rem;
+}
+
+@media (max-width: 700px) {
+  .full_screen__button {
+    top: -2rem;
+    left: 0;
+  }
+}
