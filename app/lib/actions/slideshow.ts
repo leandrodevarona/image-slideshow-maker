@@ -63,12 +63,14 @@ export async function autoCreateAction(formData: FormData) {
     slideshow = await db.slideshow.create({
       data: {
         name,
-        colorPalette: {
-          create: {
-            name: theme,
-            ...colorPalette,
-          },
-        },
+        colorPalette: colorPalette
+          ? {
+              create: {
+                name: theme,
+                ...colorPalette,
+              },
+            }
+          : undefined,
       },
     });
   } catch (error) {
