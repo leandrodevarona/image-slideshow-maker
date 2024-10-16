@@ -14,16 +14,24 @@ export enum VideoQuality {
   SD = "SD",
 }
 
-const qualities: Record<VideoQuality, string> = {
+export enum VideoQualityMobile {
+  FHD_MOBILE = "FHD_MOBILE",
+  HD_MOBILE = "HD_MOBILE",
+  SD_MOBILE = "SD_MOBILE",
+}
+
+const qualities: Record<VideoQuality | VideoQualityMobile, string> = {
   FHD: "1920:1080",
   HD: "1280:720",
   SD: "720:480",
+  FHD_MOBILE: "1080:1920",
+  HD_MOBILE: "720:1280",
+  SD_MOBILE: "480:720",
 };
 
 export default function useCreateSlideshowVideo(
   slideshow: SlideshowWithSlides,
-  quality: VideoQuality = VideoQuality.HD,
-  mobile = false
+  quality: VideoQuality | VideoQualityMobile = VideoQuality.HD
 ) {
   const [isLoading, setIsLoading] = useState(false);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);

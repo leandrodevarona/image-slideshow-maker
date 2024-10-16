@@ -41,7 +41,7 @@ export default function CreateVideo({ slideshow, quality, mobile }: Props) {
             Select the quality and press the button below to start creating your
             video.
           </h1>
-          <VideoQualityControl />
+          <VideoQualityControl mobile={mobile} />
         </>
       )}
       <button

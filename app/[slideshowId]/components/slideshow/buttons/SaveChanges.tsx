@@ -21,7 +21,7 @@ export default function SaveChanges({ slideshowId }: Props) {
 
   return (
     <button
-      className={clsx("save_changes__button", "primary_button")}
+      className={clsx("save_changes", "primary_button")}
       aria-label="Save changes button"
       title="Save changes"
       disabled={isPending}

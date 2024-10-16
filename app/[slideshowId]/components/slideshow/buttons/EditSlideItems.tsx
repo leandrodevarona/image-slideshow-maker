@@ -19,7 +19,7 @@ function Component() {
 
   return (
     <button
-      className={clsx("edit_slides__button", "primary_button")}
+      className={clsx("edit_slide__items", "primary_button")}
       aria-label="Edit slides button"
       title={isEditing ? "Cancel edit slides" : "Edit slides"}
       disabled={isPending}
