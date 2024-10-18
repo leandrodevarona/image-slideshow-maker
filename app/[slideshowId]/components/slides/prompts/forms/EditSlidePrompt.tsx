@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import SlidePrompt from '../SlidePrompt';
-import SlidePromptTextarea from '../textarea/SlidePromptTextarea';
+import SlidePrompt from "../SlidePrompt";
+import SlidePromptTextarea from "../textarea/SlidePromptTextarea";
 
-import './styles/editSlidePrompt.css';
+import "./styles/editSlidePrompt.css";
 
 type Props = {
   slideAlt: string | null;
@@ -16,25 +16,19 @@ export default function EditSlidePrompt({
   imgElemId,
   updateAlt,
 }: Props) {
-  const textareaId = 'slide_prompt__textarea';
-  const formId = 'form-' + textareaId;
+  const textareaId = "slide_prompt__textarea";
 
   return (
     <SlidePrompt
       textareaId={textareaId}
       imgElemId={imgElemId}
       renderTextBox={(isVisible) => (
-        <form
-          id={formId}
-          action={updateAlt}
+        <SlidePromptTextarea
+          id={textareaId}
+          defaultValue={slideAlt || ""}
           style={{ opacity: isVisible ? 1 : 0 }}
-        >
-          <SlidePromptTextarea
-            id={textareaId}
-            formId={formId}
-            defaultValue={slideAlt || ''}
-          />
-        </form>
+          action={updateAlt}
+        />
       )}
     ></SlidePrompt>
   );

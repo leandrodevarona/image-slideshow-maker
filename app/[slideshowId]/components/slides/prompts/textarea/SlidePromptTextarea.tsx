@@ -1,15 +1,16 @@
-'use client';
+"use client";
 
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
-import { useEffect } from 'react';
+import { TextareaAutosize } from "@mui/base/TextareaAutosize";
+import { ComponentProps, useEffect, useState } from "react";
+import useDeviceDetection, {
+  Device,
+} from "@ism/app/[slideshowId]/lib/hooks/useDeviceDetection";
+import EditPromptModal from "./EditPromptModal";
 
-import './styles/slidePromptTextarea.css';
+import "./styles/slidePromptTextarea.css";
 
-type Props = {
-  id: string;
-  formId: string;
-  defaultValue: string;
-  isVisible?: boolean;
+type Props = ComponentProps<typeof TextareaAutosize> & {
+  action?: (formData: FormData) => Promise<void>;
 };
 
 /**
@@ -20,36 +21,60 @@ type Props = {
  * @returns
  */
 export default function SlidePromptTextarea({
-  id,
-  formId,
+  id = "textarea",
   defaultValue,
+  action,
+  ...rest
 }: Props) {
-  useEffect(() => {
-    const textareaElem = document.getElementById(id);
+  const [editPrompt, setEditPrompt] = useState(false);
 
-    if (textareaElem) {
-      textareaElem.addEventListener('keydown', (evt) => {
-        if (evt.ctrlKey && evt.key === 's') {
-          evt.preventDefault();
-          const formElem = document.getElementById(formId) as HTMLFormElement;
-          if (formElem) formElem.requestSubmit();
-        }
-      });
+  const device = useDeviceDetection();
+
+  useEffect(() => {
+    if (device === Device.Desktop) {
+      const textareaElem = document.getElementById(id) as HTMLTextAreaElement;
+
+      if (textareaElem) {
+        textareaElem.addEventListener("keydown", async (evt) => {
+          if (evt.ctrlKey && evt.key === "s") {
+            evt.preventDefault();
+            const value = textareaElem.value;
+            if (value) {
+              const formData = new FormData();
+              formData.append("alt", value);
+              await action?.(formData);
+            }
+          }
+        });
+      }
     }
-  }, [id, formId]);
+  }, [id, device, action]);
+
+  const placeholder =
+    device === Device.Desktop ? "To save press Ctrl+S" : "Press to edit";
 
   return (
-    <TextareaAutosize
-      id={id}
-      className="slide_prompt__textarea"
-      name="alt"
-      placeholder="To save press Ctrl+S"
-      title={
-        defaultValue.length <= 0
-          ? 'This area will not be seen if you do not define a prompt'
-          : undefined
-      }
-      defaultValue={defaultValue}
-    />
+    <>
+      <TextareaAutosize
+        id={id}
+        className="slide_prompt__textarea"
+        name="alt"
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        readOnly={device === Device.Mobile}
+        {...rest}
+        onClick={
+          device === Device.Mobile ? () => setEditPrompt(true) : undefined
+        }
+      />
+      {device === Device.Mobile && (
+        <EditPromptModal
+          open={editPrompt}
+          defaultValue={defaultValue}
+          action={action}
+          onClose={() => setEditPrompt(false)}
+        />
+      )}
+    </>
   );
 }
